@@ -9,6 +9,9 @@ assembly:
   pdf_status: "generated"           # generated / skipped_weasyprint_unavailable / skipped_error
   pdf_page_count: 0
   heading_numbers_injected: 0       # 安全网修复的缺失编号数
+  citation_tags_replaced: 0
+  bibliography_inserted: false
+  bibliography_location: ""
   total_units_expected: 0
   total_units_assembled: 0
   missing_units: []
@@ -42,6 +45,13 @@ checks:
     status: "pass"
     terms_checked: 0
     inconsistent_terms: []
+    summary: ""
+  citations:
+    status: "pass"                  # pass / warning / error
+    used_citations: 0
+    unknown_tags: []
+    unreplaced_tags: []
+    bibliography_entries: 0
     summary: ""
 
 severity:

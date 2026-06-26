@@ -28,13 +28,13 @@ verification:
     - check: "中文编码"
       status: "needs_manual_check"
       note: "请在 Word 中打开确认中文未乱码"
-    - check: "图表占位"
+    - check: "图片占位"
       status: "needs_manual_check"
-      note: "请替换图片占位为实际图表"
+      note: "请替换图片占位为实际图片"
 
 user_actions:
   - "在 Word 中打开 proposal.docx，确认中文未乱码"
-  - "替换图表占位为实际图片"
+  - "替换图片占位为实际图片"
   - "检查页数是否在申报要求范围内"
   - "如需修改内容：回灌到对应 unit → 重新 08-section-write → 09 → 10 → 11"
 

@@ -1,0 +1,69 @@
+stage: "OUTLINE"
+version: "v1"
+
+purpose: >
+  规划申请书正文可用的参考文献引用 tag。07 生成稳定、可读的 tag；
+  08/writer 在正文中使用 {{cite:tag}}；09-assemble 按首次出现顺序替换为 [1][2][3]，
+  并生成参考文献列表。
+
+numbering_policy:
+  owner_stage: "09-assemble"
+  writer_rule: "08-section-write / grant-writer 只能写 {{cite:tag}}，不得写 [1] [2] 等数字编号。"
+  assemble_rule: "09-assemble 扫描正文首次出现顺序，分配数字编号并替换 tag。"
+
+tag_rules:
+  format: "{first_author_lastname}{year}{first_meaningful_title_word}"
+  allowed_pattern: "^[a-z0-9_]+$"
+  examples:
+    - "vaswani2017attention"
+    - "devlin2019bert"
+    - "dao2022flashattention"
+  forbidden_patterns:
+    - "CIT001"
+    - "P001"
+    - "ref1"
+    - "纯数字或无语义编号"
+
+citations:
+  - tag: "vaswani2017attention"
+    paper_id: "P001"
+    metadata_status: "complete"       # complete / partial / missing
+    title: "Attention Is All You Need"
+    authors: "Vaswani et al."
+    year: 2017
+    venue: "NeurIPS"
+    doi: ""
+    url: ""
+    reference_text: "Vaswani A, Shazeer N, Parmar N, et al. Attention Is All You Need. NeurIPS, 2017."
+    source:
+      paper_report: "workflow/04_paper_digest/round_XX/reports/{batch_id}/papers/P001.md"
+      evidence_claims:
+        - "C03"
+    allocated_units:
+      - "S01.2.2-U001"
+    allowed_contexts:
+      - "background"
+      - "related_work"
+      - "gap"
+    usage_hint: "用于说明 Transformer 架构对序列建模范式的影响。"
+    first_introduction_rule: >
+      当正文首次介绍该工作、方法或结论时使用 {{cite:vaswani2017attention}}。
+      后续再次提及同一工作时可复用同一 tag。
+
+bibliography_policy:
+  placement_owner_stage: "09-assemble"
+  default_scope: "background_and_related_work"
+  insert_after_sections:
+    - "背景"
+    - "研究意义"
+    - "国内外研究现状"
+    - "研究现状"
+  heading: "参考文献"
+  include_only_used_citations: true
+  numbering_order: "first_appearance"
+
+metadata:
+  total_citations: 0
+  complete_metadata: 0
+  partial_metadata: 0
+  allocated_units_count: 0

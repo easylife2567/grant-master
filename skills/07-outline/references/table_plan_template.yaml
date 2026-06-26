@@ -1,0 +1,93 @@
+stage: "OUTLINE"
+version: "v1"
+
+purpose: >
+  规划申请书全书表格，指定每张表的正文位置、列结构、行结构、数据来源和缺失值规则。
+  表格由 08-section-write / grant-writer 自动生成 Markdown 表格，不需要用户手动生图。
+
+generation_ownership:
+  owner_stage: "07-outline"
+  generator_stage: "08-section-write"
+  writer_rule: >
+    grant-writer 必须根据 table_specs 在对应 unit 中直接生成 Markdown 表格；
+    除非 table.status=blocked 或关键数据缺失，不得只留下表格占位符。
+
+global_rules:
+  table_format: "markdown"
+  max_recommended_columns: 6
+  require_intro_sentence: true
+  require_followup_sentence: true
+  missing_value: "待补充"
+  numeric_values_must_have_source: true
+  avoid:
+    - "为了装饰而造表"
+    - "用表格替代必要的机制解释"
+    - "虚构数字、实验结果或团队成果"
+    - "超宽表格导致 Word 中难以阅读"
+    - "表格前后没有正文引导和总结"
+
+tables:
+  - table_id: "T01"
+    table_no: 1
+    type: "validation_metrics_table"     # research_content_breakdown / module_design / innovation_comparison / validation_metrics / timeline / foundation_summary / risk_response / other
+    required: true
+    status: "planned"                    # planned / needs_user_confirmation / optional / blocked
+    blocked_reason: ""
+
+    target:
+      section_id: "S02.5"
+      section_heading: ""
+      unit_id: "S02.5-U001"
+      unit_title: ""
+      placement_hint: "在说明验证方案总体设计后插入"
+      placement_after_slot: ""           # 可选：如 P3；为空则由 writer 根据正文自然位置判断
+
+    title: "验证任务与评价指标表"
+    caption_draft: "表1 验证任务与评价指标"
+    argument_role: "说明各研究任务如何被可观测指标验证。"
+
+    source_basis:
+      helm:
+        - "workflow/06_helm/scheme_blueprint.yaml"
+      synthesis: []
+      evidence_claims: []
+      applicant_profile: []
+
+    columns:
+      - name: "验证任务"
+        purpose: "对应研究内容或技术模块"
+        source: "scheme_blueprint.validation_plan"
+        required: true
+      - name: "评价指标"
+        purpose: "说明可量化评价方式"
+        source: "scheme_blueprint.validation_plan.metrics"
+        required: true
+      - name: "判据"
+        purpose: "说明达成目标或比较方式"
+        source: "scheme_blueprint.validation_plan.criteria"
+        required: false
+
+    rows:
+      mode: "from_validation_tasks"       # explicit / from_research_contents / from_modules / from_validation_tasks / from_years / from_applicant_outputs
+      expected_count: 3
+      explicit_items: []
+
+    fill_rules:
+      missing_value: "待补充"
+      allow_estimated_text: false
+      numeric_values_must_have_source: true
+      source_required_for_each_cell: false
+
+    markdown_rules:
+      generate_visible_table: true
+      table_format: "markdown"
+      require_intro_sentence: true
+      require_followup_sentence: true
+      max_cell_length: "短语或短句，避免长段落"
+
+metadata:
+  total_tables: 0
+  required_tables: 0
+  optional_tables: 0
+  tables_need_user_confirmation: 0
+  tables_blocked: 0

@@ -175,11 +175,35 @@
 
 ---
 
-## 8. 图表与表格规划
+## 8. 图片与表格规划
 
-| 位置（Unit / Section） | 图表类型 | 内容 | 来源 | 是否必需 |
-|---|---|---|---|---|
-|  | 技术路线图 |  | helm | yes |
+完整机器可读图片规划见 `workflow/07_outline/figure_plan.yaml`；完整机器可读表格规划见 `workflow/07_outline/table_plan.yaml`。本节只保留给人阅读的摘要。
+
+### 8.1 图片规划
+
+| 图号 | 位置（Unit / Section） | 图片类型 | 论证功能 | 来源 | 是否必需 |
+|---|---|---|---|---|---|
+| F01 / 图1 |  | 技术路线图 |  | helm | yes |
+
+### 8.2 图片风格
+
+- 全书图片应保持统一风格：白底或浅底、蓝/绿/灰为主、线条清晰、中文短标签、适合 Word/PDF 打印。
+- 不使用卡通、照片写实、营销海报、复杂纹理背景或过度装饰风格。
+
+### 8.3 Codex 生图提示词
+
+- 每张必需图的完整 `codex_prompt_base` 写入 `figure_plan.yaml`。
+- 08-section-write 可在正文语境内生成 `codex_prompt_final`，但不得改变图片类型、核心元素、论证功能和统一风格。
+
+### 8.4 表格规划
+
+| 表号 | 位置（Unit / Section） | 表格类型 | 论证功能 | 数据来源 | 08 是否自动生成 |
+|---|---|---|---|---|---|
+| T01 / 表1 |  | 验证指标表 |  | helm | yes |
+
+- 表格不进入 `figure_plan.yaml`，不需要 Codex 生图提示词。
+- 每张必需表格的列结构、行结构、数据来源和缺失值规则写入 `table_plan.yaml`。
+- 08-section-write / grant-writer 必须根据 `table_plan.yaml` 在正文中自动生成 Markdown 表格。
 
 ---
 
@@ -191,7 +215,20 @@
 
 ---
 
-## 10. 跨节一致性约束
+## 10. 引用规划
+
+完整机器可读引用规划见 `workflow/07_outline/citation_plan.yaml`。本节只保留给人阅读的摘要。
+
+| Citation Tag | 文献 | 年份 | 用于哪些 Unit | 用途 |
+|---|---|---|---|---|
+| vaswani2017attention | Attention Is All You Need | 2017 | S01.2.2-U001 | 说明 Transformer 架构影响 |
+
+- 08-section-write / grant-writer 正文中只使用 `{{cite:tag}}`，不得写 `[1]`、`[2]`。
+- 09-assemble 会按全文首次出现顺序把 tag 替换为数字编号，并在背景/研究现状后生成参考文献列表。
+
+---
+
+## 11. 跨节一致性约束
 
 - **术语统一**：[关键术语列表]
 - **逻辑一致性**：[跨节论证关系]
@@ -201,7 +238,7 @@
 
 ---
 
-## 11. 给 08-section-write 的执行建议
+## 12. 给 08-section-write 的执行建议
 
 1. 优先写 `priority=high` 且 `status=pending` 的 writing units；
 2. 每个 unit 按 `writing_units.yaml` 中的 `paragraph_slots` 写；

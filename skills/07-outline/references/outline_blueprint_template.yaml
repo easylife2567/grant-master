@@ -67,11 +67,53 @@ helm_to_outline_mapping:
 writing_architecture:
   writing_units: "workflow/07_outline/writing_units.yaml"
   source_allocation: "workflow/07_outline/source_allocation.yaml"
+  figure_plan: "workflow/07_outline/figure_plan.yaml"
+  table_plan: "workflow/07_outline/table_plan.yaml"
+  citation_plan: "workflow/07_outline/citation_plan.yaml"
   outline_state: "workflow/07_outline/outline_state.yaml"
   next_stage: "SECTION_WRITE"
   recommended_granularity: "unit"
   first_units_to_write:
     - ""
+
+figure_plan_summary:
+  figure_plan: "workflow/07_outline/figure_plan.yaml"
+  total_figures: 0
+  required_figures: 0
+  optional_figures: 0
+  figures_need_user_confirmation: 0
+  figures_with_codex_prompt_base: 0
+  target_units:
+    - figure_id: "F01"
+      target_unit_id: ""
+      type: ""
+      title: ""
+      required: true
+
+table_plan_summary:
+  table_plan: "workflow/07_outline/table_plan.yaml"
+  total_tables: 0
+  required_tables: 0
+  optional_tables: 0
+  tables_need_user_confirmation: 0
+  target_units:
+    - table_id: "T01"
+      target_unit_id: ""
+      type: ""
+      title: ""
+      required: true
+
+citation_plan_summary:
+  citation_plan: "workflow/07_outline/citation_plan.yaml"
+  total_citations: 0
+  complete_metadata: 0
+  partial_metadata: 0
+  target_units:
+    - tag: "vaswani2017attention"
+      target_unit_ids:
+        - ""
+      title: ""
+      year: 0
 
 argument_integrity:
   background_to_gap_chain: ""

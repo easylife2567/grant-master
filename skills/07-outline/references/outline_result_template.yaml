@@ -15,8 +15,13 @@ outputs:
   volume_budget: "workflow/07_outline/volume_budget.yaml"
   writing_units: "workflow/07_outline/writing_units.yaml"
   source_allocation: "workflow/07_outline/source_allocation.yaml"
+  figure_plan: "workflow/07_outline/figure_plan.yaml"
+  table_plan: "workflow/07_outline/table_plan.yaml"
+  citation_plan: "workflow/07_outline/citation_plan.yaml"
   outline_state: "workflow/07_outline/outline_state.yaml"
   outline_blueprint: "workflow/07_outline/outline_blueprint.yaml"
+  context_bundle: "workflow/07_outline/context_bundle.yaml"
+  outline_result: "workflow/07_outline/outline_result.yaml"
 
 template:
   source: ""
@@ -39,6 +44,15 @@ coverage:
   references_papers_count: 0
   evidence_claims_count: 0
   data_points_count: 0
+  figures_count: 0
+  required_figures_count: 0
+  figures_with_codex_prompt_base: 0
+  tables_count: 0
+  required_tables_count: 0
+  tables_auto_generatable: 0
+  citations_count: 0
+  citations_complete_metadata: 0
+  citations_partial_metadata: 0
 
 quality:
   outline_depth_score: 0.0
@@ -52,6 +66,12 @@ intervention:
   required: false
   reason: ""
   questions: []
+
+integrity:
+  all_outputs_present: true
+  checked_at: ""
+  missing_outputs: []
+  warnings: []
 
 notes:
   - "本阶段完成申请书内容架构与体量规划，下一阶段应进入 08-section-write。"
@@ -69,8 +89,13 @@ notes:
 #   volume_budget: ""
 #   writing_units: ""
 #   source_allocation: ""
+#   figure_plan: ""
+#   table_plan: ""
+#   citation_plan: ""
 #   outline_state: ""
 #   outline_blueprint: ""
+#   context_bundle: ""
+#   outline_result: ""
 # template:
 #   source: ""
 #   status: ""
@@ -90,6 +115,15 @@ notes:
 #   references_papers_count: 0
 #   evidence_claims_count: 0
 #   data_points_count: 0
+#   figures_count: 0
+#   required_figures_count: 0
+#   figures_with_codex_prompt_base: 0
+#   tables_count: 0
+#   required_tables_count: 0
+#   tables_auto_generatable: 0
+#   citations_count: 0
+#   citations_complete_metadata: 0
+#   citations_partial_metadata: 0
 # quality:
 #   outline_depth_score: 0.0
 #   volume_planning_score: 0.0
@@ -102,5 +136,10 @@ notes:
 #   reason: "缺少必要输入。"
 #   questions:
 #     - "请先完成 06-helm，生成 workflow/06_helm/scheme_blueprint.yaml 和 helm_report.md。"
+# integrity:
+#   all_outputs_present: false
+#   checked_at: ""
+#   missing_outputs: []
+#   warnings: []
 # notes:
 #   - ""

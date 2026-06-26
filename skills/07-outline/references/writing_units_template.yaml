@@ -55,6 +55,9 @@ sections:
           evidence_claims: []
           papers: []
           other: []
+        figure_refs: []
+        table_refs: []
+        citation_refs: []
         avoid:
           - ""
         output_file: "workflow/08_section_write/units/S01-U001.md"
@@ -105,6 +108,9 @@ sections:
           evidence_claims: []
           papers: []
           other: []
+        figure_refs: []
+        table_refs: []
+        citation_refs: []
         avoid:
           - "深入子节的技术细节"
           - "空泛的意义描述"
@@ -185,6 +191,12 @@ sections:
             - ""
           other:
             - ""
+        figure_refs:
+          - "F01"
+        table_refs:
+          - "T01"
+        citation_refs:
+          - "vaswani2017attention"
         avoid:
           - ""
         output_file: "workflow/08_section_write/units/S01.2.1-U001.md"

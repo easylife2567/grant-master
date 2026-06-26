@@ -42,11 +42,11 @@ pip install python-docx       # 可选，用于模板填充式 docx
                                                                   ↓
 06_helm           整体方案规划与主线收敛
   ↓
-07_outline        申请书内容架构与体量规划
+07_outline        内容架构 + 图/表/引用规划
   ↓
-08_section_write  逐 unit 写作 ←─────────────────────┐
+08_section_write  逐 unit 写作（图片占位/表格/引用 tag）←──────┐
   ↓                                                   │
-09_assemble       合并组装 + PDF 输出                  │
+09_assemble       合并组装 + 引用编号 + 参考文献 + PDF 输出       │
   ↓                                                   │
 10_review         全局审阅 ──── P0 > 0 ───────────────┘
   ↓
@@ -98,6 +98,48 @@ pip install python-docx       # 可选，用于模板填充式 docx
     ├── 10_review/
     └── 11_output/
 ```
+
+## 关键产物
+
+07-outline 产出申请书结构蓝图，并同时完成图片、表格、引用规划：
+
+```text
+workflow/07_outline/
+├── outline_report.md              # 人类可读的完整大纲
+├── volume_budget.yaml             # 字数预算
+├── writing_units.yaml             # 08 逐 unit 写作蓝图
+├── source_allocation.yaml          # 证据、论文、图表、引用分配索引
+├── figure_plan.yaml                # 图片规划；由用户根据 Codex prompt 生成图片
+├── table_plan.yaml                 # 表格规划；08 自动生成 Markdown 表格
+├── citation_plan.yaml              # 稳定 citation tag + 参考文献条目
+├── outline_state.yaml              # unit 写作状态
+├── outline_blueprint.yaml          # 机器可读结构蓝图
+├── context_bundle.yaml             # 术语表、禁写、claim 分配
+└── outline_result.yaml             # 07 阶段结果摘要，供 auto 读取
+```
+
+08-section-write 读取 07 的 writing units、figure/table/citation 规划，生成正文 unit：
+
+```text
+workflow/08_section_write/
+├── instructions/                   # 每批 writer instruction
+├── units/                          # 每个 unit 一个 .md 正文文件
+├── reports/                        # 批次报告
+└── unit_result.yaml                 # 08 阶段结果摘要，供 auto 读取
+```
+
+09-assemble 合并正文，统一处理跨 unit 产物：
+
+```text
+workflow/09_assemble/
+├── proposal_draft.md               # 合并后的申请书草稿
+├── assemble_report.md              # 合并、编号、参考文献处理报告
+└── assemble_result.yaml             # 09 阶段结果摘要，供 auto 读取
+```
+
+- 图片：07 规划 `figure_plan.yaml` 和 `codex_prompt_base`；08/writer 在正文中插入图片占位符，并可精调为 `codex_prompt_final`，最终由用户生成图片。
+- 表格：07 规划 `table_plan.yaml`；08/writer 根据列结构、行结构和数据来源自动生成 Markdown 表格，不把表格留给用户手填。
+- 引用：07 规划 `citation_plan.yaml` 和稳定 `{{cite:tag}}`；08/writer 使用 tag；09-assemble 按首次出现顺序替换为 `[1]`、`[2]` 并补充参考文献列表。
 
 ## 两个模式
 

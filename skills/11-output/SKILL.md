@@ -22,7 +22,7 @@ description: >
   + references/Template.docx
     ↓
 11_output（本 Skill）
-  ├── 预处理 markdown（图表占位、表格）
+  ├── 预处理 markdown（图片占位、表格）
   ├── pandoc 转换（--reference-doc=Template.docx）
   ├── 输出 proposal.docx
   ├── 后处理验证（字体、样式、页数）
@@ -81,7 +81,7 @@ workflow/10_review/review_result.yaml     # 确认审阅已通过（P0=0）
 ### 可以做
 
 1. 读取 proposal_draft.md 和 Template.docx；
-2. 预处理 markdown（图表占位转 pandoc 语法、表格格式化）；
+2. 预处理 markdown（图片占位转 pandoc 语法、表格格式化）；
 3. 使用 pandoc + reference-doc 转换为 .docx；
 4. 验证输出质量（字体、样式继承、页数）；
 5. 如果 pandoc 不可用或模板缺失，给出明确的安装/修复指引。
@@ -190,11 +190,13 @@ for r in required:
 
 在调用 pandoc 之前，对 proposal_draft.md 做以下预处理：
 
-**图表占位**：将 `> **[图 X：{标题}]** *{描述}*` 保留为 blockquote——pandoc 会转为 Word 中的缩进段落。
+**图片占位**：将 `> **[图 X：{标题}]** *{描述}*` 保留为 blockquote——pandoc 会转为 Word 中的缩进段落。
 
 **表格**：markdown 表格直接由 pandoc 转换为 Word 表格。
 
 **参考文献**：如果正文中有 `[1]` `[2]` 等引用标记，保持不变。pandoc 会保留为纯文本。
+
+**未替换 citation tag 检查**：如果 `proposal_draft.md` 中仍出现 `{{cite:`，说明 09-assemble 未完成引用替换。应阻塞输出，提示先重新执行 09-assemble 修复 citation tag。
 
 ### 6.5 Pandoc 转换
 
@@ -311,7 +313,7 @@ workflow/11_output/
 
 用户需手动确认：
 - 中文未乱码
-- 图表占位是否需替换为实际图片
+- 图片占位是否需替换为实际图片
 - 页数是否在申报要求范围内
 
 这是 grant skill 链条的终点。如需修改内容，回灌到具体 unit 重写后重新 09→10→11。

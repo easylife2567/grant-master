@@ -106,7 +106,7 @@ auto **独享** `./workflow/proposal_state.yaml` 的读写权限。其他 XX-nam
 | 04 | `workflow/04_paper_digest/round_XX/digest_result.yaml` | `round_XX/digest_report.md`, `round_XX/digest_result.yaml`, `paper_index.yaml` | 本轮精读论文数 |
 | 05 | `workflow/05_synthesis/latest_result.yaml` | `current_view.md`, `evidence_ledger.yaml`, `round_XX/synthesis_report.md`, `round_XX/synthesis_result.yaml`, `latest_result.yaml` | rounds_completed、recommend_continue_research、strong_claims、convergence |
 | 06 | `workflow/06_helm/helm_result.yaml` | `helm_report.md`, `scheme_blueprint.yaml`, `decision_log.md`, `helm_result.yaml` | can_continue、方案状态 |
-| 07 | `workflow/07_outline/outline_result.yaml` | `outline_report.md`, `volume_budget.yaml`, `writing_units.yaml`, `source_allocation.yaml`, `outline_state.yaml`, `outline_blueprint.yaml`, `context_bundle.yaml`, `outline_result.yaml` | total_units、blocked_units、quality scores |
+| 07 | `workflow/07_outline/outline_result.yaml` | `outline_report.md`, `volume_budget.yaml`, `writing_units.yaml`, `source_allocation.yaml`, `figure_plan.yaml`, `table_plan.yaml`, `citation_plan.yaml`, `outline_state.yaml`, `outline_blueprint.yaml`, `context_bundle.yaml`, `outline_result.yaml` | total_units、blocked_units、figure/table/citation counts、quality scores |
 | 08 | `workflow/08_section_write/unit_result.yaml` | `unit_result.yaml` + 检查 outline_state 中 unit 状态 | 刚写完的 unit、剩余 pending 数、all_complete |
 | 09 | `workflow/09_assemble/assemble_result.yaml` | `proposal_draft.md`, `assemble_report.md`, `assemble_result.yaml` | 组装质量、heading 编号修复数 |
 | 10 | `workflow/10_review/review_result.yaml` | `review_report.md`, `review_result.yaml` | P0/P1/P2 计数、ready_for_output |

@@ -1,0 +1,119 @@
+stage: "OUTLINE"
+version: "v1"
+
+purpose: >
+  规划申请书全书图片，统一视觉风格，指定正文插入位置，
+  并为每张需要生成的图片提供可直接复制给 Codex 生图的完整提示词。
+
+prompt_ownership:
+  owner_stage: "07-outline"
+  base_prompt_rule: "07-outline 必须为每张 planned/required 图生成完整 codex_prompt_base。"
+  writer_refinement_rule: >
+    08-section-write / grant-writer 只能在正文语境内生成 codex_prompt_final，
+    不得改变 figure_id、图片类型、核心元素、论证功能和全局风格。
+
+global_style:
+  document_context: "中文项目申请书"
+  visual_tone: "专业、清晰、克制、适合评审快速阅读"
+  background: "白底或浅底"
+  palette: "全书统一，默认蓝/绿/灰为主，少量强调色"
+  typography: "中文黑体风格，短标签，字号清晰"
+  line_style: "细线条、清晰箭头、对齐整齐、留白充分"
+  output_quality: "适合 Word/PDF 插图，建议 300 DPI 或矢量感输出"
+  avoid:
+    - "卡通风格"
+    - "营销海报风格"
+    - "照片写实风格"
+    - "复杂背景和装饰纹理"
+    - "过度拥挤的文字"
+    - "从论文 PDF 截图或复刻已发表论文图"
+
+placeholder_rule:
+  markdown_format: "> **[图 {figure_no}：{title}]** *{caption_or_short_description}*"
+  placement_rule: "writer 应在 figure.target_unit_id 对应正文中，紧跟 placement_hint 指定的段落后插入占位符。"
+  prompt_export_rule: >
+    writer 应在 unit 文件末尾的 HTML 注释块中给出 prompt_base 或 prompt_final，
+    供用户复制给 Codex 生图；正文可见部分只保留图片占位符。
+
+figures:
+  - figure_id: "F01"
+    figure_no: 1
+    kind: "figure"
+    type: "technical_route_diagram"    # concept_overview / research_content_map / technical_route_diagram / system_architecture / validation_flow / foundation_summary / timeline / other
+    required: true
+    status: "planned"                  # planned / needs_user_confirmation / optional / blocked
+    blocked_reason: ""
+
+    target:
+      section_id: "S02.4"
+      section_heading: ""
+      unit_id: "S02.4-U001"
+      unit_title: ""
+      placement_hint: "在首次概述总体技术路线后插入"
+      placement_after_slot: ""          # 可选：如 P2；为空则由 writer 根据正文自然位置判断
+
+    title: "项目总体技术路线图"
+    caption_draft: "图1 项目总体技术路线图"
+    argument_role: "说明研究内容、关键模块、数据流与验证闭环之间的关系。"
+
+    source_basis:
+      helm:
+        - "workflow/06_helm/scheme_blueprint.yaml"
+      synthesis: []
+      evidence_claims: []
+      applicant_profile: []
+
+    content_spec:
+      must_include:
+        - "核心科学/技术问题"
+        - "研究内容一"
+        - "研究内容二"
+        - "研究内容三"
+        - "验证与反馈闭环"
+      optional_include:
+        - "预期成果"
+      must_not_include:
+        - "未被 helm 选中的 dropped 方向"
+      text_labels:
+        - "核心问题"
+        - "方法模块"
+        - "验证闭环"
+
+    visual_style:
+      canvas: "16:9 横向，适合插入 Word"
+      layout: "左到右主流程，底部验证反馈闭环"
+      palette: "白底，蓝绿灰为主，橙色用于反馈箭头"
+      typography: "中文短标签，黑体风格，避免长句"
+      iconography: "少量简洁线性图标，可不用图标"
+
+    codex_prompt_base: |
+      生成一张中文科研项目申请书风格的技术路线图，16:9 横向画布，白色背景，整体风格专业、清晰、克制，适合插入 Word/PDF 申请书。
+
+      图的任务：帮助评审一眼理解本项目如何从核心问题出发，组织多个研究内容，形成方法模块，并通过验证环节闭环支撑预期成果。
+
+      布局要求：采用左到右主流程，并在底部放置验证反馈闭环。左侧为“核心问题”，中间为 2-4 个“研究内容/方法模块”，右侧为“预期成果”，底部为“验证与反馈”。使用清晰箭头连接，反馈箭头从验证模块回到方法模块。
+
+      图内文字使用中文短标签，不要长句。所有节点对齐整齐，留白充分。配色以蓝、绿、灰为主，少量橙色只用于突出反馈环。字体为中文黑体风格，字号清晰可读。
+
+      禁止：不要卡通风格，不要照片写实风格，不要复杂背景，不要营销海报风格，不要塞入大段文字，不要使用无法辨认的小字，不要复刻论文图。
+
+      输出应呈现为可编辑流程图/矢量感信息图，清晰、正式、适合国家自然科学基金或类似项目申请书。
+
+    writer_refinement_policy:
+      allow_prompt_final: true
+      allowed_changes:
+        - "根据正文最终术语微调中文标签"
+        - "根据插入位置补充图题和图注关键词"
+        - "删减 optional_include 中的非必要元素以避免拥挤"
+      forbidden_changes:
+        - "改变图片类型"
+        - "删除 must_include 中的核心元素"
+        - "改变全书统一风格"
+        - "加入 unit 蓝图之外的新研究内容"
+
+metadata:
+  total_figures: 0
+  required_figures: 0
+  optional_figures: 0
+  figures_need_user_confirmation: 0
+  figures_with_codex_prompt_base: 0

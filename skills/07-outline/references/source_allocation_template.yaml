@@ -47,13 +47,23 @@ units:
       - paper_id: ""
         title: ""
         report_path: ""
+        citation_tag: ""
         usage: ""
     data_points:
       - ""
-    figures_or_tables:
-      - type: ""
-        description: ""
-        source: ""
+    figures:
+      - figure_id: "F01"
+        kind: "figure"
+        type: ""
+        title: ""
+        role: ""
+        source: "workflow/07_outline/figure_plan.yaml"
+    tables:
+      - table_id: "T01"
+        type: ""
+        title: ""
+        role: ""
+        source: "workflow/07_outline/table_plan.yaml"
     must_use:
       - ""
     optional_use:

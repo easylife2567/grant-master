@@ -43,7 +43,7 @@ description: >
 workflow/
 ├── 07_outline/
 │   ├── outline_state.yaml         # section tree + unit 状态（读）
-│   ├── outline_report.md          # 跨节一致性约束、论证链（读）
+│   ├── outline_report.md          # 跨节一致性约束、论证链（读，按标题名定位）
 │   ├── writing_units.yaml         # unit 蓝图（读，用于 checks）
 │   └── ...
 ├── 08_section_write/
@@ -77,8 +77,9 @@ workflow/
 
 ```text
 workflow/07_outline/outline_state.yaml       # section tree + unit 列表 + 状态
-workflow/07_outline/outline_report.md        # §10 跨节一致性约束、关键术语表
+workflow/07_outline/outline_report.md        # 跨节一致性约束、关键术语表（按标题名定位）
 workflow/07_outline/context_bundle.yaml      # 术语表、禁写列表、claim 分配表（用于跨 unit 一致性检查）
+workflow/07_outline/citation_plan.yaml       # 稳定 citation tag + 参考文献条目（用于替换编号和生成参考文献）
 workflow/08_section_write/units/*.md         # 所有 unit 正文
 ```
 
@@ -103,8 +104,9 @@ workflow/07_outline/source_allocation.yaml   # 如需检查证据一致性
 1. 读取 outline_state.yaml 的 section tree，验证所有 unit 状态为 `written`；
 2. 按深度优先顺序拼接所有 unit .md 文件为 proposal_draft.md；
 3. 注入缺失的标题编号（安全网）；
-4. 生成 proposal_draft.pdf（pandoc → HTML → weasyprint）；
-5. 执行基础质量检查并写入 assemble_report.md；
+4. 将 `{{cite:tag}}` 按首次出现顺序替换为 `[1]`、`[2]`，并在背景/研究现状后生成参考文献列表；
+5. 生成 proposal_draft.pdf（pandoc → HTML → weasyprint）；
+6. 执行基础质量检查并写入 assemble_report.md；
 6. 如果检查发现缺失 unit，draft 仍生成（占位符，方便预览），但 `assemble_result.yaml` 中 `can_continue: false`、`missing_units > 0`，auto 不会进入 10-review。修复缺失后重新 assemble 才能通过门禁。
 
 ### 不允许做
@@ -268,6 +270,50 @@ HTML('/tmp/proposal_full.html').write_pdf('workflow/09_assemble/proposal_draft.p
 
 ---
 
+### 6.6 引用 tag 替换与参考文献列表
+
+08-section-write / writer 输出的正文中可能包含稳定引用 tag：
+
+```markdown
+已有研究表明，Transformer 架构显著改变了序列建模范式{{cite:vaswani2017attention}}。
+```
+
+09-assemble 必须在合并后执行引用处理：
+
+```text
+{{cite:vaswani2017attention}} → [1]
+{{cite:devlin2019bert}} → [2]
+```
+
+规则：
+
+1. 读取 `workflow/07_outline/citation_plan.yaml`；
+2. 扫描完整 draft 中所有 `{{cite:tag}}`；
+3. 按 tag 首次出现顺序分配数字编号；
+4. 同一 tag 多次出现必须复用同一个编号；
+5. 多个 tag 连续出现时，替换为连续文本，如 `{{cite:a}}{{cite:b}}` → `[1][2]`；
+6. 未在 `citation_plan.yaml` 中找到的 tag 保留原文，并在 `assemble_report.md` 与 `assemble_result.yaml` 中记录 warning；
+7. 未在正文出现的 citation 不进入参考文献列表；
+8. writer 不应该写 `[1]` 这类数字编号；如果组装前发现正文已有疑似数字引用，应记录 warning，避免编号体系混乱。
+
+参考文献列表生成：
+
+1. 默认把参考文献列表插入到“背景”“研究意义”“国内外研究现状”“研究现状”等相关 section 结束后；
+2. 如果同时存在背景和研究现状，优先插入到最后一个研究现状相关 section 结束后；
+3. 如果找不到相关 section，则在全文末尾追加 `## 参考文献`；
+4. 参考文献标题层级应比插入位置所在 section 低一级；若无法判断，使用 `## 参考文献`；
+5. 参考文献条目使用 `citation_plan.yaml` 中的 `reference_text`，并加上 09 分配的编号：
+6. “参考文献”标题是自动插入的附录性标题，不参与正文 section tree 的 heading_number 安全网，也不要求注入 section 编号。
+
+```markdown
+### 参考文献
+
+[1] Vaswani A, Shazeer N, Parmar N, et al. Attention Is All You Need. NeurIPS, 2017.
+[2] Devlin J, Chang M W, Lee K, Toutanova K. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. NAACL, 2019.
+```
+
+---
+
 ## 7. 基础质量检查
 
 组装后执行以下检查，结果写入 `assemble_report.md`。
@@ -278,7 +324,7 @@ HTML('/tmp/proposal_full.html').write_pdf('workflow/09_assemble/proposal_draft.p
 |---|---|---|
 | 所有 unit 是否都有 .md 文件 | 对比 outline_state 的 unit 列表与实际文件 | error（缺失 > 0 → can_continue: false，draft 含占位符供预览） |
 | 所有 unit 是否都有内容 | 检查文件大小 > 0 | warning |
-| 关键词是否全部覆盖 | 对比 outline_report.md §10 的禁写内容和关键术语 | info |
+| 关键词是否全部覆盖 | 对比 outline_report.md 中“跨节一致性约束”的禁写内容和关键术语 | info |
 
 ### 7.2 标题层级与编号检查
 
@@ -303,6 +349,8 @@ HTML('/tmp/proposal_full.html').write_pdf('workflow/09_assemble/proposal_draft.p
 | forbidden_directions 关键词是否出现 | 全文搜索 context_bundle 中列的 dropped 方向关键词 | error（出现即 P0） |
 | 同一 claim 在不同 unit 中表述是否一致 | 从 context_bundle 的 claim_allocations 中提取跨 unit 的 claim，对比各 unit 中该 claim 的表述 | warning（偏差 > 30% 语义相似度扣 P1） |
 | 论证链各步骤是否都有对应正文 | 从 context_bundle.argument_chain 提取步骤，在 draft 中搜索对应的 section，检查是否有空壳（只有标题无实质内容） | error（缺失扣 P0） |
+| citation tag 是否全部被替换 | 搜索 `{{cite:`，检查是否仍有未替换 tag | warning（未知 tag） |
+| 参考文献列表是否生成 | 检查出现过 citation tag 时是否生成“参考文献”小节 | warning |
 
 此检查在 09-assemble 执行——因为只有全部 unit 组装后才能看到跨 unit 的连贯性。检查结果写入 `assemble_report.md`。
 
@@ -312,7 +360,7 @@ HTML('/tmp/proposal_full.html').write_pdf('workflow/09_assemble/proposal_draft.p
 
 ### 7.5 术语一致性扫描
 
-从 `outline_report.md` §10 提取关键术语表，在 draft 中搜索每个术语的首次出现位置和后续使用是否一致。
+从 `outline_report.md` 的“跨节一致性约束”提取关键术语表，在 draft 中搜索每个术语的首次出现位置和后续使用是否一致。
 
 ---
 
@@ -338,20 +386,29 @@ HTML('/tmp/proposal_full.html').write_pdf('workflow/09_assemble/proposal_draft.p
 3. 与 section tree 的 DFS 顺序一一对应
 4. 对每个标题行：从对应 section 推导 `heading_number`（`section_id` 去 "S" 前缀）
 5. 若标题行尚未以 `{heading_number} ` 开头，注入编号（`## 背景` → `## 1.2 背景`）
-6. 输出 `proposal_draft.md`
+6. 得到已注入标题编号的中间 draft，交给第 3 步处理 citation tag
 
-### 第 3 步：执行基础检查
+### 第 3 步：处理 citation tag 和参考文献
+
+1. 读取 `citation_plan.yaml`
+2. 扫描 draft 中所有 `{{cite:tag}}`
+3. 按首次出现顺序生成编号映射
+4. 替换正文 tag 为 `[n]`
+5. 在背景/研究现状后插入参考文献列表
+6. 记录 citation 处理结果：使用 citation 数、未知 tag、插入位置、未使用 citation
+
+### 第 4 步：执行基础检查
 
 按 §7 的四项检查执行，生成 `assemble_report.md`。
 
-### 第 4 步：生成 PDF
+### 第 5 步：生成 PDF
 
 按 §6.5 流程执行：pandoc markdown → HTML5 → weasyprint → `proposal_draft.pdf`。
 若 weasyprint 不可用，输出警告，跳过此步骤，不阻塞。
 
-### 第 5 步：写 assemble_result.yaml
+### 第 6 步：写 assemble_result.yaml
 
-### 第 6 步：产出物完整性自检
+### 第 7 步：产出物完整性自检
 
 1. 检查以下文件是否存在且非空：
    - `workflow/09_assemble/proposal_draft.md`
@@ -396,6 +453,7 @@ workflow/09_assemble/
 总字数：X 字（目标 Y 字，偏差 Z%）
 标题层级：最深 L{X}，{是/否}有跳级
 编号注入：修复 X 个缺失编号（或"无需修复"）
+引用替换：替换 X 个 citation tag，参考文献条目 X 条，未知 tag X 个
 检查报告：workflow/09_assemble/assemble_report.md
 
 严重问题：X 个
@@ -415,4 +473,5 @@ workflow/09_assemble/
 5. 缺失 unit 时 draft 仍生成（占位符预览），但 `can_continue` 必须设为 `false`，阻止 auto 进入 10-review；
 6. PDF 生成为可选（weasyprint 不可用时跳过，不阻塞）；
 7. PDF 生成前必须检查 weasyprint 可用性，不可用时给出清晰提示；
-8. 最终响应中不要执行其他 Skill。
+8. 必须处理 citation tag：已知 tag 替换为数字编号，未知 tag 写入 warning；
+9. 最终响应中不要执行其他 Skill。

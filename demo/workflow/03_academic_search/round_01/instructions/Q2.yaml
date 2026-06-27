@@ -1,0 +1,33 @@
+instruction_id: "Q2"
+round_dir: "workflow/03_academic_search/round_01"
+
+query_spec:
+  query_id: "Q2"
+  query_text: "distributed training communication scheduling network optimization"
+  query_type: "keyword"
+  platforms: ["arxiv", "semantic_scholar"]
+  year_range: [2019, 2026]
+  target_count: 15
+  venue_preference: "CCF-A/B prefer MLSys/NSDI/SC/EuroSys"
+
+round_goal_excerpt:
+  goal: "系统调研 RDMA 多租户性能隔离和分布式训练通信调度的现有方法"
+  what_to_find: "分布式训练中针对通信效率的调度和网络优化系统工作，包括拓扑感知调度、通信压缩协同、NCCL优化、参数服务器调度等"
+  what_not_to_find: "纯训练算法优化不涉及网络调度、将通信优化仅作为训练加速技巧而不涉及系统设计的论文"
+  core_question: "分布式训练的通信调度主要关注哪些维度（拓扑感知、压缩协同、优先级调度）？有哪些代表性系统工作？"
+
+selection_policy:
+  authority_weight: "high"
+  recency_boost: true
+  min_citations: 0
+  diversity: true
+
+download_policy:
+  download_core_oa: true
+  do_not_bypass_paywalls: true
+  max_total_downloads: 10
+  target_dir: "papers/inbox/"
+
+output:
+  local_report: "workflow/03_academic_search/round_01/reports/Q2_report.md"
+  download_manifest: "workflow/03_academic_search/round_01/reports/Q2_manifest.yaml"

@@ -1,0 +1,36 @@
+stage: "TOPIC_UNDERSTANDING"
+version: "v0"
+status: "completed"
+can_continue: true
+recommended_next_stage: "LITERATURE_PLAN"
+
+quality:
+  topic_confidence: 0.80
+  scenario_clarity: 0.70
+  problem_clarity: 0.60
+  background_clarity: 0.50
+  constraint_clarity: 0.45
+  literature_plan_readiness: 0.75
+
+intervention:
+  required: false
+  reason: "课题方向明确，可以进入文献查找计划阶段，但项目类型、实验条件、团队基础等关键信息需用户补充"
+  questions:
+    - "请确定项目类型（青年项目 / 面上项目 / 校内基金），不同类型对研究深度和篇幅要求不同"
+    - "请确认是否有可用的 RDMA 实验环境（集群规模、硬件平台），影响实验验证方案的可行性"
+    - "请补充申请人/团队在 RDMA 系统或分布式训练方面的已有基础"
+
+outputs:
+  topic_card: "workflow/01_topic/01_topic_card.md"
+  literature_seed: "workflow/01_topic/01_literature_seed.yaml"
+
+integrity:
+  all_outputs_present: true
+  checked_at: "2025-06-27T17:25:00+08:00"
+  missing_outputs: []
+  warnings: []
+
+notes:
+  - "本阶段只完成初始课题理解，不代表完成系统文献综述、gap 分析或创新性判断。"
+  - "课题理解卡片中的核心技术判断、矛盾假设和创新空间均为待验证假设，需通过后续 02-05 阶段调研确认。"
+  - "建议用户补充项目类型和实验条件信息以提升后续阶段质量。"

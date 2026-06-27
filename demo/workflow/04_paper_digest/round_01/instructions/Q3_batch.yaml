@@ -1,0 +1,77 @@
+batch_id: "Q3"
+round_dir: "workflow/04_paper_digest/round_01"
+
+round_goal_excerpt:
+  goal: "系统调研 RDMA 多租户性能隔离和分布式训练通信调度的现有方法"
+  core_question: "NCCL等通信库在多任务/多租户场景下是否有资源管理和隔离机制？多任务并发训练的通信干扰如何被研究和量化？"
+  what_not_to_find: "单任务NCCL性能优化、仅讨论计算资源争抢不涉及网络"
+
+hypothesis_to_verify:
+  - "NCCL自身不区分不同训练任务，多租户GPU集群中的通信资源管理完全依赖上层调度系统"
+  - "多任务训练的网络干扰是真实可量化的，已有实证研究佐证"
+
+papers:
+  - pdf_path: "papers/inbox/2509.15940.pdf"
+    metadata:
+      title: "Arnold: Efficient Pre-Training of LLMs via Topology-Aware Communication Alignment on More Than 9600 GPUs"
+      authors: ["Guoliang He", "Youhe Jiang", "Wencong Xiao", "Kaihua Jiang", "Shuguang Wang", "Jun Wang", "Zixian Du", "Zhuo Jiang", "Xinlei Zhang", "Binhang Yuan", "Eiko Yoneki"]
+      year: 2025
+      venue: "NeurIPS (CCF-A)"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "生产级拓扑感知调度系统。将LLM预训练通信模式与数据中心物理拓扑对齐。最大通信组散布降低1.67x，9600+GPU上端到端性能提升10.6%。"
+      query_id: "Q3"
+
+  - pdf_path: "papers/inbox/2308.05692.pdf"
+    metadata:
+      title: "Isolated Scheduling for Distributed Training Tasks in GPU Clusters (vClos)"
+      authors: ["Xinchi Han", "Weihao Jiang", "Peirui Cao", "Qinwei Yang", "Yunzhuo Liu", "Shuyao Qi", "Shengkai Lin", "Shizhen Zhao"]
+      year: 2023
+      venue: "arXiv"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "系统研究ECMP哈希冲突导致NCCL all-reduce性能下降的机制。提出vClos联合优化网络拓扑与通信调度消除多任务网络争用。"
+      query_id: "Q3"
+
+  - pdf_path: "papers/inbox/2025_BandPilot_2506.15595.pdf"
+    metadata:
+      title: "BandPilot: Towards Performance- and Contention-Aware GPU Dispatching in AI Clusters"
+      authors: ["Kunming Zhang", "Hanlong Liao", "Junyu Xue", "Deke Guo", "Guoming Tang"]
+      year: 2025
+      venue: "arXiv"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "分层设计：从稀疏NCCL测量中学习带宽模型，在实时调度中预估多租户干扰下的通信带宽。32-GPU H100集群上达92-97%带宽效率。"
+      query_id: "Q3"
+
+  - pdf_path: "papers/inbox/2603.04424.pdf"
+    metadata:
+      title: "When Scaling Fails: Network and Fabric Effects on Distributed GPU Training Performance"
+      authors: ["Dinesh Gopalan", "Ratul Ali"]
+      year: 2026
+      venue: "arXiv"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "实证研究生产级GPU集群中分布式训练扩展失效的根因。识别同步放大、拓扑诱导争用和局部性驱动性能方差等重复性故障模式。"
+      query_id: "Q3"
+
+  - pdf_path: "papers/inbox/2025_VCCL_2510.00991.pdf"
+    metadata:
+      title: "VCCL: An Efficient, Reliable and Observable Collective Communication Library in Large-scale GPU Training Clusters"
+      authors: ["Mingjun Zhang", "Xiaohe Hu", "Menghao Zhang", "Ziteng Chen", "Mingwei Xu", "Chunming Hu"]
+      year: 2025
+      venue: "arXiv"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "medium"
+      abstract_summary: "揭示NCCL在大规模训练的三大局限(SM竞争、链路故障重启、可观测性不足)，提出VCCL替代方案。已开源并在生产集群部署，训练吞吐提升最高5.28%。"
+      query_id: "Q3"
+
+output:
+  batch_report: "workflow/04_paper_digest/round_01/reports/Q3/Q3_batch_report.md"
+  batch_manifest: "workflow/04_paper_digest/round_01/reports/Q3/Q3_batch_manifest.yaml"
+  paper_reports_dir: "workflow/04_paper_digest/round_01/reports/Q3/papers/"

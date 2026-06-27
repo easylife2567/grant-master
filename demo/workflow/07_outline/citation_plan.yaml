@@ -1,0 +1,105 @@
+stage: "OUTLINE"
+version: "v1"
+total_citations: 12
+
+citations:
+  - tag: "kong2023husky"
+    title: "Understanding RDMA Microarchitecture Resources for Performance Isolation"
+    authors: "Kong et al."
+    year: 2023
+    venue: "NSDI"
+    reference_text: "Kong X, Chen J, Bai W, et al. Understanding RDMA Microarchitecture Resources for Performance Isolation. NSDI, 2023."
+    allocated_units: ["S01.1-U001", "S01.2.1-U001", "S01.3-U001"]
+    allowed_contexts: ["background", "related_work", "gap"]
+    usage_hint: "引用Husky测试套件和微架构争用的定量数据"
+
+  - tag: "lou2024harmonic"
+    title: "Harmonic: Hardware-assisted RDMA Performance Isolation for Public Clouds"
+    authors: "Lou et al."
+    year: 2024
+    venue: "NSDI"
+    reference_text: "Lou J, Kong X, Huang J, et al. Harmonic: Hardware-assisted RDMA Performance Isolation for Public Clouds. NSDI, 2024."
+    allocated_units: ["S01.2.1-U001", "S01.3-U001"]
+    usage_hint: "引用FPGA辅助微架构感知隔离方案"
+
+  - tag: "lee2024perf"
+    title: "PeRF: Preemption-enabled RDMA Framework"
+    authors: "Lee et al."
+    year: 2024
+    venue: "USENIX ATC"
+    reference_text: "Lee S, Choi M, Yeom I, et al. PeRF: Preemption-enabled RDMA Framework. USENIX ATC, 2024."
+    allocated_units: ["S01.2.1-U001", "S01.3-U001", "S02.4.3-U001"]
+    usage_hint: "引用纯软件抢占原语和隔离效果"
+
+  - tag: "qi2025palladium"
+    title: "Palladium: A DPU-enabled Multi-Tenant Serverless Cloud over Zero-copy Multi-node RDMA Fabrics"
+    authors: "Qi et al."
+    year: 2025
+    venue: "SIGCOMM"
+    reference_text: "Qi S, Zhang S, Ramakrishnan KK, et al. Palladium: A DPU-enabled Multi-Tenant Serverless Cloud. SIGCOMM, 2025."
+    allocated_units: ["S01.2.1-U001"]
+
+  - tag: "han2023vclos"
+    title: "Isolated Scheduling for Distributed Training Tasks in GPU Clusters"
+    authors: "Han et al."
+    year: 2023
+    venue: "arXiv"
+    reference_text: "Han X, Jiang W, Cao P, et al. Isolated Scheduling for Distributed Training Tasks in GPU Clusters. arXiv:2308.05692, 2023."
+    allocated_units: ["S01.1-U001", "S01.2.3-U001", "S01.3-U001"]
+    usage_hint: "引用ECMP哈希冲突导致60%吞吐下降的定量数据"
+
+  - tag: "hashemi2018tictac"
+    title: "TicTac: Accelerating Distributed Deep Learning with Communication Scheduling"
+    authors: "Hashemi et al."
+    year: 2018
+    venue: "MLSys"
+    reference_text: "Hashemi SH, Jyothi SA, Campbell RH. TicTac: Accelerating Distributed Deep Learning with Communication Scheduling. MLSys, 2018."
+    allocated_units: ["S01.2.2-U001"]
+
+  - tag: "wang2020dlcp"
+    title: "DLCP: Domain-specific Communication Optimization for Distributed DNN Training"
+    authors: "Wang et al."
+    year: 2020
+    venue: "arXiv"
+    reference_text: "Wang H, Chen J, Wan X, et al. DLCP: Domain-specific Communication Optimization for Distributed DNN Training. arXiv:2008.08445, 2020."
+    allocated_units: ["S01.2.2-U001", "S01.3-U001", "S02.4.1-U001"]
+
+  - tag: "wang2024dhelix"
+    title: "DHelix: Hiding Communication Cost in Distributed LLM Training via Micro-batch Co-execution"
+    authors: "Wang et al."
+    year: 2024
+    venue: "arXiv"
+    reference_text: "Wang H, Ruan C, He J, et al. DHelix: Hiding Communication Cost in Distributed LLM Training. arXiv:2411.15871, 2024."
+    allocated_units: ["S01.2.2-U001"]
+
+  - tag: "he2025arnold"
+    title: "Arnold: Efficient Pre-Training of LLMs via Topology-Aware Communication Alignment"
+    authors: "He et al."
+    year: 2025
+    venue: "NeurIPS"
+    reference_text: "He G, Jiang Y, Xiao W, et al. Arnold: Topology-Aware Communication Alignment for LLM Pre-Training. NeurIPS, 2025."
+    allocated_units: ["S01.2.3-U001"]
+
+  - tag: "zhang2025bandpilot"
+    title: "BandPilot: Towards Performance- and Contention-Aware GPU Dispatching in AI Clusters"
+    authors: "Zhang et al."
+    year: 2025
+    venue: "arXiv"
+    reference_text: "Zhang K, Liao H, Xue J, et al. BandPilot: Performance- and Contention-Aware GPU Dispatching. arXiv:2506.15595, 2025."
+    allocated_units: ["S01.2.3-U001", "S02.4.2-U001"]
+
+  - tag: "ryu2023rl"
+    title: "Network Contention-Aware Cluster Scheduling with Reinforcement Learning"
+    authors: "Ryu et al."
+    year: 2023
+    venue: "arXiv"
+    reference_text: "Ryu J, Eo J. Network Contention-Aware Cluster Scheduling with Reinforcement Learning. arXiv:2310.20209, 2023."
+    allocated_units: ["S01.1-U001", "S01.2.3-U001"]
+
+  - tag: "lee2025overlap"
+    title: "Characterizing Compute-Communication Overlap in GPU-Accelerated Distributed Deep Learning"
+    authors: "Lee et al."
+    year: 2025
+    venue: "arXiv"
+    reference_text: "Lee S, Oh J, Kim J, et al. Characterizing Compute-Communication Overlap in GPU-Accelerated DDL. arXiv:2507.03114, 2025."
+    allocated_units: ["S01.1-U001"]

@@ -180,7 +180,7 @@ curl -s -X POST "http://127.0.0.1:${CDP_PROXY_PORT:-3456}/eval?target=$TARGET" -
 
 - **JS 渲染延迟**：知网结果列表为异步渲染，`sleep 3` 后再提取；首次打开建议 `sleep 4-5`（发现于 2026-04-05）
 - **DOM 选择器可能因版本更新失效**：知网前端改版频繁，操作失败时先用 `document.body.innerText.slice(0, 500)` 确认页面状态，再重新定位选择器
-- **直接构造 URL 不如 GUI 触发稳定**：`/new?url=xxx&kw=xxx` 方式偶尔会绕过登录态，导致结果不完整；遇到问题改为先打开首页再 GUI 填词
+- **直接构造 URL 不如 GUI 触发稳定**：`/new?url=xxx&kw=xxx` 方式偶尔不会携带既有登录态，导致结果不完整；遇到问题改为先打开首页再 GUI 填词
 - **摘要截断**：未登录时 `#ChDivSummary` 可能只显示前 200 字，登录后完整显示
 - **PDF 链接动态生成**：`.btn-pdfdown` 的 `href` 是 JS 动态写入的，需等页面完全加载后再读取；若为空，尝试点击按钮后再提取
 - **CAJ vs PDF**：默认提供 CAJ 格式（知网专有），PDF 需额外权限；建议优先尝试 `.btn-pdfdown`，无效则告知用户 CAJ 需要 CAJViewer

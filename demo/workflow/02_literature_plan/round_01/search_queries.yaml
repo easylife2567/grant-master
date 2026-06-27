@@ -1,0 +1,225 @@
+stage: "LITERATURE_PLAN"
+round: 1
+version: "v1"
+purpose: "为第 03 阶段 academic-search 生成本轮精准查询计划"
+
+basis:
+  primary:
+    - "workflow/01_topic/01_topic_card.md"
+    - "workflow/01_topic/01_literature_seed.yaml"
+  previous_plan: []
+  optional: []
+
+long_plan_context:
+  selected_task_ids:
+    - "C1"
+    - "C2"
+  skipped_task_ids_this_round:
+    - "B1"
+  reason_for_selection: "C1和C2直接对应课题核心问题的两个维度——RDMA网络隔离和训练通信调度，并行执行且服务于同一调研目标：了解多租户RDMA训练场景中现有方法及其不足。B1（背景调研）已跳过——01_topic_card已充分覆盖基础概念"
+
+round_goal:
+  type: "core"
+  main_task_id: "C1"
+  auxiliary_task_ids:
+    - "C2"
+  one_sentence_goal: "系统调研RDMA多租户性能隔离和分布式训练通信调度的现有方法，回答已有方案覆盖了什么、在哪里还有不足"
+
+search_scope:
+  must_search:
+    - "RDMA多租户性能隔离：软件/硬件/软硬协同方案"
+    - "分布式训练通信调度与多任务网络资源分配"
+  should_search:
+    - "RDMA拥塞控制方案在多流/多租户场景的公平性表现"
+    - "NCCL等通信库对多进程并发训练的支持机制"
+  do_not_search:
+    - "RDMA基础协议改进（非多租户相关）"
+    - "纯训练算法优化（梯度压缩/量化等，不涉及网络层调度）"
+    - "通用数据中心网络调度（非RDMA/非训练场景）"
+    - "智算中心整体架构（非网络聚焦）"
+    - "广域长距RDMA传输优化"
+
+queries:
+  - id: "Q1"
+    target_question: "RDMA多租户性能隔离有哪些代表性系统方案？各自采用什么技术路线？"
+    keywords_zh:
+      - "RDMA 多租户 性能隔离"
+      - "RDMA NIC 共享 调度"
+      - "RoCE 多租户 QoS"
+      - "RDMA 虚拟化 网络隔离"
+    keywords_en:
+      - "RDMA multi-tenant performance isolation"
+      - "RDMA NIC sharing scheduling"
+      - "RDMA tenant fairness RNIC"
+    query_strings:
+      - "\"RDMA\" AND (\"multi-tenant\" OR \"multi-tenancy\") AND (\"performance isolation\" OR \"resource isolation\")"
+      - "\"RDMA\" AND (\"NIC sharing\" OR \"RNIC sharing\") AND (\"fairness\" OR \"isolation\" OR \"scheduling\")"
+      - "\"RoCE\" AND (\"multi-tenant\" OR \"cloud\") AND (\"QoS\" OR \"performance\" OR \"isolation\")"
+      - "(\"RDMA\" OR \"RoCE\") AND (\"network virtualization\" OR \"SR-IOV\") AND (\"tenant\" OR \"isolation\")"
+    priority: "high"
+    expected_paper_types:
+      - "system paper"
+      - "empirical study"
+    preferred_venues:
+      - "NSDI"
+      - "SIGCOMM"
+      - "ATC"
+      - "EuroSys"
+      - "OSDI"
+    exclude:
+      - "纯理论分析无系统实现"
+      - "非RDMA场景的网络隔离"
+    rationale: "核心任务C1的主查询，直接覆盖PeRF/Harmonic/Palos等2024年最新工作和更早的基础性工作"
+
+  - id: "Q2"
+    target_question: "分布式训练中的通信调度和网络优化有哪些代表性系统工作？"
+    keywords_zh:
+      - "分布式训练 通信调度"
+      - "梯度同步 网络优化"
+      - "all-reduce 调度 网络"
+    keywords_en:
+      - "distributed training communication scheduling"
+      - "gradient synchronization network optimization"
+      - "collective communication scheduling"
+    query_strings:
+      - "\"distributed training\" AND (\"communication scheduling\" OR \"communication optimization\") AND (\"network\" OR \"RDMA\")"
+      - "(\"all-reduce\" OR \"collective communication\") AND (\"scheduling\" OR \"resource allocation\") AND (\"GPU\" OR \"training\")"
+      - "\"distributed machine learning\" AND (\"network-aware scheduling\" OR \"communication-aware\") AND \"training\""
+    priority: "high"
+    expected_paper_types:
+      - "system paper"
+      - "performance evaluation"
+    preferred_venues:
+      - "MLSys"
+      - "NSDI"
+      - "SC"
+      - "EuroSys"
+      - "HPDC"
+    exclude:
+      - "纯训练算法优化不涉及网络调度"
+      - "将通信优化仅作为训练加速技巧而不涉及系统设计的论文"
+    rationale: "核心任务C2的主查询，覆盖分布式训练通信调度的系统工作"
+
+  - id: "Q3"
+    target_question: "NCCL等通信库在多任务/多租户场景下是否有资源管理和隔离机制？"
+    keywords_zh:
+      - "NCCL 多任务 资源隔离"
+      - "集体通信 多任务 调度"
+      - "GPU 通信 多租户"
+    keywords_en:
+      - "NCCL multi-job concurrent"
+      - "NCCL resource sharing isolation"
+      - "multi-tenant GPU communication"
+    query_strings:
+      - "\"NCCL\" AND (\"multi-job\" OR \"concurrent\" OR \"resource sharing\" OR \"isolation\")"
+      - "\"collective communication\" AND (\"multi-tenant\" OR \"multi-job\") AND (\"GPU\" OR \"training\")"
+      - "\"GPU cluster\" AND (\"communication contention\" OR \"network contention\") AND \"training\""
+    priority: "high"
+    expected_paper_types:
+      - "system paper"
+      - "empirical study"
+    preferred_venues:
+      - "MLSys"
+      - "NSDI"
+      - "SC"
+      - "EuroSys"
+    exclude:
+      - "单任务NCCL性能优化"
+      - "不涉及资源隔离的通信库扩展"
+    rationale: "补充查询：验证训练通信库层面是否已有隔离机制，这是C1和C2的交叉地带"
+
+  - id: "Q4"
+    target_question: "RDMA性能隔离方案中，哪些考虑了机器学习训练场景的特殊需求？"
+    keywords_zh:
+      - "RDMA 分布式训练 隔离"
+      - "RDMA ML 训练 网络资源"
+      - "RoCE 训练 多租户"
+    keywords_en:
+      - "RDMA machine learning training isolation"
+      - "RDMA distributed ML network resource"
+      - "RoCE training multi-tenant"
+    query_strings:
+      - "\"RDMA\" AND (\"machine learning\" OR \"deep learning\" OR \"training\") AND (\"isolation\" OR \"multi-tenant\" OR \"scheduling\")"
+      - "\"RoCE\" AND (\"distributed training\" OR \"GPU training\") AND (\"performance\" OR \"isolation\")"
+      - "(\"RDMA\" OR \"RoCE\") AND \"training cluster\" AND (\"multi-job\" OR \"resource allocation\")"
+    priority: "medium-high"
+    expected_paper_types:
+      - "system paper"
+      - "case study"
+    preferred_venues:
+      - "NSDI"
+      - "MLSys"
+      - "ATC"
+      - "SC"
+    exclude:
+      - "RDMA单任务性能调优"
+    rationale: "交叉查询：验证C1（RDMA隔离）和C2（训练调度）之间是否有桥接工作"
+
+  - id: "Q5"
+    target_question: "多任务并发训练的通信干扰问题在学术界如何被研究和量化？"
+    keywords_zh:
+      - "多任务 训练 通信干扰"
+      - "训练 网络争抢 GPU 集群"
+      - "分布式训练 性能隔离"
+    keywords_en:
+      - "multi-job training communication interference"
+      - "training network contention GPU cluster"
+      - "distributed training performance isolation"
+    query_strings:
+      - "\"multi-job\" AND (\"training\" OR \"ML\") AND (\"communication interference\" OR \"network contention\")"
+      - "\"distributed training\" AND (\"performance isolation\" OR \"interference\") AND (\"network\" OR \"communication\")"
+      - "\"training job\" AND (\"co-location\" OR \"co-located\") AND (\"network\" OR \"RDMA\")"
+    priority: "medium"
+    expected_paper_types:
+      - "empirical study"
+      - "measurement paper"
+      - "system paper"
+    preferred_venues:
+      - "NSDI"
+      - "SIGCOMM"
+      - "SC"
+      - "EuroSys"
+    exclude:
+      - "仅讨论计算资源争抢不涉及网络"
+      - "单机多任务GPU共享"
+    rationale: "补充查询：验证多任务训练网络干扰的定量研究，为课题的问题陈述提供 evidence"
+
+selection_policy:
+  target_total_papers: 14
+  target_core_papers: 8
+  prefer_recent_years: "last 5 years"
+  include_classic_papers: true
+  prefer_venues:
+    - "NSDI"
+    - "SIGCOMM"
+    - "OSDI"
+    - "SOSP"
+    - "FAST"
+    - "ATC"
+    - "EuroSys"
+    - "SC"
+    - "MLSys"
+    - "HPDC"
+  exclude_rules:
+    - "workshop papers (<6 pages) unless clearly innovative"
+    - "purely theoretical without system implementation"
+    - "non-RDMA network isolation (e.g., legacy TCP/IP)"
+    - "unrelated to multi-tenancy or multi-job scenario"
+  ranking_rules:
+    - "2023-2025 顶会论文优先"
+    - "有真实硬件评估的优先于仿真评估"
+    - "涉及分布式训练场景的优先于通用云场景"
+    - "开源代码/数据的论文加分标注"
+
+expected_academic_search_outputs:
+  output_dir: "workflow/03_academic_search/round_01"
+  files:
+    - "search_results.yaml"
+    - "candidate_papers.md"
+    - "download_queue.yaml"
+    - "search_summary.md"
+
+manual_download_policy:
+  mark_needs_institution: true
+  do_not_bypass_paywalls: true
+  user_download_dir: "references/papers/inbox"

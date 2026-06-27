@@ -1,0 +1,152 @@
+query_id: "Q1"
+generated_at: "2026-06-27T18:00:00Z"
+
+download_summary:
+  eligible: 8
+  paywalled_skipped: 2
+  downloaded: 10
+  failed: 0
+
+papers:
+  - title: "Harmonic: Hardware-assisted RDMA Performance Isolation for Public Clouds"
+    arxiv_id: null
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://www.usenix.org/system/files/nsdi24-lou.pdf"
+    local_pdf: "papers/inbox/2024_Harmonic_RDMA_Isolation.pdf"
+    download_source: "usenix_oa"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 3321214
+
+  - title: "Understanding RDMA Microarchitecture Resources for Performance Isolation"
+    arxiv_id: null
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://www.usenix.org/system/files/nsdi23-kong.pdf"
+    local_pdf: "papers/inbox/2023_Husky_RDMA_Microarchitecture.pdf"
+    download_source: "usenix_oa"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 1817175
+
+  - title: "PeRF: Preemption-enabled RDMA Framework"
+    arxiv_id: null
+    doi: "10.5555/3691992.3692005"
+    oa_status: "open_pdf"
+    pdf_url: "https://www.usenix.net/system/files/atc24-lee.pdf"
+    local_pdf: "papers/inbox/2024_PeRF_Preemption_RDMA.pdf"
+    download_source: "usenix_oa"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 2120328
+
+  - title: "Palladium: A DPU-enabled Multi-Tenant Serverless Cloud over Zero-copy Multi-node RDMA Fabrics"
+    arxiv_id: "2505.11339"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2505.11339"
+    local_pdf: "papers/inbox/2025_Palladium_DPU_RDMA_Serverless.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 1519707
+
+  - title: "OSMOSIS: Enabling Multi-Tenancy in Datacenter SmartNICs"
+    arxiv_id: "2309.03628"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2309.03628"
+    local_pdf: "papers/inbox/2023_OSMOSIS_SmartNIC_MultiTenant.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 925571
+
+  - title: "Closing the HPC-Cloud Convergence Gap: Multi-Tenant Slingshot RDMA for Kubernetes"
+    arxiv_id: "2508.09663"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2508.09663"
+    local_pdf: "papers/inbox/2025_Slingshot_RDMA_K8s.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 473110
+
+  - title: "An RDMA-First Object Storage System with SmartNIC Offload"
+    arxiv_id: "2509.13997"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2509.13997"
+    local_pdf: "papers/inbox/2025_ROS2_RDMA_Storage_SmartNIC.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 2818132
+
+  - title: "Communication-Semantic-Aware RDMA Loss Recovery for QP-scalable Hyperscale AI Training"
+    arxiv_id: "2606.20582"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2606.20582"
+    local_pdf: "papers/inbox/2026_CSAUD_RDMA_Loss_Recovery.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 3631402
+
+  - title: "NCCL EP: Towards a Unified Expert Parallel Communication API for NCCL"
+    arxiv_id: "2603.13606"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2603.13606"
+    local_pdf: "papers/inbox/2026_NCCL_EP_Expert_Parallel.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 12791586
+
+  - title: "OptiNIC: A Resilient and Tail-Optimal RDMA NIC for Distributed ML Workloads"
+    arxiv_id: "2512.22743"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2512.22743"
+    local_pdf: "papers/inbox/2025_OptiNIC_RDMA_ML.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 427106
+
+  - title: "Palos: Fair and Flexible Flow Scheduling on RNIC"
+    arxiv_id: null
+    doi: "10.1109/hpcc64274.2024.00127"
+    oa_status: "needs_institution"
+    pdf_url: null
+    local_pdf: null
+    download_source: null
+    download_status: "skipped"
+    download_error: "paywalled_do_not_bypass"
+    file_size_bytes: null
+
+  - title: "Optimize the TX Architecture of RDMA NIC for Performance Isolation in the Cloud Environment"
+    arxiv_id: null
+    doi: "10.1145/3583781.3590276"
+    oa_status: "needs_institution"
+    pdf_url: null
+    local_pdf: null
+    download_source: null
+    download_status: "skipped"
+    download_error: "paywalled_do_not_bypass"
+    file_size_bytes: null
+
+  - title: "Canvas: Isolated and Adaptive Swapping for Multi-Applications on Remote Memory"
+    arxiv_id: "2203.09615"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2203.09615"
+    local_pdf: null
+    download_source: null
+    download_status: "skipped"
+    download_error: "download_quota_exceeded"
+    file_size_bytes: null

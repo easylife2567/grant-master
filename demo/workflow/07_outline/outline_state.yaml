@@ -1,0 +1,225 @@
+stage: "OUTLINE"
+version: "v2"
+generated_at: "2025-06-27T19:40:00+08:00"
+
+total_units: 26
+units_pending: 24
+units_blocked: 2
+total_words_target: 10000
+
+sections:
+  "S01":
+    heading: "一、立项依据"
+    heading_number: "一"
+    level: 1
+    is_leaf: false
+    status: "pending"
+    unit_count: 6
+    units_written: 0
+
+  "S01.1":
+    heading: "研究意义"
+    heading_number: "1"
+    level: 2
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S01.2":
+    heading: "国内外研究现状"
+    heading_number: "2"
+    level: 2
+    is_leaf: false
+    status: "pending"
+    unit_count: 4
+    units_written: 0
+
+  "S01.2.1":
+    heading: "RDMA多租户性能隔离"
+    heading_number: "2.1"
+    level: 3
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S01.2.2":
+    heading: "分布式训练通信调度"
+    heading_number: "2.2"
+    level: 3
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S01.2.3":
+    heading: "智算中心网络资源调度"
+    heading_number: "2.3"
+    level: 3
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S01.3":
+    heading: "现有方法不足与本项目切入点"
+    heading_number: "3"
+    level: 2
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S02":
+    heading: "二、研究内容"
+    heading_number: "二"
+    level: 1
+    is_leaf: false
+    status: "pending"
+    unit_count: 14
+    units_written: 0
+
+  "S02.1":
+    heading: "研究目标"
+    heading_number: "1"
+    level: 2
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S02.2":
+    heading: "研究内容"
+    heading_number: "2"
+    level: 2
+    is_leaf: false
+    status: "pending"
+    unit_count: 4
+    units_written: 0
+
+  "S02.2.1":
+    heading: "研究内容一：通信模式感知"
+    heading_number: "（一）"
+    level: 3
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S02.2.2":
+    heading: "研究内容二：动态调度"
+    heading_number: "（二）"
+    level: 3
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S02.2.3":
+    heading: "研究内容三：原型验证"
+    heading_number: "（三）"
+    level: 3
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S02.3":
+    heading: "关键科学问题"
+    heading_number: "3"
+    level: 2
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S02.4":
+    heading: "研究方案与技术路线"
+    heading_number: "4"
+    level: 2
+    is_leaf: false
+    status: "pending"
+    unit_count: 4
+    units_written: 0
+
+  "S02.4.1":
+    heading: "感知层"
+    heading_number: "（1）"
+    level: 3
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S02.4.2":
+    heading: "决策层"
+    heading_number: "（2）"
+    level: 3
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S02.4.3":
+    heading: "执行层"
+    heading_number: "（3）"
+    level: 3
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S02.5":
+    heading: "特色与创新"
+    heading_number: "5"
+    level: 2
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S02.6":
+    heading: "年度研究计划"
+    heading_number: "6"
+    level: 2
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0
+
+  "S03":
+    heading: "三、研究基础"
+    heading_number: "三"
+    level: 1
+    is_leaf: false
+    status: "pending"
+    unit_count: 3
+    units_written: 0
+
+  "S03.1":
+    heading: "研究基础与可行性分析"
+    heading_number: "1"
+    level: 2
+    is_leaf: true
+    status: "blocked"
+    unit_count: 1
+    units_written: 0
+
+  "S03.2":
+    heading: "工作条件"
+    heading_number: "2"
+    level: 2
+    is_leaf: true
+    status: "blocked"
+    unit_count: 1
+    units_written: 0
+
+  "S04":
+    heading: "四、其他需要说明的情况"
+    heading_number: "四"
+    level: 1
+    is_leaf: true
+    status: "pending"
+    unit_count: 1
+    units_written: 0

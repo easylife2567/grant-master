@@ -1,0 +1,146 @@
+query_id: "Q4"
+generated_at: "2026-06-27T09:43:00Z"
+
+download_summary:
+  eligible: 8
+  paywalled_skipped: 2
+  downloaded: 7
+  failed: 0
+
+papers:
+  - title: "Understanding RDMA Microarchitecture Resources for Performance Isolation"
+    authors: ["Xinhao Kong", "Jingrong Chen", "Wei Bai", "Yechen Xu", "Mahmoud Elhaddad", "Shachar Raindel", "Jitendra Padhye", "Alvin Lebeck", "Danyang Zhuo"]
+    year: 2023
+    venue: "NSDI [CCF-A]"
+    arxiv_id: null
+    doi: null
+    s2_url: "https://www.semanticscholar.org/paper/c6b81ec1de0f2fe2f08f0b720ce4745c98aaf487"
+    oa_status: "needs_institution"
+    pdf_url: null
+    local_pdf: null
+    download_source: null
+    download_status: "skipped"
+    download_error: "paywalled_do_not_bypass"
+    file_size_bytes: null
+    notes: "USENIX NSDI 2023 proceedings. USENIX is generally open access; user may access via institution or manually provide PDF."
+
+  - title: "Harmonic: Hardware-assisted RDMA Performance Isolation for Public Clouds"
+    authors: ["Jiaqi Lou", "Xinhao Kong", "Jinghan Huang", "Wei Bai", "Nam Sung Kim", "Danyang Zhuo"]
+    year: 2024
+    venue: "NSDI [CCF-A]"
+    arxiv_id: null
+    doi: null
+    s2_url: "https://www.semanticscholar.org/paper/a8ab74a621990c345299a3c08f343a7ec478373c"
+    oa_status: "needs_institution"
+    pdf_url: null
+    local_pdf: null
+    download_source: null
+    download_status: "skipped"
+    download_error: "paywalled_do_not_bypass"
+    file_size_bytes: null
+    notes: "USENIX NSDI 2024 proceedings. USENIX is generally open access; user may access via institution or manually provide PDF."
+
+  - title: "OptiNIC: A Resilient and Tail-Optimal RDMA NIC for Distributed ML Workloads"
+    authors: ["Ertza Warraich", "Ali Imran", "Annus Zulfiqar", "Shay Vargaftik", "Sonia Fahmy", "Muhammad Shahbaz"]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2512.22743"
+    doi: null
+    s2_url: "https://www.semanticscholar.org/paper/9e1a08af99f100cf8da8b2927c9ef571648f3a3f"
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2512.22743"
+    local_pdf: "papers/inbox/2512.22743.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 427106
+
+  - title: "Reimagining RDMA Through the Lens of ML"
+    authors: ["Ertza Warraich", "Ali Imran", "Annus Zulfiqar", "Shay Vargaftik", "Sonia Fahmy", "Muhammad Shahbaz"]
+    year: 2025
+    venue: "IEEE Computer Architecture Letters"
+    arxiv_id: "2510.16606"
+    doi: "10.1109/LCA.2025.3624158"
+    s2_url: "https://www.semanticscholar.org/paper/3faf01dfe488497ca3bb1284861e8a2bd4261ee0"
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2510.16606"
+    local_pdf: "papers/inbox/2510.16606.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 185073
+
+  - title: "An Extensible Software Transport Layer for GPU Networking"
+    authors: ["Yang Zhou", "Zhongjie Chen", "Ziming Mao", "ChonLam Lao", "Shuo Yang", "Pravein Govindan Kannan", "Jiaqi Gao", "Yilong Zhao", "Yongji Wu", "Kaichao You", "Fengyuan Ren", "Zhiying Xu", "Costin Raiciu", "Ion Stoica"]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2504.17307"
+    doi: "10.48550/arXiv.2504.17307"
+    s2_url: "https://www.semanticscholar.org/paper/2af78465dd8f7c5cf42ab369f816bbb41eba3843"
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2504.17307"
+    local_pdf: "papers/inbox/2504.17307.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 2165588
+
+  - title: "Palladium: A DPU-enabled Multi-Tenant Serverless Cloud over Zero-copy Multi-node RDMA Fabrics"
+    authors: ["Shixiong Qi", "Songyu Zhang", "K. K. Ramakrishnan", "Diman Z. Tootaghaj", "Hardik Soni", "Puneet Sharma"]
+    year: 2025
+    venue: "SIGCOMM [CCF-A]"
+    arxiv_id: "2505.11339"
+    doi: "10.1145/3718958.3750494"
+    s2_url: "https://www.semanticscholar.org/paper/fe489bc018d51736536b18b50a2015328b23273f"
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2505.11339"
+    local_pdf: "papers/inbox/2505.11339.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 1519707
+
+  - title: "Closing the HPC-Cloud Convergence Gap: Multi-Tenant Slingshot RDMA for Kubernetes"
+    authors: ["Philipp A. Friese", "Ahmed Eleliemy", "Utz-Uwe Haus", "Martin Schulz"]
+    year: 2025
+    venue: "IEEE Cluster 2025"
+    arxiv_id: "2508.09663"
+    doi: "10.1109/CLUSTER59342.2025.11186471"
+    s2_url: "https://www.semanticscholar.org/paper/ffe7ce1440ffb30c7ff2a7c1c276fe504d673747"
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2508.09663"
+    local_pdf: "papers/inbox/2508.09663.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 473110
+
+  - title: "Serving Heterogeneous LoRA Adapters in Distributed LLM Inference Systems"
+    authors: ["Shashwat Jaiswal", "Shrikara Arun", "Anjaly Parayil", "Ankur Mallick", "Spyros Mastorakis", "Alind Khare", "Chloi Alverti", "Renee St Amant", "Chetan Bansal", "Victor Rühle", "Josep Torrellas"]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2511.22880"
+    doi: "10.48550/arXiv.2511.22880"
+    s2_url: "https://www.semanticscholar.org/paper/359ddd24c36ce879b3851872a90e992911e525c2"
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2511.22880"
+    local_pdf: "papers/inbox/2511.22880.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 1918979
+
+  - title: "Adaptra: Straggler-Resilient Hybrid-Parallel Training with Pipeline Adaptation"
+    authors: ["Tianyuan Wu", "Lunxi Cao", "Hanfeng Lu", "Xiaoxiao Jiang", "Yinghao Yu", "Siran Yang", "Guodong Yang", "Jiamang Wang", "Lin Qu", "Liping Zhang", "Wei Wang"]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2504.19232"
+    doi: "10.48550/arXiv.2504.19232"
+    s2_url: "https://www.semanticscholar.org/paper/b6d4ca3ed5b5c726305f31e0c02d8ae7bd6c2307"
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2504.19232"
+    local_pdf: "papers/inbox/2504.19232.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 1995441

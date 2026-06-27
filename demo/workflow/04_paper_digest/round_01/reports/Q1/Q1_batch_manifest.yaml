@@ -1,0 +1,136 @@
+batch_id: "Q1"
+generated_at: "2026-06-27T00:00:00Z"
+
+batch_stats:
+  total_papers: 6
+  core: 6
+  general: 0
+  digested: 6
+  unreadable: 0
+
+papers:
+  - filename: "2024_Harmonic_RDMA_Isolation.pdf"
+    title: "Harmonic: Hardware-assisted RDMA Performance Isolation for Public Clouds"
+    year: 2024
+    venue: "NSDI (CCF-A)"
+    relevance: "core"
+    digest_priority: "high"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q1/papers/2024_Harmonic_RDMA_Isolation.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "supported"
+      - hypothesis_id: "H2"
+        verdict: "supported"
+
+  - filename: "2023_Husky_RDMA_Microarchitecture.pdf"
+    title: "Understanding RDMA Microarchitecture Resources for Performance Isolation"
+    year: 2023
+    venue: "NSDI (CCF-A)"
+    relevance: "core"
+    digest_priority: "high"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q1/papers/2023_Husky_RDMA_Microarchitecture.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "strongly_supported"
+      - hypothesis_id: "H2"
+        verdict: "supported"
+
+  - filename: "2024_PeRF_Preemption_RDMA.pdf"
+    title: "PeRF: Preemption-enabled RDMA Framework"
+    year: 2024
+    venue: "USENIX ATC (CCF-A)"
+    relevance: "core"
+    digest_priority: "high"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q1/papers/2024_PeRF_Preemption_RDMA.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "supported"
+      - hypothesis_id: "H2"
+        verdict: "supported"
+
+  - filename: "2505.11339.pdf"
+    title: "Palladium: A DPU-enabled Multi-Tenant Serverless Cloud over Zero-copy Multi-node RDMA Fabrics"
+    year: 2025
+    venue: "SIGCOMM (CCF-A)"
+    relevance: "core"
+    digest_priority: "high"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q1/papers/2505.11339.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "supported"
+      - hypothesis_id: "H2"
+        verdict: "supported"
+
+  - filename: "2023_OSMOSIS_SmartNIC_MultiTenant.pdf"
+    title: "OSMOSIS: Enabling Multi-Tenancy in Datacenter SmartNICs"
+    year: 2023
+    venue: "USENIX ATC (CCF-A)"
+    relevance: "core"
+    digest_priority: "medium"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q1/papers/2023_OSMOSIS_SmartNIC_MultiTenant.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "supported"
+      - hypothesis_id: "H2"
+        verdict: "supported"
+
+  - filename: "2508.09663.pdf"
+    title: "Closing the HPC-Cloud Convergence Gap: Multi-Tenant Slingshot RDMA for Kubernetes"
+    year: 2025
+    venue: "IEEE Cluster 2025"
+    relevance: "core"
+    digest_priority: "medium"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q1/papers/2508.09663.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "neutral"
+      - hypothesis_id: "H2"
+        verdict: "supported"
+
+cross_paper_findings:
+  common_themes:
+    - "微架构资源感知是RDMA多租户隔离的核心挑战——仅靠带宽隔离已完全不够"
+    - "三层隔离体系形成中：通信域隔离 → 性能资源隔离 → 工作负载感知调度（后者所有论文均缺失）"
+    - "工作保持(work-conserving)是软件隔离方案的关键需求——静态预留导致严重吞吐损失"
+    - "硬件辅助(FPGA/ASIC) vs 纯软件的路线分歧——精确性 vs 部署灵活性的权衡"
+  contradictions:
+    - "双向RDMA vs 单向RDMA 原语选择：Palladium论证双向更适合零拷贝，PeRF/Harmonic主要基于单向控制"
+  coverage_gaps:
+    - "所有6篇论文均未感知分布式训练通信模式（迭代burst/空闲交替）"
+    - "所有方案作用域限于单个RNIC/sNIC，缺乏跨节点全局通信调度"
+    - "GPU Direct RDMA场景下的性能隔离未覆盖"
+    - "大量并发训练任务(>3)的竞争效应未评估"
+    - "不同集合通信操作(AllReduce/AllGather/ReduceScatter)对RNIC资源的不同敏感性未系统研究"
+    - "动态自适应隔离策略（根据工作负载特征调整隔离参数）缺失"
+
+hypothesis_summary:
+  - hypothesis_id: "H1"
+    verdict: "strongly_supported"
+    supporting_papers:
+      - "Husky"
+      - "Harmonic"
+      - "OSMOSIS"
+    refuting_papers: []
+    note: "6篇论文从不同维度一致证明多租户RDMA共享下的性能干扰严重且不可忽视"
+  - hypothesis_id: "H2"
+    verdict: "strongly_supported"
+    supporting_papers:
+      - "Husky"
+      - "Harmonic"
+      - "PeRF"
+      - "Palladium"
+      - "OSMOSIS"
+      - "Slingshot"
+    refuting_papers: []
+    note: "所有6篇论文在设计上均未考虑分布式训练的通信模式特征，证实当前隔离方案在该维度存在空白"
+  - hypothesis_id: "H3"
+    verdict: "not_yet_evaluated"
+    supporting_papers: []
+    refuting_papers: []
+    note: "本批次无论文实现训练感知调度策略，需后续工作验证"

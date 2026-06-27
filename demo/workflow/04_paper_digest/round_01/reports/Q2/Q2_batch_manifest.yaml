@@ -1,0 +1,102 @@
+batch_id: "Q2"
+generated_at: "2026-06-27T00:00:00Z"
+
+batch_stats:
+  total_papers: 7
+  core: 7
+  general: 0
+  digested: 7
+  unreadable: 0
+
+papers:
+  - filename: "2018_TicTac_Accelerating_Distributed_Deep_Learning_with_Communication_Scheduling_1b759e2b78e6.pdf"
+    title: "TicTac: Accelerating Distributed Deep Learning with Communication Scheduling"
+    relevance: "core"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q2/papers/2018_TicTac_Accelerating_Distributed_Deep_Learning_with_Communication_Scheduling_1b759e2b78e6.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "strongly_supportive"
+      - hypothesis_id: "H2"
+        verdict: "neutral"
+
+  - filename: "2019_Priority-based_Parameter_Propagation_for_Distributed_DNN_Training_cba7a84c34a0.pdf"
+    title: "P3: Priority-based Parameter Propagation for Distributed DNN Training"
+    relevance: "core"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q2/papers/2019_Priority-based_Parameter_Propagation_for_Distributed_DNN_Training_cba7a84c34a0.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "strongly_supportive"
+      - hypothesis_id: "H2"
+        verdict: "neutral"
+
+  - filename: "2020_Domain-specific_Communication_Optimization_for_Distributed_DNN_Training_d6a21b768315.pdf"
+    title: "DLCP: Domain-specific Communication Optimization for Distributed DNN Training"
+    relevance: "core"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q2/papers/2020_Domain-specific_Communication_Optimization_for_Distributed_DNN_Training_d6a21b768315.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "strongly_supportive"
+      - hypothesis_id: "H2"
+        verdict: "strongly_supportive"
+
+  - filename: "2025_CrossPipe_Towards_Optimal_Pipeline_Schedules_for_Cross-Datacenter_Training_6f22ba8447dc.pdf"
+    title: "CrossPipe: Towards Optimal Pipeline Schedules for Cross-Datacenter Training"
+    relevance: "core"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q2/papers/2025_CrossPipe_Towards_Optimal_Pipeline_Schedules_for_Cross-Datacenter_Training_6f22ba8447dc.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "strongly_supportive"
+      - hypothesis_id: "H2"
+        verdict: "supportive"
+
+  - filename: "2021_MergeComp_A_Compression_Scheduler_for_Scalable_Communication-Efficient_Distribut_52e8177931fb.pdf"
+    title: "MergeComp: A Compression Scheduler for Scalable Communication-Efficient Distributed Training"
+    relevance: "core"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q2/papers/2021_MergeComp_A_Compression_Scheduler_for_Scalable_Communication-Efficient_Distribut_52e8177931fb.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "strongly_supportive"
+      - hypothesis_id: "H2"
+        verdict: "neutral"
+
+  - filename: "2021_DynaComm_Accelerating_Distributed_CNN_Training_between_Edges_and_Clouds_through__ef0a266b4997.pdf"
+    title: "DynaComm: Accelerating Distributed CNN Training between Edges and Clouds through Dynamic Communication Scheduling"
+    relevance: "core"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q2/papers/2021_DynaComm_Accelerating_Distributed_CNN_Training_between_Edges_and_Clouds_through__ef0a266b4997.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "strongly_supportive"
+      - hypothesis_id: "H2"
+        verdict: "neutral"
+
+  - filename: "2024_DHelix_Hiding_Communication_Cost_in_Distributed_LLM_Training_via_Micro-batch_Co-_a27be85edb8b.pdf"
+    title: "DHelix: Hiding Communication Cost in Distributed LLM Training via Micro-batch Co-execution"
+    relevance: "core"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q2/papers/2024_DHelix_Hiding_Communication_Cost_in_Distributed_LLM_Training_via_Micro-batch_Co-_a27be85edb8b.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "strongly_supportive"
+      - hypothesis_id: "H2"
+        verdict: "supportive"
+
+cross_paper_findings:
+  common_themes:
+    - "从end-host到network的调度深度递增：flow-level (TicTac) → slice-level (P3) → packet-level (DLCP) → operator-level (DHelix)"
+    - "DNN训练语义嵌入通信调度是共同范式：7篇论文均利用layer依赖/消费时序/梯度重要性/bounded loss/operator兼容性等训练特性"
+    - "组合优化形式化为通用方法：heuristic search (TicTac/MergeComp), DP (DynaComm/DHelix), CO/Greedy (CrossPipe)"
+  contradictions:
+    - "静态vs动态调度：TicTac离线一次计算 vs DynaComm运行时每epoch重算 vs CrossPipe hot-switching"
+    - "压缩路线 vs Loss-tolerance路线：MergeComp优化压缩以减少数据量 vs DLCP容忍丢包以改变可靠性语义"
+    - "PP优先 vs 全面的通信策略：CrossPipe论证PP是跨DC最佳策略 vs DHelix表明TP/SP/CP/EP intra-layer通信才是主要瓶颈"
+  coverage_gaps:
+    - "多作业/多租户通信隔离与公平性：全部7篇论文无一提及"
+    - "RDMA网络下的通信调度适配：现有方案均基于gRPC/TCP/NCCL，未探索one-sided RDMA操作的调度空间"
+    - "异构硬件/异构网络下的调度：CrossPipe略微提及但无实验验证"
+    - "训练不同阶段的调度策略自适应性：训练过程中梯度大小变化但调度策略不变"

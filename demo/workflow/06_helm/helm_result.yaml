@@ -1,0 +1,47 @@
+stage: "HELM"
+status: "completed"
+can_continue: true
+recommended_next_stage: "OUTLINE"
+
+basis:
+  - "topic.md"
+  - "workflow/05_synthesis/current_view.md"
+  - "workflow/05_synthesis/latest_result.yaml"
+  - "workflow/05_synthesis/evidence_ledger.yaml"
+
+outputs:
+  helm_report: "workflow/06_helm/helm_report.md"
+  scheme_blueprint: "workflow/06_helm/scheme_blueprint.yaml"
+  decision_log: "workflow/06_helm/decision_log.md"
+
+selected:
+  core_problem: "现有RDMA多租户性能隔离方案不感知训练通信模式，导致多任务并发时隔离效率低、资源利用率差"
+  main_route: "纯软件训练通信语义感知的RDMA动态调度（路线A：感知层→决策层→执行层三层架构）"
+  research_content_count: 3
+
+quality:
+  focus_score: 0.85
+  completeness_score: 0.85
+  innovation_score: 0.80
+  feasibility_score: 0.85
+  validation_score: 0.80
+  outline_readiness: 0.85
+
+intervention:
+  required: false
+  reason: ""
+  questions: []
+
+integrity:
+  all_outputs_present: true
+  checked_at: "2025-06-27T19:30:00+08:00"
+  missing_outputs: []
+  warnings:
+    - "实验环境待确认：RoCEv2 RDMA集群规格和NCCL版本需用户确认"
+    - "PeRF抢占原语在目标平台的可用性需在R2实施前验证"
+
+notes:
+  - "主线收敛完成：纯软件训练感知调度，6模块→3研究内容，8-64节点实验验证"
+  - "路线B/C分别作为背景提及和未来扩展保留"
+  - "项目体量控制在青年项目范围：3年、3项研究内容"
+  - "建议07-outline按3项研究内容的递进结构组织申请书"

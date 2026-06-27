@@ -1,0 +1,125 @@
+stage: "LITERATURE_PLAN"
+version: "v1"
+updated_after_round: 1
+
+project_research_objective: "面向多租户共享高性能 RDMA 网络的分布式训练场景，研究网络资源的智能调度方法，实现训练任务间的性能隔离与网络资源高效利用"
+
+background_plan:
+  needed: false
+  status: "skipped"
+  reason: "01_topic_card.md 已清楚说明 RDMA、分布式训练通信、拥塞控制等核心技术概念，应用场景和可能相关的技术方向已充分展开，background_clarity=0.50 且 literature_plan_readiness=0.75，无需单独安排背景调研轮次"
+  tasks:
+    - id: "B1"
+      name: "RDMA与分布式训练网络基础概念调研"
+      goal: "建立 RDMA 协议族（InfiniBand/RoCEv2）、分布式训练通信原语（all-reduce/all-gather/reduce-scatter/all-to-all）、RDMA 拥塞控制（DCQCN/PFC/Timely）等基础知识框架"
+      priority: "medium"
+      status: "skipped"
+      evidence_needed: []
+      notes: "01_topic_card.md §4.1-4.3 已覆盖基础概念和应用背景，通过轻量检索获得初步验证。若后续 synthesis 发现背景理解有误，可重新标记为 pending"
+
+core_research_plan:
+  tasks:
+    - id: "C1"
+      name: "RDMA多租户性能隔离方法"
+      goal: "系统了解RDMA网络在多租户共享场景下的性能隔离方法，覆盖软件层面（速率限制、抢占式调度）、硬件层面（FPGA辅助、微架构感知）和软硬协同方案的隔离粒度、实现机制、性能开销和效果对比"
+      priority: "high"
+      status: "planned"
+      dependencies: []
+      evidence_needed:
+        - "已有 RDMA 多租户隔离方案的分类、对比和局限性"
+        - "分布式训练场景是否作为这些方案的评估场景"
+        - "多租户 RDMA 隔离的实验评估 benchmark 和指标"
+      related_rounds: [1]
+      notes: "来源：01_literature_seed.yaml A1。核心对标论文：PeRF (ATC'24)、Harmonic (NSDI'24)、Palos (HPCC'24)、FreeINA"
+
+    - id: "C2"
+      name: "分布式训练通信调度与网络优化"
+      goal: "了解分布式训练中针对通信效率的调度和优化方法，特别关注是否考虑了多任务并发的隔离需求，以及训练语义（通信模式、迭代性质）如何被纳入网络层调度决策"
+      priority: "high"
+      status: "planned"
+      dependencies: []
+      evidence_needed:
+        - "分布式训练通信调度的主要研究方向和技术路线"
+        - "已有工作在多任务并发场景下的表现"
+        - "NCCL 等通信库的多进程资源隔离机制"
+      related_rounds: [1]
+      notes: "来源：01_literature_seed.yaml A2。覆盖方向：拓扑感知调度、通信压缩协同、自适应通信库、MARL调度等"
+
+technical_research_plan:
+  tasks:
+    - id: "T1"
+      name: "RDMA拥塞控制与负载均衡公平性分析"
+      technology_area: "网络协议与拥塞控制"
+      goal: "系统评估 DCQCN、Timely、HPCC、PFC 等 RDMA 拥塞控制机制在多流竞争时的公平性，以及 ECMP 及改进负载均衡方案对多租户流量隔离的影响"
+      priority: "medium-high"
+      status: "pending"
+      dependencies: []
+      evidence_needed:
+        - "主流 RDMA 拥塞控制方案在多流场景下的公平性数据"
+        - "PFC 不公平问题和拥塞扩散的定量分析"
+        - "负载均衡方案对多租户场景的适配程度"
+      related_rounds: []
+      notes: "来源：01_literature_seed.yaml A3。可作为 C1 的深入补充方向"
+
+    - id: "T2"
+      name: "智能网络资源调度方法基础"
+      technology_area: "AI for Network / 智能网络管理"
+      goal: "调研基于强化学习、在线学习、预测模型等方法的网络资源调度研究，评估其方法论在 RDMA 训练场景中的可迁移性"
+      priority: "medium"
+      status: "pending"
+      dependencies: []
+      evidence_needed:
+        - "RL/ML 驱动网络调度在数据中心网络中的代表工作及其效果"
+        - "在线决策方法在微秒级网络环境中的可行性"
+        - "已有工作在 RDMA 或训练场景中的尝试"
+      related_rounds: []
+      notes: "来源：01_literature_seed.yaml A4。为本课题'智能调度'方法部分提供方法论基础"
+
+    - id: "T3"
+      name: "智算中心多租户网络架构实践调研"
+      technology_area: "数据中心网络架构"
+      goal: "了解工业界智算中心在支持多租户训练时的实际网络架构设计和隔离方案，核实学术界关注的问题与工业界实际需求之间的 gap"
+      priority: "medium"
+      status: "pending"
+      dependencies: []
+      evidence_needed:
+        - "万卡集群多租户网络隔离的实际方案（如平面划分、VLAN/SDN 策略）"
+        - "工业界对多租户训练网络性能隔离的需求和已识别问题"
+        - "广域分布式训练场景的额外网络挑战"
+      related_rounds: []
+      notes: "来源：01_literature_seed.yaml A5。提供问题域的现实基础验证"
+
+iterative_tasks: []
+
+completed_or_skipped_tasks:
+  - id: "B1"
+    name: "RDMA与分布式训练网络基础概念调研"
+    status: "skipped"
+    reason: "01_topic_card.md 已充分覆盖核心技术概念和应用背景（§4.1-4.3），01_topic_result.yaml 中 literature_plan_readiness=0.75 表明可直接进入核心调研。若后续 synthesis 发现背景理解偏差，可重新激活此任务"
+    related_rounds: []
+
+current_priority_queue:
+  - task_id: "C1"
+    reason: "直接对应课题核心问题——多租户训练场景下的网络性能隔离，最大幅度降低'现有方法覆盖到什么程度'的不确定性"
+  - task_id: "C2"
+    reason: "为课题可能的差异化方向——训练语义感知的调度——提供 baseline 和 evidence"
+  - task_id: "T1"
+    reason: "作为 C1 的深度扩展，补充拥塞控制和负载均衡层面的理解"
+  - task_id: "T2"
+    reason: "为智能调度方法论提供基础，但需先完成 C1/C2 以明确场景约束"
+  - task_id: "T3"
+    reason: "验证工业界实际需求，但优先级低于核心学术问题调研"
+
+round_history:
+  - round: 1
+    short_goal: "系统调研 RDMA 多租户性能隔离方法和分布式训练通信调度方法"
+    task_ids:
+      - "C1"
+      - "C2"
+    expected_academic_search_dir: "workflow/03_academic_search/round_01"
+    status: "planned"
+
+notes:
+  - "长期计划是路线图，不是本轮 academic-search 任务。本轮只执行 C1 和 C2。"
+  - "T1/T2/T3 保留为后续轮次的候选任务，根据 Round 01 synthesis 结果调整优先级。"
+  - "背景调研 B1 已跳过——若后续发现关键概念理解有误，可重新标记为 pending。"

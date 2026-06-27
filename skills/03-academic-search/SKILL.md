@@ -146,7 +146,7 @@ selection_policy:
 
 download_policy:
   download_core_oa: true
-  try_scihub_for_paywalled: true
+  do_not_bypass_paywalls: true
   max_total_downloads: 10
   target_dir: "papers/inbox/"
 
@@ -185,7 +185,7 @@ instruction_sheet_path: workflow/03_academic_search/round_{XX}/instructions/{que
 1. **验证结构化摘要完整**：papers 列表非空、stats 字段齐全、output_files 路径存在
 2. **验证局部报告已写入**：检查 `output.local_report` 文件存在且非空
 3. **验证下载 manifest 已写入**：检查 `output.download_manifest` 文件存在且非空
-4. **检查下载状态**：汇总各 query 的 `stats.downloaded_count`、`stats.download_failed_count`、`stats.scihub_count`
+4. **检查下载状态**：汇总各 query 的 `stats.downloaded_count`、`stats.download_failed_count`、`stats.paywalled_skipped_count`
 
 若某 searcher 返回空或报错：记录到 `errors` 列表，继续处理其余。
 
@@ -209,7 +209,7 @@ Coordinator 基于合并后的论文列表和所有局部报告生成：
    - 各 query 摘要（从局部报告提取）
    - 重要论文（core）摘要（合并后，每篇 2-4 句）
    - 一般论文清单
-   - PDF 下载总览（已下载/待手动下载/Sci-Hub 获取）
+   - PDF 下载总览（已下载 OA PDF / 非 OA 需合法获取 / 下载失败）
    - 跨 query 发现与建议
 
 2. **candidate_papers.md** — 优先级排序表（标注 PDF 下载状态、来源 query）
@@ -278,8 +278,8 @@ Coordinator 不移动 PDF，只汇总各 searcher 的下载清单到 `download_q
 搜索统计：
 - 候选论文总数：{N} 篇（core {N}，general {N}）
 - 已自动下载 PDF：{N} 篇（papers/inbox/）
-- Sci-Hub 获取：{N} 篇
-- 需手动下载：{N} 篇（见 download_queue.yaml）
+- 非 OA 需合法获取：{N} 篇（见 download_queue.yaml）
+- 需用户手动提供 PDF：{N} 篇（见 download_queue.yaml）
 
 输出文件：
 - workflow/03_academic_search/round_XX/search_summary.md
@@ -321,7 +321,7 @@ paper_counts:
 download_summary:
   total_eligible: 18
   downloaded: 12
-  scihub_obtained: 3
+  paywalled_skipped: 3
   failed: 2
   skipped: 0
 

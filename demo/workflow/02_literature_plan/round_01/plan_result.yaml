@@ -1,0 +1,59 @@
+stage: "LITERATURE_PLAN"
+round: 1
+status: "completed"
+can_continue: true
+recommended_next_stage: "ACADEMIC_SEARCH"
+
+basis:
+  - "workflow/01_topic/01_topic_card.md"
+  - "workflow/01_topic/01_literature_seed.yaml"
+  - "workflow/01_topic/01_topic_result.yaml"
+
+outputs:
+  long_plan: "workflow/02_literature_plan/long_plan.yaml"
+  long_plan_snapshot: "workflow/02_literature_plan/round_01/long_plan.yaml"
+  round_goal: "workflow/02_literature_plan/round_01/round_goal.md"
+  search_queries: "workflow/02_literature_plan/round_01/search_queries.yaml"
+  research_archive: "workflow/02_literature_plan/research_archive.yaml"
+
+next_expected_outputs:
+  academic_search_dir: "workflow/03_academic_search/round_01"
+  files:
+    - "search_results.yaml"
+    - "candidate_papers.md"
+    - "download_queue.yaml"
+    - "search_summary.md"
+
+selected_tasks:
+  main_task_id: "C1"
+  auxiliary_task_ids:
+    - "C2"
+
+skipped_tasks_this_round:
+  - id: "B1"
+    name: "RDMA与分布式训练网络基础概念调研"
+    reason: "01_topic_card.md 已充分覆盖核心技术概念，background_clarity=0.50, literature_plan_readiness=0.75"
+
+quality:
+  long_plan_completeness: 0.80
+  goal_focus: 0.85
+  query_specificity: 0.80
+  scope_control: 0.80
+  academic_search_readiness: 0.85
+
+intervention:
+  required: false
+  reason: ""
+  questions: []
+
+integrity:
+  all_outputs_present: true
+  checked_at: "2025-06-27T17:50:00+08:00"
+  missing_outputs: []
+  warnings: []
+
+notes:
+  - "本轮选择 C1 + C2 两个互补核心任务并行执行，B1 背景调研已跳过"
+  - "5条查询式覆盖C1（Q1/Q4）、C2（Q2/Q3）及交叉领域（Q5），预期10-16篇候选论文"
+  - "T1/T2/T3 保留为后续轮次任务"
+  - "建议 03-academic-search 使用并行 searcher agents 执行 Q1-Q5"

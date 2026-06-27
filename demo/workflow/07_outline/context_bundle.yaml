@@ -1,0 +1,50 @@
+stage: "OUTLINE"
+version: "v1"
+
+writing_constraints:
+  style: "客观严谨，自信但不夸大"
+  language: "中文"
+  tone: "学术申请书"
+  forbidden_phrases:
+    - "填补空白"
+    - "国内领先"
+    - "国际先进"
+    - "首次提出"
+    - "意义重大"
+
+terminology:
+  core_terms:
+    - {term: "训练通信语义", definition: "分布式训练任务的通信模式特征，包括迭代周期、burst/空闲交替、通信操作类型(all-reduce/all-gather/all-to-all)和ML对部分数据丢失的容忍度", aliases: ["通信模式", "训练通信特征"], forbidden: ["流量模式"]}
+    - {term: "RDMA性能隔离", definition: "在多个租户共享RDMA网络基础设施时，保证各租户的通信性能不受其他租户干扰的能力", aliases: ["RDMA隔离", "网络性能隔离"], forbidden: ["RDMA虚拟化"]}
+    - {term: "多租户网络资源调度", definition: "根据各训练任务的通信需求和优先级，动态分配RDMA网络资源(QP带宽/路径/抢占优先权)的机制", aliases: ["网络调度", "RDMA调度"], forbidden: ["流量工程"]}
+    - {term: "QP抢占", definition: "通过RDMA verbs（WAIT/ENABLE）在不修改NIC硬件的条件下实现QP级资源抢占的机制", aliases: ["RDMA抢占", "QP级调度"], forbidden: ["中断"]}
+
+argument_chain:
+  - step: "问题陈述"
+    section_id: "S01.1"
+    key_claim: "智算中心共享化趋势下，多租户RDMA网络性能隔离成为关键挑战"
+  - step: "现状综述"
+    section_id: "S01.2"
+    key_claim: "RDMA隔离和训练调度两个社区各自取得进展，但从未交汇"
+  - step: "gap凝练"
+    section_id: "S01.3"
+    key_claim: "交叉空白=本项目的核心创新空间"
+  - step: "目标提出"
+    section_id: "S02.1"
+    key_claim: "设计训练通信语义驱动的RDMA网络资源智能调度方法"
+  - step: "方案展开"
+    section_id: "S02.2-S02.4"
+    key_claim: "三层架构：感知→决策→执行"
+  - step: "创新归纳"
+    section_id: "S02.5"
+    key_claim: "范式创新+算法创新+实现创新"
+
+forbidden_directions:
+  - {name: "RDMA硬件协议重新设计", keyword_triggers: ["重新设计RNIC", "修改RDMA协议", "新NIC架构"]}
+  - {name: "推理场景扩展", keyword_triggers: ["LLM推理", "模型serving", "推理优化"]}
+  - {name: "跨数据中心训练", keyword_triggers: ["跨DC", "广域网训练", "长距RDMA"]}
+
+transition_map:
+  S01.1-U001: {feeds_into: "S01.2-U001", transition_hint: "由问题重要性自然引出需了解现有解决方案"}
+  S01.2-U001: {feeds_into: "S01.3-U001", transition_hint: "由现有方案的各自局限引出明确的gap"}
+  S01.3-U001: {feeds_into: "S02.1-U001", transition_hint: "由gap和切入点引出研究目标"}

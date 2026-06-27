@@ -1,0 +1,176 @@
+# evidence_ledger.yaml —— 证据账本
+# helm 和 outline 的证据入口。先查此文件，再按 sources[].report 路径按需追溯。
+
+version: "1.0"
+updated_round: 1
+
+claims:
+  - id: "CL-001"
+    statement: "多租户 RDMA 共享场景下存在严重的、不可忽视的性能干扰"
+    status: "confirmed"
+    evidence_level: "strong"
+    usable_for_helm: true
+    usable_for_application_text: true
+    sources:
+      - report: "workflow/04_paper_digest/round_01/reports/Q1/papers/2023_Husky_RDMA_Microarchitecture.md"
+        finding: "仅需<1Gbps攻击流量即可破坏50Gbps的RDMA隔离保证；全部现有方案(SR-IOV/HW TC/Justitia)均无法通过Husky测试"
+      - report: "workflow/04_paper_digest/round_01/reports/Q5/papers/2025_ComputeCommOverlap_2507.03114.md"
+        finding: "计算-通信重叠导致平均18.9%、最高40%的计算减速"
+      - report: "workflow/04_paper_digest/round_01/reports/Q3/papers/2308.05692.md"
+        finding: "ECMP哈希冲突导致极端情况下60%吞吐下降"
+      - report: "workflow/04_paper_digest/round_01/reports/Q5/papers/2310.20209.md"
+        finding: "多任务FSDP并发场景下吞吐量下降49.1%"
+    caveat: "Husky和vClos均为单RNIC/小规模(32GPU)实验，大规模(数百任务)的退化程度待验证"
+
+  - id: "CL-002"
+    statement: "现有RDMA多租户性能隔离方案（Husky/Harmonic/PeRF/Palladium/OSMOSIS/Slingshot）在设计上不感知分布式训练的通信模式特征"
+    status: "confirmed"
+    evidence_level: "strong"
+    usable_for_helm: true
+    usable_for_application_text: true
+    sources:
+      - report: "workflow/04_paper_digest/round_01/reports/Q1/papers/2024_Harmonic_RDMA_Isolation.md"
+        finding: "静态verb归一化(ATOMIC=3x SEND)不感知训练迭代通信模式变化"
+      - report: "workflow/04_paper_digest/round_01/reports/Q1/papers/2024_PeRF_Preemption_RDMA.md"
+        finding: "分类器基于消息大小而非通信语义；不区分梯度同步vs数据加载等不同优先级通信"
+      - report: "workflow/04_paper_digest/round_01/reports/Q1/Q1_batch_report.md"
+        finding: "跨6篇Q1论文的一致发现：均已自述'不感知应用层通信模式'"
+    caveat: "全部6篇均未将训练通信模式作为未来工作方向提及"
+
+  - id: "CL-003"
+    statement: "分布式训练通信调度领域（7篇代表工作）均聚焦单作业优化，无一涉及多任务/多租户的通信隔离与公平性"
+    status: "confirmed"
+    evidence_level: "strong"
+    usable_for_helm: true
+    usable_for_application_text: true
+    sources:
+      - report: "workflow/04_paper_digest/round_01/reports/Q2/Q2_batch_report.md"
+        finding: "跨7篇Q2论文：全部聚焦单作业优化，多任务/多租户列为空白"
+      - report: "workflow/04_paper_digest/round_01/reports/Q3/papers/2025_VCCL_2510.00991.md"
+        finding: "VCCL直接证实NCCL不区分不同训练任务，通信资源管理完全依赖上层"
+    caveat: "TicTac/P3/DLCP的优先级策略在多作业独立执行时可能造成饥饿"
+
+  - id: "CL-004"
+    statement: "训练语义嵌入网络层决策可取得显著优于信息不可知方案的性能"
+    status: "confirmed"
+    evidence_level: "strong"
+    usable_for_helm: true
+    usable_for_application_text: true
+    sources:
+      - report: "workflow/04_paper_digest/round_01/reports/Q2/papers/2020_Domain-specific_Communication_Optimization_for_Distributed_DNN_Training_d6a21b768315.md"
+        finding: "DLCP gradient-aware switch queueing 相比 DCTCP/pFabric/PIAS 降低 tail FCT 91.8%，额外加速84.3%"
+      - report: "workflow/04_paper_digest/round_01/reports/Q2/papers/2024_DHelix_Hiding_Communication_Cost_in_Distributed_LLM_Training_via_Micro-batch_Co-_a27be85edb8b.md"
+        finding: "DHelix operator级通信隐藏实现MFU提升27-40%"
+    caveat: "DLCP需修改交换机配置，DHelix仅验证A40/A800/H100平台"
+
+  - id: "CL-005"
+    statement: "现有通用RDMA拥塞控制方案（DCQCN/PFC/Timely/HPCC）对分布式训练性能影响有限（<4%），训练场景需要极简专用CC方案"
+    status: "confirmed"
+    evidence_level: "strong"
+    usable_for_helm: true
+    usable_for_application_text: true
+    sources:
+      - report: "workflow/04_paper_digest/round_01/reports/Q5/papers/2207.10898.md"
+        finding: "6种CC方案对DLRM端到端训练性能影响<4%；集合通信天然避免incast使得通用CC价值有限"
+    caveat: "实验仅为单作业DLRM；多作业场景下CC公平性影响可能不同"
+
+  - id: "CL-006"
+    statement: "基于学习的方法（RL/Transformer）在多租户GPU集群调度中可行且有效"
+    status: "confirmed"
+    evidence_level: "medium"
+    usable_for_helm: true
+    usable_for_application_text: false
+    sources:
+      - report: "workflow/04_paper_digest/round_01/reports/Q5/papers/2310.20209.md"
+        finding: "RL调度降低平均JCT 18.2%，尾部JCT 20.7%"
+      - report: "workflow/04_paper_digest/round_01/reports/Q3/papers/2025_BandPilot_2506.15595.md"
+        finding: "Transformer学习带宽模型达92-97%效率，比拓扑紧凑度基线提升20-40%"
+    caveat: "RL调度仅32 GPU验证；BandPilot在大规模集群的场景扩展未验证"
+
+gap_candidates:
+  - id: "GAP-001"
+    title: "RDMA隔离方案不感知训练通信模式"
+    description: "在分布式训练多租户场景下，现有RDMA隔离方案（PeRF/Harmonic/Husky等6篇）将流量视为稳态流，不感知训练任务的迭代burst/空闲交替、集合通信操作类型差异(AllReduce/AlltoAll)、ML对部分数据丢失的容忍度"
+    confidence: "high"
+    scene_match: "strong"
+    solvability: "high"
+    verifiability: "high"
+    sources:
+      - "Q1_batch_report (cross-6-papers finding)"
+      - "DLCP digest (reverse evidence: gradient-aware outperforms)"
+    helm_relevance: "primary"
+
+  - id: "GAP-002"
+    title: "训练通信调度缺乏多租户隔离"
+    description: "分布式训练通信调度领域（TicTac/P3/DLCP/DHelix等7篇）全部聚焦单作业优化，优先级调度策略在多作业独立执行时可能造成饥饿和不公平"
+    confidence: "high"
+    scene_match: "strong"
+    solvability: "high"
+    verifiability: "high"
+    sources:
+      - "Q2_batch_report (cross-7-papers, 多租户列为空白)"
+    helm_relevance: "primary"
+
+  - id: "GAP-003"
+    title: "RDMA CC/LB缺乏训练专有优化"
+    description: "通用RDMA CC(DCQCN/HPCC)对训练性能影响<4%但设计复杂度过高；ECMP哈希冲突导致多任务训练严重性能退化需要训练专有极简替代方案"
+    confidence: "high"
+    scene_match: "strong"
+    solvability: "medium"
+    verifiability: "medium"
+    sources:
+      - "Khan et al. digest (CC impact <4%)"
+      - "vClos digest (ECMP hash collision 60% throughput drop)"
+      - "Ethereal digest (deterministic path routing matches packet spraying)"
+    helm_relevance: "secondary"
+
+hypotheses:
+  - id: "H1"
+    statement: "多租户RDMA共享下存在不可忽视的性能干扰"
+    status: "confirmed"
+    evidence_count: 12
+    sources:
+      - "Husky (NSDI'23)"
+      - "Harmonic (NSDI'24)"
+      - "vClos (2023)"
+      - "Compute-Comm Overlap (2025)"
+      - "RL Scheduling (2023)"
+  - id: "H2"
+    statement: "现有RDMA隔离方案未考虑训练通信模式"
+    status: "confirmed"
+    evidence_count: 6
+  - id: "H3"
+    statement: "训练语义感知调度可取得更好效果"
+    status: "confirmed"
+    evidence_count: 3
+  - id: "H4"
+    statement: "智能调度方法在该场景可行"
+    status: "partially_confirmed"
+    evidence_count: 2
+    caveat: "仅在32 GPU小规模验证"
+  - id: "H5"
+    statement: "现有RDMA CC未针对训练优化"
+    status: "confirmed"
+    evidence_count: 2
+
+technical_inspirations:
+  - id: "TI-001"
+    source: "PeRF (ATC'24)"
+    method: "IB_WR_WAIT/ENABLE/0_WAIT抢占原语 + Managed QP + 消息分割"
+    applicability: "抢占基元——可直接作为调度器的网络层执行接口"
+    helm_candidate: true
+  - id: "TI-002"
+    source: "DLCP (2020)"
+    method: "Gradient-aware switch queueing——基于梯度层级和大小的ECN标记和选择性丢弃"
+    applicability: "感知范式——证明了将训练语义编码为网络层决策输入的有效性"
+    helm_candidate: true
+  - id: "TI-003"
+    source: "BandPilot (2025)"
+    method: "层次化Transformer学习NCCL测量→通信带宽模型"
+    applicability: "学习模型——可用于在线预测多任务并发时的通信带宽退化"
+    helm_candidate: true
+  - id: "TI-004"
+    source: "DHelix (2024)"
+    method: "Strand Interleaving + DP搜索最优operator配对"
+    applicability: "调度算法范式——DP搜索最优协同调度的模板"
+    helm_candidate: false

@@ -1,0 +1,24 @@
+stage: "SECTION_WRITE"
+status: "completed"
+all_complete: true
+can_continue: true
+recommended_next_stage: "ASSEMBLE"
+
+unit_stats:
+  total_units: 26
+  written: 26
+  blocked: 0
+  pending: 0
+  total_chars: 16350
+
+blocked_units: []
+
+integrity:
+  all_outputs_present: true
+  checked_at: "2025-06-27T20:00:00+08:00"
+  missing_outputs: []
+  warnings: ["S03.1/S03.2含待补充标记——需用户补充团队基础和实验条件"]
+
+notes:
+  - "全部26个unit已完成写作"
+  - "S03.1(研究基础)和S03.2(工作条件)标注为待补充"

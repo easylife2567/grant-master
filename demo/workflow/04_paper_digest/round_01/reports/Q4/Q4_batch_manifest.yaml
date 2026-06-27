@@ -1,0 +1,71 @@
+batch_id: "Q4"
+generated_at: "2026-06-27T00:00:00Z"
+
+batch_stats:
+  total_papers: 3
+  core: 3
+  general: 0
+  digested: 3
+  unreadable: 0
+
+papers:
+  - filename: "2025_OptiNIC_RDMA_ML.pdf"
+    title: "OptiNIC: A Resilient and Tail-Optimal RDMA NIC for Distributed ML Workloads"
+    authors: ["Ertza Warraich", "Ali Imran", "Annus Zulfiqar", "Shay Vargaftik", "Sonia Fahmy", "Muhammad Shahbaz"]
+    year: 2025
+    venue: "arXiv"
+    relevance: "core"
+    digest_priority: "high"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q4/papers/2025_OptiNIC_RDMA_ML.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "supported"
+      - hypothesis_id: "H2"
+        verdict: "neutral"
+
+  - filename: "2510.16606.pdf"
+    title: "Reimagining RDMA Through the Lens of ML (Celeris)"
+    authors: ["Ertza Warraich", "Ali Imran", "Annus Zulfiqar", "Shay Vargaftik", "Sonia Fahmy", "Muhammad Shahbaz"]
+    year: 2025
+    venue: "IEEE Computer Architecture Letters"
+    relevance: "core"
+    digest_priority: "high"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q4/papers/2510.16606.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "supported"
+      - hypothesis_id: "H2"
+        verdict: "neutral"
+
+  - filename: "2504.17307.pdf"
+    title: "An Extensible Software Transport Layer for GPU Networking"
+    authors: ["Yang Zhou", "Zhongjie Chen", "Ziming Mao", "ChonLam Lao", "Shuo Yang", "Pravein Govindan Kannan", "Jiaqi Gao", "Yilong Zhao", "Yongji Wu", "Kaichao You", "Fengyuan Ren", "Zhiying Xu", "Costin Raiciu", "Ion Stoica"]
+    year: 2025
+    venue: "arXiv"
+    relevance: "core"
+    digest_priority: "high"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q4/papers/2504.17307.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "neutral"
+      - hypothesis_id: "H2"
+        verdict: "supported"
+
+cross_paper_findings:
+  common_themes:
+    - "ML-感知传输是共识方向：三篇论文均从ML工作负载的统计鲁棒性出发质疑传统RDMA强可靠性假设"
+    - "去重传/去保序是核心路径：OptiNIC和Celeris取消NIC重传保序，UCCL将可靠性交给可编程软件"
+    - "基于偏移的直接包放置：三篇论文均采用以支持乱序交付"
+    - "自适应/动态超时管理：三篇论文的核心机制"
+  contradictions:
+    - "拥塞控制归属分歧：OptiNIC/Celeris保留CC在硬件，UCCL将CC移至软件"
+    - "可靠性完全取消vs可编程保留：OptiNIC/Celeris彻底取消NIC可靠性，UCCL保留选择性重传在软件"
+  coverage_gaps:
+    - "多租户性能隔离：三篇论文均未系统研究多任务共享RDMA网络时的隔离机制"
+    - "多任务调度具体方案：UCCL提供基础架构但未给出调度策略设计与评估"
+    - "端侧/边缘部署：仅以数据中心级GPU集群为评估环境"
+    - "与上层调度系统集成：与K8s/Slurm/Volcano等集群调度器的集成方案未被讨论"
+    - "安全与故障隔离：软件传输层在恶意/buggy场景下的安全边界未被研究"

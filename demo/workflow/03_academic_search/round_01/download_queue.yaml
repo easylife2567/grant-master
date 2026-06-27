@@ -1,0 +1,157 @@
+# 下载状态汇总（合并自各 searcher manifest）
+round: 1
+generated_at: "2025-06-27T18:30:00+08:00"
+
+summary:
+  total_papers: 48
+  core_papers: 26
+  core_with_pdf: 24
+  core_oa_downloaded: 24
+  core_paywalled: 2
+  general_papers: 22
+  general_downloaded: 20
+  total_downloaded: 44
+  total_inbox_pdfs: 44
+
+core_downloaded:
+  - paper_id: "P001"
+    title: "Harmonic: Hardware-assisted RDMA Performance Isolation"
+    local_pdf: "papers/inbox/2024_Harmonic_RDMA_Isolation.pdf"
+    source: "usenix_oa"
+
+  - paper_id: "P002"
+    title: "Understanding RDMA Microarchitecture Resources (Husky)"
+    local_pdf: "papers/inbox/2023_Husky_RDMA_Microarchitecture.pdf"
+    source: "usenix_oa"
+
+  - paper_id: "P003"
+    title: "PeRF: Preemption-enabled RDMA Framework"
+    local_pdf: "papers/inbox/2024_PeRF_Preemption_RDMA.pdf"
+    source: "usenix_oa"
+
+  - paper_id: "P005"
+    title: "Palladium: DPU-enabled Multi-Tenant Serverless"
+    local_pdf: "papers/inbox/2505.11339.pdf"
+    source: "arxiv"
+
+  - paper_id: "P006"
+    title: "OSMOSIS: Enabling Multi-Tenancy in Datacenter SmartNICs"
+    local_pdf: "papers/inbox/2023_OSMOSIS_SmartNIC_MultiTenant.pdf"
+    source: "arxiv"
+
+  - paper_id: "P007"
+    title: "Slingshot RDMA for Kubernetes"
+    local_pdf: "papers/inbox/2508.09663.pdf"
+    source: "arxiv"
+
+  - paper_id: "P009"
+    title: "TicTac: Accelerating Distributed DL with Comm Scheduling"
+    local_pdf: "papers/inbox/2018_TicTac_Accelerating_Distributed_Deep_Learning_with_Communication_Scheduling_1b759e2b78e6.pdf"
+    source: "arxiv"
+
+  - paper_id: "P010"
+    title: "P3: Priority-based Parameter Propagation"
+    local_pdf: "papers/inbox/2019_Priority-based_Parameter_Propagation_for_Distributed_DNN_Training_cba7a84c34a0.pdf"
+    source: "arxiv"
+
+  - paper_id: "P011"
+    title: "DLCP: Domain-specific Communication Optimization"
+    local_pdf: "papers/inbox/2020_Domain-specific_Communication_Optimization_for_Distributed_DNN_Training_d6a21b768315.pdf"
+    source: "arxiv"
+
+  - paper_id: "P012"
+    title: "MergeComp: Compression Scheduler"
+    local_pdf: "papers/inbox/2021_MergeComp_A_Compression_Scheduler_for_Scalable_Communication-Efficient_Distribut_52e8177931fb.pdf"
+    source: "arxiv"
+
+  - paper_id: "P013"
+    title: "DynaComm: Dynamic Communication Scheduling"
+    local_pdf: "papers/inbox/2021_DynaComm_Accelerating_Distributed_CNN_Training_between_Edges_and_Clouds_through__ef0a266b4997.pdf"
+    source: "arxiv"
+
+  - paper_id: "P014"
+    title: "DHelix: Hiding Communication Cost"
+    local_pdf: "papers/inbox/2024_DHelix_Hiding_Communication_Cost_in_Distributed_LLM_Training_via_Micro-batch_Co-_a27be85edb8b.pdf"
+    source: "arxiv"
+
+  - paper_id: "P015"
+    title: "CrossPipe: Optimal Pipeline Schedules"
+    local_pdf: "papers/inbox/2025_CrossPipe_Towards_Optimal_Pipeline_Schedules_for_Cross-Datacenter_Training_6f22ba8447dc.pdf"
+    source: "arxiv"
+
+  - paper_id: "P016"
+    title: "Arnold: Topology-Aware Communication Alignment"
+    local_pdf: "papers/inbox/2509.15940.pdf"
+    source: "arxiv"
+
+  - paper_id: "P017"
+    title: "vClos: Isolated Scheduling for Distributed Training"
+    local_pdf: "papers/inbox/2308.05692.pdf"
+    source: "arxiv"
+
+  - paper_id: "P018"
+    title: "BandPilot: Contention-Aware GPU Dispatching"
+    local_pdf: "papers/inbox/2025_BandPilot_2506.15595.pdf"
+    source: "arxiv"
+
+  - paper_id: "P019"
+    title: "When Scaling Fails: Network Effects on GPU Training"
+    local_pdf: "papers/inbox/2603.04424.pdf"
+    source: "arxiv"
+
+  - paper_id: "P020"
+    title: "Network Contention-Aware Scheduling with RL"
+    local_pdf: "papers/inbox/2310.20209.pdf"
+    source: "arxiv"
+
+  - paper_id: "P021"
+    title: "OptiNIC: Tail-Optimal RDMA NIC for ML"
+    local_pdf: "papers/inbox/2025_OptiNIC_RDMA_ML.pdf"
+    source: "arxiv"
+
+  - paper_id: "P022"
+    title: "Reimagining RDMA Through the Lens of ML (Celeris)"
+    local_pdf: "papers/inbox/2510.16606.pdf"
+    source: "arxiv"
+
+  - paper_id: "P023"
+    title: "Extensible Software Transport Layer for GPU Networking"
+    local_pdf: "papers/inbox/2504.17307.pdf"
+    source: "arxiv"
+
+  - paper_id: "P024"
+    title: "Characterizing Compute-Communication Overlap"
+    local_pdf: "papers/inbox/2025_ComputeCommOverlap_2507.03114.pdf"
+    source: "arxiv"
+
+  - paper_id: "P025"
+    title: "Impact of RoCE Congestion Control on DNN Training"
+    local_pdf: "papers/inbox/2207.10898.pdf"
+    source: "arxiv"
+
+  - paper_id: "P026"
+    title: "Ethereal: Divide and Conquer Network Load Balancing"
+    local_pdf: "papers/inbox/2407.00550.pdf"
+    source: "arxiv"
+
+  - paper_id: "P027"
+    title: "VCCL: Efficient Collective Communication Library"
+    local_pdf: "papers/inbox/2025_VCCL_2510.00991.pdf"
+    source: "arxiv"
+
+core_paywalled:
+  - paper_id: "P004"
+    title: "Palos: Fair and Flexible Flow Scheduling on RNIC"
+    url: "https://ieeexplore.ieee.org/document/11083207"
+    access_note: "需机构订阅 IEEE Xplore 或手动提供 PDF 至 papers/inbox/"
+    query_id: "Q1"
+
+  - paper_id: "P008"
+    title: "Optimize the TX Architecture of RDMA NIC for Performance Isolation"
+    url: "https://dl.acm.org/doi/10.1145/3583781.3590276"
+    access_note: "需机构订阅 ACM Digital Library 或手动提供 PDF 至 papers/inbox/"
+    query_id: "Q1"
+
+manual_inputs_needed:
+  - "如果无法通过机构获取 Palos (IEEE HPCC 2024) 和 TX Architecture (GLSVLSI 2023) 的 PDF，请手动下载后放入 papers/inbox/"
+  - "core 论文中 Palos 和 TX Architecture 非 OA，建议优先通过机构 VPN 或图书馆获取"

@@ -1,0 +1,33 @@
+instruction_id: "Q1"
+round_dir: "workflow/03_academic_search/round_01"
+
+query_spec:
+  query_id: "Q1"
+  query_text: "RDMA multi-tenant performance isolation"
+  query_type: "keyword"
+  platforms: ["arxiv", "semantic_scholar"]
+  year_range: [2021, 2026]
+  target_count: 15
+  venue_preference: "CCF-A/B prefer NSDI/SIGCOMM/ATC/EuroSys"
+
+round_goal_excerpt:
+  goal: "系统调研 RDMA 多租户性能隔离和分布式训练通信调度的现有方法"
+  what_to_find: "RDMA多租户性能隔离的代表性系统方案（软件/硬件/软硬协同），包括 PeRF、Harmonic、Palos 等 2024 年最新工作和更早的基础性工作"
+  what_not_to_find: "纯理论分析无系统实现、非RDMA场景的网络隔离、RDMA单任务性能调优"
+  core_question: "已有RDMA多租户性能隔离方案主要有哪些技术路线？各自在隔离粒度、性能开销、实现复杂度上如何对比？"
+
+selection_policy:
+  authority_weight: "high"
+  recency_boost: true
+  min_citations: 0
+  diversity: true
+
+download_policy:
+  download_core_oa: true
+  do_not_bypass_paywalls: true
+  max_total_downloads: 10
+  target_dir: "papers/inbox/"
+
+output:
+  local_report: "workflow/03_academic_search/round_01/reports/Q1_report.md"
+  download_manifest: "workflow/03_academic_search/round_01/reports/Q1_manifest.yaml"

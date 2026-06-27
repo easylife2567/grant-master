@@ -1,0 +1,41 @@
+stage: "OUTPUT"
+status: "completed"
+can_continue: false
+recommended_next_stage: ""
+
+outputs:
+  proposal_docx: "workflow/11_output/proposal.docx"
+  file_size: 30676
+
+conversion:
+  pandoc_version: "2.9.2.1"
+  reference_doc: "skills/11-output/references/default_reference.docx"
+  template_missing: true
+  used_fallback_reference: true
+  conversion_status: "success"
+
+post_check:
+  heading_numbering_policy:
+    source: "09_assemble"
+    template_heading_numbering: false
+  estimated_chinese_chars: 11311
+  estimated_pages: 15
+
+intervention:
+  required: false
+  reason: ""
+  questions: []
+
+integrity:
+  all_outputs_present: true
+  checked_at: "2025-06-27T20:20:00+08:00"
+  missing_outputs: []
+  warnings:
+    - "使用了内置 default_reference.docx（Template.docx 不存在）"
+    - "建议用户创建 references/Template.docx 后重新运行 11-output 以获得自定义格式"
+    - "S03.1/S03.2 含[待补充]标记——请用户补充团队基础和实验条件"
+
+notes:
+  - "全流程完成：01-topic → 02-literature-plan → 03-academic-search → 04-paper-digest → 05-synthesis → 06-helm → 07-outline → 08-section-write → 09-assemble → 10-review → 11-output"
+  - "最终产出：workflow/11_output/proposal.docx (30KB, ~11311 中文字符, 13 条参考文献)"
+  - "完成了 1 轮调研（25 篇核心论文精读，5 批次并行）"

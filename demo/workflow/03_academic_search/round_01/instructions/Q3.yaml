@@ -1,0 +1,33 @@
+instruction_id: "Q3"
+round_dir: "workflow/03_academic_search/round_01"
+
+query_spec:
+  query_id: "Q3"
+  query_text: "NCCL multi-job concurrent resource sharing isolation GPU communication"
+  query_type: "keyword"
+  platforms: ["arxiv", "semantic_scholar"]
+  year_range: [2021, 2026]
+  target_count: 15
+  venue_preference: "CCF-A/B prefer MLSys/NSDI/SC"
+
+round_goal_excerpt:
+  goal: "系统调研 RDMA 多租户性能隔离和分布式训练通信调度的现有方法"
+  what_to_find: "NCCL等通信库在多任务/多租户场景下的资源管理和隔离机制，多任务GPU通信争抢的定量研究"
+  what_not_to_find: "单任务NCCL性能优化、不涉及资源隔离的通信库扩展、非GPU通信场景"
+  core_question: "NCCL等通信库在多任务/多租户场景下是否有资源管理和隔离机制？它们是否区分不同训练任务？"
+
+selection_policy:
+  authority_weight: "high"
+  recency_boost: true
+  min_citations: 0
+  diversity: true
+
+download_policy:
+  download_core_oa: true
+  do_not_bypass_paywalls: true
+  max_total_downloads: 10
+  target_dir: "papers/inbox/"
+
+output:
+  local_report: "workflow/03_academic_search/round_01/reports/Q3_report.md"
+  download_manifest: "workflow/03_academic_search/round_01/reports/Q3_manifest.yaml"

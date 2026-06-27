@@ -1,0 +1,74 @@
+stage: "OUTLINE"
+version: "v1"
+total_figures: 4
+global_style:
+  canvas: "16:9横向，适合A4 Word插入"
+  palette: "白底，蓝绿灰为主色，橙色仅用于突出关键路径"
+  typography: "中文黑体风格，短标签，字号清晰可读"
+  layout: "左到右流程，避免过度拥挤"
+  forbidden: ["卡通风格", "照片质感", "英文大段文字", "装饰背景", "过度立体效果"]
+
+figures:
+  - figure_id: "F01"
+    type: "technical_route_diagram"
+    required: true
+    target:
+      section_id: "S02.4"
+      unit_id: "S02.4-U001"
+      placement_hint: "在概述三层架构后插入"
+    title: "项目总体技术路线图"
+    caption_draft: "图1 项目总体技术路线图"
+    argument_role: "展示感知层→决策层→执行层的三层架构和数据流"
+    codex_prompt_base: |
+      生成一张中文科研项目申请书风格的技术路线图，白底，横向。
+      三层架构：上方为"感知层"（NCCL Trace拦截器→RDMA计数器→通信模式分类器），
+      中间为"决策层"（模式分类器输出→资源分配器→调度策略生成），
+      下方为"执行层"（QP抢占管理器→速率控制器→路径管理器→RDMA网络）。
+      数据流箭头从上到下贯通三层，底部有反馈回路回连到感知层。
+      左侧标注"多租户训练任务"输入，右侧标注"性能隔离与资源高效利用"输出。
+      风格：蓝绿灰色系，细线条，清晰箭头，中文短标签，适合打印。
+    status: "planned"
+
+  - figure_id: "F02"
+    type: "research_content_relation"
+    required: true
+    target:
+      section_id: "S02.2"
+      unit_id: "S02.2-U001"
+    title: "研究内容关系图"
+    caption_draft: "图2 研究内容关系图"
+    argument_role: "展示R1→R2→R3的递进依赖和反馈关系"
+    codex_prompt_base: |
+      生成一张中文科研项目申请书风格的关系图。
+      三个方框左到右排列：R1"通信模式感知"→ R2"动态调度方法"→ R3"原型验证"。
+      R1到R2标"通信模式特征"，R2到R3标"调度策略实现"，R3到R1标"实验反馈优化"。
+      风格：白底，蓝绿灰，简洁专业。
+    status: "planned"
+
+  - figure_id: "F03"
+    type: "system_architecture"
+    required: true
+    target:
+      section_id: "S02.4.1"
+      unit_id: "S02.4.1-U001"
+    title: "调度系统架构图"
+    caption_draft: "图3 训练通信语义感知的RDMA调度系统架构"
+    argument_role: "展示6个模块的接口关系和数据流"
+    codex_prompt_base: |
+      生成一张系统架构图。展示6个模块的部署位置和接口关系。
+      左侧：训练任务（3个不同颜色的任务框）。
+      中间：调度器（感知引擎+决策引擎，位于特权守护进程）。
+      右侧：RDMA网络（交换机+QP）。底部标注"PeRF抢占原语""QP令牌桶""源路由"等执行机制。
+      风格：白底，蓝绿灰，细线框，清晰箭头，中文短标签。
+    status: "planned"
+
+  - figure_id: "F04"
+    type: "validation_plan"
+    required: false
+    target:
+      section_id: "S02.2.3"
+      unit_id: "S02.2.3-U001"
+    title: "验证场景与指标矩阵"
+    caption_draft: "图4 实验验证场景与评价指标"
+    argument_role: "总览3种实验场景×3个基线的验证设计"
+    status: "optional"

@@ -1,0 +1,69 @@
+batch_id: "Q5"
+generated_at: "2026-06-27T00:00:00Z"
+
+batch_stats:
+  total_papers: 4
+  core: 4
+  general: 0
+  digested: 4
+  unreadable: 0
+
+papers:
+  - filename: "2310.20209.pdf"
+    title: "Network Contention-Aware Cluster Scheduling with Reinforcement Learning"
+    relevance: "core"
+    digest_priority: "high"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q5/papers/2310.20209.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "supported"
+      - hypothesis_id: "H2"
+        verdict: "supported"
+
+  - filename: "2025_ComputeCommOverlap_2507.03114.pdf"
+    title: "Characterizing Compute-Communication Overlap in GPU-Accelerated Distributed Deep Learning"
+    relevance: "core"
+    digest_priority: "high"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q5/papers/2025_ComputeCommOverlap_2507.03114.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "strongly_supported"
+      - hypothesis_id: "H3"
+        verdict: "neutral"
+
+  - filename: "2207.10898.pdf"
+    title: "Impact of RoCE Congestion Control Policies on Distributed Training of DNNs"
+    relevance: "core"
+    digest_priority: "high"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q5/papers/2207.10898.md"
+    hypothesis_verification:
+      - hypothesis_id: "H3"
+        verdict: "strongly_supported"
+
+  - filename: "2407.00550.pdf"
+    title: "Ethereal: Divide and Conquer Network Load Balancing in Large-Scale Distributed Training"
+    relevance: "core"
+    digest_priority: "medium"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q5/papers/2407.00550.md"
+    hypothesis_verification:
+      - hypothesis_id: "H3"
+        verdict: "supported"
+
+cross_paper_findings:
+  common_themes:
+    - "分布式训练的网络通信已成为第一瓶颈——四篇论文从调度、计算-通信重叠、CC、负载均衡四个不同角度一致指向此结论"
+    - "利用训练工作负载的确定性特征是共同方向——2207.10898（确定性通信模式→极简CC）、2407.00550（流大小已知等→精确路径分配）、2310.20209（CS可在线profiling→RL调度）"
+    - "从单任务优化走向多任务协同是不可避免的趋势——本批次仅2310.20209处理多作业场景，其余三篇均将其列为未来工作"
+  contradictions:
+    - "RL（2310.20209）vs 确定性方案（2207.10898、2407.00550）的设计哲学张力——但非真正矛盾，可探索'RL全局调度+确定性局部优化'的混合架构"
+    - "是否需要修改NIC硬件：2407.00550主张纯软件方案，UEC（被其引用批评）在探索NIC端复杂设计"
+  coverage_gaps:
+    - "多作业共享网络的通信干扰：仅2310.20209处理且在32 GPU规模，大规模多作业场景仍是核心空白"
+    - "调度+CC+负载均衡的联合优化：四篇论文各自独立处理一个层面，无整合框架"
+    - "跨模型类型的泛化性：缺乏在广泛模型类型上的交叉验证"
+    - "真实硬件验证：四篇中三篇为纯模拟或老旧硬件，缺乏大规模现代GPU集群验证"
+    - "计算-通信重叠+网络拥塞的交互：多任务重叠执行时CC和重叠如何交互影响性能"

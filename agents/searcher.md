@@ -3,7 +3,7 @@ name: grant-searcher
 description: >
   学术论文搜索专用 worker agent。每次接收 instruction sheet（说明书），
   读取 search-protocol.md，执行搜索筛选排序，
-  对 core OA 论文确保下载，paywalled 尝试 Sci-Hub/LibGen，
+  对 core OA 论文确保下载，对 paywalled 论文只记录合法获取建议，
   生成局部报告和下载 manifest 返回给 coordinator。
 type: worker
 context_budget: low
@@ -63,7 +63,7 @@ coordinator 传入：
 4. **API 容错**：429 等 15s+ 或切换平台；同方式 3 次无改善 → error
 5. **非学术过滤**：不含博客、新闻稿、Reddit、知乎
 6. **单 query 边界**：不跨 query
-7. **下载边界**：core + open_pdf → **确保下载**；core + paywalled → Sci-Hub/LibGen；general → 不下载
+7. **下载边界**：core + open_pdf → **确保下载**；core + paywalled → **不得绕过付费墙**，只记录 DOI/URL、机构访问需求或用户手动提供 PDF 的建议；general → 不下载
 8. **必须产出局部报告**：写入 report.md 和 manifest.yaml
 
 ---
@@ -99,7 +99,7 @@ selection_policy:
 
 download_policy:
   download_core_oa: true          # core + open_pdf → 必须下载
-  try_scihub_for_paywalled: true  # core + paywalled → Sci-Hub/LibGen
+  do_not_bypass_paywalls: true    # core + paywalled → 禁止绕过付费墙，只记录合法获取建议
   max_total_downloads: 10
   target_dir: "papers/inbox/"
 
@@ -137,14 +137,14 @@ Read `references/academic-search/search-protocol.md`。
 | 论文分类 | OA 状态 | 动作 |
 |---------|---------|------|
 | core | open_pdf | **必须下载**（arXiv 直链优先） |
-| core | needs_institution / no_open_pdf | 尝试 Sci-Hub/LibGen |
+| core | needs_institution / no_open_pdf | **不得下载或绕过付费墙**；记录 DOI/URL、机构访问需求、用户可手动提供 PDF 的位置 |
 | general | 任意 | 不下载 |
 
 1. 优先 arXiv 直链：`https://arxiv.org/pdf/{arxiv_id}`
 2. 下载到 `download_policy.target_dir`，命名：`{年份}_{标题}_{hash}.pdf`
 3. 不超过 `download_policy.max_total_downloads`
-4. Sci-Hub 地址自行搜索最新可用域名
-5. 每篇记录 local_pdf 或 download_error
+4. 禁止搜索、访问或推荐 Sci-Hub、LibGen 等绕过付费墙来源
+5. 对非 OA 论文，每篇记录 `download_status: skipped` 和 `download_error: "paywalled_do_not_bypass"`，并保留 DOI/URL 供用户通过合法渠道获取
 6. 可用 `node scripts/academic-search/oa-pdf-download.mjs` 辅助管理
 
 ### 第 8 步：生成局部报告
@@ -197,7 +197,7 @@ Read `references/academic-search/search-protocol.md`。
 | 状态 | 数量 |
 |------|------|
 | 应下载 / 已下载 | {N} / {N} |
-| Sci-Hub 获取 / 失败 | {N} / {N} |
+| 非 OA / 需合法获取 | {N} / {N} |
 
 ## 6. 问题与备注
 ```
@@ -210,7 +210,7 @@ generated_at: "{timestamp}"
 
 download_summary:
   eligible: 0
-  scihub_tried: 0
+  paywalled_skipped: 0
   downloaded: 0
   failed: 0
 
@@ -221,7 +221,7 @@ papers:
     oa_status: "open_pdf"
     pdf_url: "https://arxiv.org/pdf/..."
     local_pdf: "papers/inbox/2024_Title_hash.pdf"
-    download_source: "arxiv"     # arxiv / unpaywall / scihub / libgen
+    download_source: "arxiv"     # arxiv / unpaywall / openalex / semantic_scholar / pubmed_central
     download_status: "downloaded"
     download_error: null
     file_size_bytes: 123456
@@ -259,7 +259,7 @@ stats:
   general_count: 7
   recent_count: 3
   downloaded_count: 5
-  scihub_count: 1
+  paywalled_skipped_count: 1
   download_failed_count: 0
 
 output_files:
@@ -280,6 +280,6 @@ errors: []
 5. API 429 不反复重试
 6. 不含非学术来源
 7. core + open_pdf → **确保下载**，不因"差不多了"而跳过
-8. core + paywalled → 尝试 Sci-Hub/LibGen
+8. core + paywalled → **禁止绕过付费墙**；只能记录合法获取建议或等待用户手动提供 PDF
 9. 局部报告和 manifest **必须**写入指定路径
 10. 最终响应只含结构化摘要

@@ -1,0 +1,64 @@
+stage: "OUTLINE"
+status: "completed"
+can_continue: true
+recommended_next_stage: "SECTION_WRITE"
+
+basis:
+  - "workflow/06_helm/scheme_blueprint.yaml"
+  - "workflow/06_helm/helm_report.md"
+  - "workflow/05_synthesis/current_view.md"
+  - "topic.md"
+
+template_status: "fallback_builtin_outline"
+
+outputs:
+  outline_report: "workflow/07_outline/outline_report.md"
+  volume_budget: "workflow/07_outline/volume_budget.yaml"
+  writing_units: "workflow/07_outline/writing_units.yaml"
+  source_allocation: "workflow/07_outline/source_allocation.yaml"
+  figure_plan: "workflow/07_outline/figure_plan.yaml"
+  table_plan: "workflow/07_outline/table_plan.yaml"
+  citation_plan: "workflow/07_outline/citation_plan.yaml"
+  outline_state: "workflow/07_outline/outline_state.yaml"
+  outline_blueprint: "workflow/07_outline/outline_blueprint.yaml"
+  context_bundle: "workflow/07_outline/context_bundle.yaml"
+
+stats:
+  total_sections: 26
+  total_units: 26
+  units_pending: 24
+  units_blocked: 2
+  blocked_sections: ["S03.1", "S03.2"]
+  blocked_reason: "缺少applicant_profile.md和实验环境信息"
+  figures: 4
+  tables: 4
+  citations: 12
+  max_depth: 3
+  target_words: 10000
+
+quality:
+  section_tree_completeness: 0.85
+  budget_accuracy: 0.80
+  unit_granularity: 0.80
+  source_coverage: 0.85
+  helm_alignment: 0.90
+  writing_readiness: 0.80
+
+intervention:
+  required: false
+  reason: ""
+  questions: []
+
+integrity:
+  all_outputs_present: true
+  checked_at: "2025-06-27T19:45:00+08:00"
+  missing_outputs: []
+  warnings:
+    - "S03.1和S03.2标记为blocked——缺少applicant_profile.md和实验环境信息，需用户补充"
+    - "使用内置通用NSFC提纲（无Template.docx）"
+    - "体量预算按10000字分配——各章节实际字数依赖writer执行质量"
+
+notes:
+  - "26个writing unit，4级section tree（L1×4 + L2×12 + L3×10）"
+  - "12条稳定引用tag，4张图(3必需+1可选)，4张表(3必需+1可选)"
+  - "写作建议顺序：S01→S02→S03→S04；S01.2的三个子节和S02.4的三个子层可并行"

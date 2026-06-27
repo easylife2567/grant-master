@@ -1,0 +1,109 @@
+query_id: "Q2"
+generated_at: "2026-06-27T17:45:00+08:00"
+
+download_summary:
+  eligible: 10
+  paywalled_skipped: 0
+  downloaded: 10
+  failed: 0
+
+papers:
+  - title: "TicTac: Accelerating Distributed Deep Learning with Communication Scheduling"
+    arxiv_id: "1803.03288"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/1803.03288"
+    local_pdf: "papers/inbox/2018_TicTac_Accelerating_Distributed_Deep_Learning_with_Communication_Scheduling_1b759e2b78e6.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+
+  - title: "Priority-based Parameter Propagation for Distributed DNN Training"
+    arxiv_id: "1905.03960"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/1905.03960"
+    local_pdf: "papers/inbox/2019_Priority-based_Parameter_Propagation_for_Distributed_DNN_Training_cba7a84c34a0.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+
+  - title: "Domain-specific Communication Optimization for Distributed DNN Training"
+    arxiv_id: "2008.08445"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2008.08445"
+    local_pdf: "papers/inbox/2020_Domain-specific_Communication_Optimization_for_Distributed_DNN_Training_d6a21b768315.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+
+  - title: "MergeComp: A Compression Scheduler for Scalable Communication-Efficient Distributed Training"
+    arxiv_id: "2103.15195"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2103.15195"
+    local_pdf: "papers/inbox/2021_MergeComp_A_Compression_Scheduler_for_Scalable_Communication-Efficient_Distribut_52e8177931fb.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+
+  - title: "DynaComm: Accelerating Distributed CNN Training between Edges and Clouds through Dynamic Communication Scheduling"
+    arxiv_id: "2101.07968"
+    doi: "10.1109/JSAC.2021.3118419"
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2101.07968"
+    local_pdf: "papers/inbox/2021_DynaComm_Accelerating_Distributed_CNN_Training_between_Edges_and_Clouds_through__ef0a266b4997.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+
+  - title: "DHelix: Hiding Communication Cost in Distributed LLM Training via Micro-batch Co-execution"
+    arxiv_id: "2411.15871"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2411.15871"
+    local_pdf: "papers/inbox/2024_DHelix_Hiding_Communication_Cost_in_Distributed_LLM_Training_via_Micro-batch_Co-_a27be85edb8b.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+
+  - title: "CrossPipe: Towards Optimal Pipeline Schedules for Cross-Datacenter Training"
+    arxiv_id: "2507.00217"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2507.00217"
+    local_pdf: "papers/inbox/2025_CrossPipe_Towards_Optimal_Pipeline_Schedules_for_Cross-Datacenter_Training_6f22ba8447dc.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+
+  - title: "Arnold: Efficient Pre-Training of LLMs via Topology-Aware Communication Alignment on More Than 9600 GPUs"
+    arxiv_id: "2509.15940"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2509.15940"
+    local_pdf: "papers/inbox/2025_Arnold_Efficient_Pre-Training_of_LLMs_via_Topology-Aware_Communication_Alignment_56448e3a5d52.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+
+  - title: "ScaleAcross Explorer: Exploring Communication Optimization for Scale-Across AI Model Training"
+    arxiv_id: "2605.24326"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2605.24326"
+    local_pdf: "papers/inbox/2026_ScaleAcross_Explorer_Exploring_Communication_Optimization_for_Scale-Across_AI_Mo_f1cb208adf47.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+
+  - title: "Demystifying NCCL: An In-depth Analysis of GPU Communication Protocols and Algorithms"
+    arxiv_id: "2507.04786"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2507.04786"
+    local_pdf: "papers/inbox/2025_Demystifying_NCCL_An_In-depth_Analysis_of_GPU_Communication_Protocols_and_Algori_8883d315926b.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null

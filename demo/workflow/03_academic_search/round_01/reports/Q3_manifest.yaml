@@ -1,0 +1,97 @@
+query_id: "Q3"
+generated_at: "2026-06-27T09:43:00Z"
+
+download_summary:
+  eligible: 8
+  paywalled_skipped: 0
+  downloaded: 8
+  failed: 0
+
+papers:
+  - title: "BandPilot: Towards Performance- and Contention-Aware GPU Dispatching in AI Clusters"
+    arxiv_id: "2506.15595"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2506.15595"
+    local_pdf: "papers/inbox/2025_BandPilot_2506.15595.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 2269100
+
+  - title: "VCCL: An Efficient, Reliable and Observable Collective Communication Library in Large-scale GPU Training Clusters"
+    arxiv_id: "2510.00991"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2510.00991"
+    local_pdf: "papers/inbox/2025_VCCL_2510.00991.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 2288573
+
+  - title: "Enabling Elastic Model Serving with MultiWorld"
+    arxiv_id: "2407.08980"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2407.08980"
+    local_pdf: "papers/inbox/2024_MultiWorld_2407.08980.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 657814
+
+  - title: "Flex-MIG: Enabling Distributed Execution on MIG"
+    arxiv_id: "2511.09143"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2511.09143"
+    local_pdf: "papers/inbox/2025_FlexMIG_2511.09143.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 2059898
+
+  - title: "Isolated Scheduling for Distributed Training Tasks in GPU Clusters (vClos)"
+    arxiv_id: "2308.05692"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2308.05692"
+    local_pdf: "papers/inbox/2023_vClos_2308.05692.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 952045
+
+  - title: "Arnold: Efficient Pre-Training of LLMs via Topology-Aware Communication Alignment on More Than 9600 GPUs"
+    arxiv_id: "2509.15940"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2509.15940"
+    local_pdf: "papers/inbox/2025_Arnold_2509.15940.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 1271578
+
+  - title: "Characterizing Compute-Communication Overlap in GPU-Accelerated Distributed Deep Learning: Performance and Power Implications"
+    arxiv_id: "2507.03114"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2507.03114"
+    local_pdf: "papers/inbox/2025_ComputeCommOverlap_2507.03114.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 9604660
+
+  - title: "When Scaling Fails: Network and Fabric Effects on Distributed GPU Training Performance"
+    arxiv_id: "2603.04424"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2603.04424"
+    local_pdf: "papers/inbox/2026_WhenScalingFails_2603.04424.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 647084

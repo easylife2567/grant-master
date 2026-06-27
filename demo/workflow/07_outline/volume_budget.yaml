@@ -1,0 +1,79 @@
+stage: "OUTLINE"
+version: "v2"
+
+document_target:
+  document_type: "NSFC_青年"
+  target_pages: 20
+  target_words: 10000
+  source: "user_specified"
+  needs_user_confirmation: false
+  words_per_page_assumption: 500
+
+allocation_policy:
+  principle: "按论证权重分配：立项依据30% → 研究内容40% → 研究基础20% → 其他10%"
+  high_density_sections:
+    - "国内外研究现状"
+    - "研究内容"
+    - "研究方案与技术路线"
+  low_density_sections:
+    - "年度计划"
+    - "其他需要说明的情况"
+  avoid_expanding:
+    - "dropped方向: RDMA硬件协议重新设计、推理场景扩展、跨DC训练调度"
+
+sections:
+  "S01":
+    heading: "立项依据"
+    heading_number: "一"
+    target_words: 3000
+    rationale: "NSFC评审重点：让评审理解为什么这个研究值得做"
+    children:
+      "S01.1":
+        heading: "研究意义"
+        target_words: 600
+      "S01.2":
+        heading: "国内外研究现状"
+        target_words: 1600
+      "S01.3":
+        heading: "现有方法不足与本项目切入点"
+        target_words: 800
+  "S02":
+    heading: "研究内容"
+    heading_number: "二"
+    target_words: 4500
+    rationale: "NSFC评审重点：让人看清楚要做什么、怎么做、怎么证明做出来了"
+    children:
+      "S02.1":
+        heading: "研究目标"
+        target_words: 400
+      "S02.2":
+        heading: "研究内容"
+        target_words: 1400
+      "S02.3":
+        heading: "关键科学问题"
+        target_words: 500
+      "S02.4":
+        heading: "研究方案与技术路线"
+        target_words: 1200
+      "S02.5":
+        heading: "特色与创新"
+        target_words: 600
+      "S02.6":
+        heading: "年度研究计划"
+        target_words: 400
+  "S03":
+    heading: "研究基础"
+    heading_number: "三"
+    target_words: 1800
+    children:
+      "S03.1":
+        heading: "研究基础与可行性分析"
+        target_words: 1200
+      "S03.2":
+        heading: "工作条件"
+        target_words: 600
+  "S04":
+    heading: "其他需要说明的情况"
+    heading_number: "四"
+    target_words: 700
+    children: {}

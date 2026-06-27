@@ -1,0 +1,176 @@
+stage: "TOPIC_UNDERSTANDING"
+version: "v0"
+purpose: "为第一轮 grant-literature-plan 提供调研种子"
+
+basis:
+  - "topic.md"
+
+search_axes:
+  - id: "A1"
+    name: "RDMA多租户性能隔离"
+    goal: "系统了解RDMA网络在多租户共享场景下的性能隔离方法，包括已有方案的隔离粒度、实现机制、开销和效果"
+    verify_questions:
+      - "已有RDMA多租户性能隔离方案主要有哪些类别（软件/硬件/软硬协同）？"
+      - "各方案在隔离粒度（流级/QP级/租户级）、性能开销和实现复杂度方面的对比如何？"
+      - "现有方案是否考虑了分布式训练场景的特殊通信模式？"
+      - "多租户RDMA隔离的实验评估通常采用什么benchmark和指标？"
+    keywords_zh:
+      - "RDMA 多租户性能隔离"
+      - "RDMA NIC 共享调度"
+      - "RDMA 虚拟化 网络隔离"
+      - "RoCE 多租户 QoS"
+    keywords_en:
+      - "RDMA multi-tenant performance isolation"
+      - "RDMA NIC sharing scheduling"
+      - "RDMA virtualization network isolation"
+      - "RoCE multi-tenant QoS"
+      - "RDMA tenant fairness"
+    priority: "high"
+    rationale: "直接对应课题核心问题——多租户训练场景下的网络性能隔离"
+
+  - id: "A2"
+    name: "分布式训练通信调度与优化"
+    goal: "了解分布式训练中针对通信效率的调度和优化方法，特别关注是否考虑了多任务并发的隔离需求"
+    verify_questions:
+      - "分布式训练的通信调度主要关注哪些问题（拓扑感知、压缩、流水线等）？"
+      - "是否有工作将训练语义（通信模式、迭代性质）纳入网络调度决策？"
+      - "现有通信调度方法在多任务并发场景下的表现如何？"
+      - "NCCL等通信库是否提供了多进程间的资源隔离机制？"
+    keywords_zh:
+      - "分布式训练 通信调度"
+      - "梯度同步 网络优化"
+      - "训练通信压缩 调度"
+    keywords_en:
+      - "distributed training communication scheduling"
+      - "gradient synchronization network optimization"
+      - "collective communication scheduling"
+      - "NCCL multi-job communication"
+      - "training communication pattern aware scheduling"
+    priority: "high"
+    rationale: "结合训练语义做网络调度是本课题可能的差异化方向"
+
+  - id: "A3"
+    name: "RDMA拥塞控制与负载均衡公平性"
+    goal: "了解RDMA网络拥塞控制和负载均衡方法的现状，评估其在多租户场景下的公平性和隔离效果"
+    verify_questions:
+      - "DCQCN、Timely、HPCC等主流RDMA拥塞控制在多流竞争时的公平性如何？"
+      - "PFC（Priority Flow Control）在多租户场景下是否存在不公平或拥塞扩散问题？"
+      - "现有RDMA负载均衡方案（ECMP及改进）如何处理多租户流量的公平性？"
+      - "是否有针对多租户场景的拥塞控制或负载均衡改进方案？"
+    keywords_zh:
+      - "RDMA 拥塞控制 DCQCN"
+      - "RoCE 负载均衡 PFC"
+      - "RDMA 公平性 多流"
+    keywords_en:
+      - "RDMA congestion control fairness"
+      - "PFC unfairness RoCE"
+      - "DCQCN multi-flow"
+      - "RDMA load balancing ECMP"
+      - "RDMA flow scheduling fairness"
+    priority: "medium-high"
+    rationale: "调度策略需要在现有拥塞控制和负载均衡框架内工作"
+
+  - id: "A4"
+    name: "智能网络资源调度方法"
+    goal: "了解基于学习/自适应方法的网络资源调度研究，为'智能调度'提供方法论基础"
+    verify_questions:
+      - "基于强化学习的网络调度在数据中心网络中取得了什么效果？"
+      - "ML驱动的流量工程和资源分配方法有哪些代表性工作？"
+      - "在线学习/自适应方法在快速变化的网络环境中是否可行（决策速度vs精度）？"
+      - "这些方法是否已有在RDMA或分布式训练场景中的应用？"
+    keywords_zh:
+      - "智能网络调度 强化学习"
+      - "机器学习 流量工程"
+      - "自适应 网络资源分配"
+    keywords_en:
+      - "reinforcement learning network scheduling"
+      - "ML-driven traffic engineering"
+      - "intelligent network resource allocation"
+      - "online learning flow scheduling"
+      - "adaptive RDMA scheduling"
+    priority: "medium"
+    rationale: "构成本课题'智能调度'部分的方法论基础"
+
+  - id: "A5"
+    name: "智算中心多租户网络架构与实践"
+    goal: "了解工业界智算中心在支持多租户训练时的网络架构设计，识别实践中尚待研究的问题"
+    verify_questions:
+      - "万卡集群在多租户场景下采用了什么样的网络隔离方案？"
+      - "工业界实践中的网络平面划分（参数面/数据面/业务面）如何支持多租户？"
+      - "工业界是否认为多租户网络性能隔离是需要进一步研究的问题？"
+      - "广域分布式训练场景下是否有额外的多租户网络挑战？"
+    keywords_zh:
+      - "智算中心 网络架构 多租户"
+      - "万卡集群 网络平面"
+      - "AI数据中心 网络设计"
+    keywords_en:
+      - "AI datacenter network architecture multi-tenant"
+      - "GPU cluster network isolation"
+      - "large-scale training network design"
+      - "intelligent computing center network"
+    priority: "medium"
+    rationale: "提供问题域的现实基础，确保研究不脱离实际需求"
+
+initial_hypotheses:
+  - "多租户RDMA网络共享场景下，不同训练任务的通信性能确实存在不可忽视的相互干扰"
+  - "感知训练任务通信特征的调度策略相比纯网络层调度可取得更好的隔离效果与资源利用率"
+  - "现有的RDMA性能隔离方案（如PeRF、Harmonic）未充分考虑训练场景的通信模式特征"
+  - "智能调度方法可以在性能隔离与资源利用率之间取得比静态策略更好的权衡"
+
+must_verify:
+  - "多租户训练场景下RDMA网络性能干扰的定量严重程度（需文献数据支撑）"
+  - "已有RDMA多租户隔离方案的覆盖范围和局限性"
+  - "智能调度方法在该特定场景中的可行性和潜在优势"
+  - "工业界对该问题的实际需求程度和已有实践的不足之处"
+
+avoid_claiming_as_fact:
+  - "多租户RDMA性能隔离问题尚未被任何研究解决"
+  - "现有方案均适用/不适用于分布式训练场景"
+  - "智能调度方法一定优于传统方法"
+  - "工业界目前完全没有多租户训练网络的解决方案"
+
+possible_existing_work_signals:
+  - name: "PeRF: Preemption-enabled RDMA Framework"
+    source: "USENIX ATC 2024"
+    why_relevant: "提出基于软件抢占的RDMA多租户性能隔离框架"
+    verification_needed: "是否针对训练场景？是否支持动态变化的训练任务？性能开销如何？"
+
+  - name: "Harmonic: Hardware-assisted RDMA Performance Isolation"
+    source: "NSDI 2024"
+    why_relevant: "首个微架构资源感知的RDMA性能隔离方案，FPGA辅助实现"
+    verification_needed: "硬件方案的可部署性和通用性？与训练框架的集成复杂度？"
+
+  - name: "Palos: Fair and Flexible Flow Scheduling on RNIC"
+    source: "IEEE HPCC 2024"
+    why_relevant: "在RDMA NIC硬件层实现数据块级公平调度"
+    verification_needed: "调度粒度是否能区分不同训练任务的通信模式？扩展性如何？"
+
+  - name: "LIBRA: Multi-Path Transport in Distributed Training"
+    source: "IEEE 2025"
+    why_relevant: "针对分布式训练的多路径传输方案"
+    verification_needed: "是否考虑了多任务并发场景？与隔离机制的兼容性？"
+
+  - name: "FreeINA: Host-driven In-Network Aggregation on RDMA"
+    source: "2024"
+    why_relevant: "支持多租户DNN训练的网内聚合方案"
+    verification_needed: "聚焦于网内聚合而非通用网络资源调度，适用范围有限？"
+
+  - name: "AdapCC / MLCC 分布式训练通信优化"
+    source: "HKU PhD Thesis 2024"
+    why_relevant: "自适应通信库和主机级流调度，15-31%训练加速"
+    verification_needed: "是否考虑了多任务并发的隔离需求？"
+
+  - name: "云化智算中心万卡集群创新与实践"
+    source: "电信科学 2024"
+    why_relevant: "中国移动万卡集群的多租户网络隔离实践方案"
+    verification_needed: "工业界方案的学术创新空间？尚存哪些未解决问题？"
+
+manual_inputs_needed:
+  - "项目类型（青年/面上/校内基金）——影响后续研究深度和篇幅"
+  - "实验环境条件（RDMA集群规模、可用的硬件平台）"
+  - "申请人/团队在RDMA系统和分布式训练方面的基础"
+
+notes:
+  - "这些调研种子不是文献综述结论，只用于生成第一轮 academic-search 查询计划。"
+  - "所有关于现有工作和技术空白的判断均为待验证假设，需后续调研确认。"
+  - "优先方向A1和A2直接对应课题核心问题，建议第一轮以这两个方向为主，A3-A5为辅助。"

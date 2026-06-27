@@ -1,0 +1,41 @@
+stage: "ASSEMBLE"
+status: "completed"
+can_continue: true
+recommended_next_stage: "REVIEW"
+
+assembly_stats:
+  total_units: 26
+  assembled_units: 26
+  missing_units: 0
+  total_chars: 17780
+  chinese_chars: 11311
+  max_heading_level: 4
+  heading_numbering_policy:
+    template_heading_numbering: false
+    injected_by_09: true
+  citation_stats:
+    tags_found: 13
+    tags_replaced: 13
+    unknown_tags: 0
+    references_generated: 13
+  references_inserted_after: "S01.3 (现有方法不足与本项目切入点)"
+
+quality:
+  completeness: true
+  heading_continuity: true
+  no_forbidden_terms: true
+  term_consistency: "good"
+
+outputs:
+  proposal_draft: "workflow/09_assemble/proposal_draft.md"
+  assemble_report: "workflow/09_assemble/assemble_report.md"
+
+integrity:
+  all_outputs_present: true
+  checked_at: "2025-06-27T20:10:00+08:00"
+  missing_outputs: []
+  warnings: ["S03.1/S03.2 含待补充标记", "proposal_draft.pdf 未生成(weasyprint不可用)"]
+
+notes:
+  - "组装完成，11311中文字符，13条参考文献"
+  - "建议直接进入10-review全局审阅"

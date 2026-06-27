@@ -1,0 +1,43 @@
+stage: "OUTLINE"
+version: "v1"
+
+template_source: "builtin_nsfc_young"
+target_words: 10000
+
+section_tree_summary:
+  total_sections: 26
+  max_depth: 3
+  L1_sections: 4
+  L2_sections: 12
+  L3_sections: 10
+
+unit_summary:
+  total_units: 26
+  high_priority: 16
+  medium_priority: 4
+  low_priority: 2
+  blocked: 2
+
+figure_plan: "workflow/07_outline/figure_plan.yaml"
+table_plan: "workflow/07_outline/table_plan.yaml"
+citation_plan: "workflow/07_outline/citation_plan.yaml"
+
+argument_integrity:
+  gap_expression_has_evidence: true
+  innovation_claims_are_verifiable: true
+  dropped_directions_excluded: true
+  background_only_directions_limited: true
+
+writing_workflow_hints:
+  order: "S01→S02→S03→S04"
+  parallel_batches: ["S01.2.1+S01.2.2+S01.2.3并行", "S02.2.1+S02.2.2+S02.2.3并行", "S02.4.1+S02.4.2+S02.4.3并行"]
+  blocked_sections: ["S03.1", "S03.2"]
+  blocked_reason: "缺少applicant_profile.md和实验环境信息"
+
+quality:
+  section_tree_completeness: 0.85
+  budget_accuracy: 0.80
+  unit_granularity: 0.80
+  source_coverage: 0.85
+  helm_alignment: 0.90
+  writing_readiness: 0.80

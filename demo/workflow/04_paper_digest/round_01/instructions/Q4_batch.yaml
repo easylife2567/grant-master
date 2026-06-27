@@ -1,0 +1,53 @@
+batch_id: "Q4"
+round_dir: "workflow/04_paper_digest/round_01"
+
+round_goal_excerpt:
+  goal: "系统调研 RDMA 多租户性能隔离和分布式训练通信调度的现有方法"
+  core_question: "RDMA性能隔离方案中，哪些考虑了机器学习训练场景的特殊通信模式需求？ML-感知的RDMA传输是否代表新范式？"
+  what_not_to_find: "RDMA单任务性能调优、非训练场景的RDMA隔离方案"
+
+hypothesis_to_verify:
+  - "ML训练对部分数据丢失的容忍度可以用来重新设计RDMA传输层，实现显著的尾延迟改善"
+  - "软件可编程传输层是RDMA与ML训练深度融合的关键使能技术"
+
+papers:
+  - pdf_path: "papers/inbox/2025_OptiNIC_RDMA_ML.pdf"
+    metadata:
+      title: "OptiNIC: A Resilient and Tail-Optimal RDMA NIC for Distributed ML Workloads"
+      authors: ["Ertza Warraich", "Ali Imran", "Annus Zulfiqar", "Shay Vargaftik", "Sonia Fahmy", "Muhammad Shahbaz"]
+      year: 2025
+      venue: "arXiv"
+      citation_count: 1
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "面向分布式ML工作负载重新设计RDMA NIC传输层。取消重传和保序、允许尽力而为乱序传输，利用ML对部分数据丢失的容忍度。训练时间-精度提升2x，P99延迟降低3.5x。"
+      query_id: "Q4"
+
+  - pdf_path: "papers/inbox/2510.16606.pdf"
+    metadata:
+      title: "Reimagining RDMA Through the Lens of ML (Celeris)"
+      authors: ["Ertza Warraich", "Ali Imran", "Annus Zulfiqar", "Shay Vargaftik", "Sonia Fahmy", "Muhammad Shahbaz"]
+      year: 2025
+      venue: "IEEE Computer Architecture Letters"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "提出ML-感知的RDMA可靠性重新审视：传统RDMA强可靠性在ML场景中造成不必要尾延迟。Celeris实现best-effort RDMA传输，P99延迟降低2.3x，BRAM使用降低67%。"
+      query_id: "Q4"
+
+  - pdf_path: "papers/inbox/2504.17307.pdf"
+    metadata:
+      title: "An Extensible Software Transport Layer for GPU Networking"
+      authors: ["Yang Zhou", "Zhongjie Chen", "Ziming Mao", "ChonLam Lao", "Shuo Yang", "Pravein Govindan Kannan", "Jiaqi Gao", "Yilong Zhao", "Yongji Wu", "Kaichao You", "Fengyuan Ren", "Zhiying Xu", "Costin Raiciu", "Ion Stoica"]
+      year: 2025
+      venue: "arXiv"
+      citation_count: 10
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "将RDMA NIC控制路径从硬件解耦至主机CPU的软件传输层。实现ML训练集合通信的多路径传输和定制化拥塞控制，最高4.5x性能提升。"
+      query_id: "Q4"
+
+output:
+  batch_report: "workflow/04_paper_digest/round_01/reports/Q4/Q4_batch_report.md"
+  batch_manifest: "workflow/04_paper_digest/round_01/reports/Q4/Q4_batch_manifest.yaml"
+  paper_reports_dir: "workflow/04_paper_digest/round_01/reports/Q4/papers/"

@@ -1,0 +1,65 @@
+stage: "SYNTHESIS"
+round: 1
+status: "completed"
+can_continue: true
+recommended_next_stage: "HELM"
+
+outputs:
+  current_view: "workflow/05_synthesis/current_view.md"
+  evidence_ledger: "workflow/05_synthesis/evidence_ledger.yaml"
+  synthesis_report: "workflow/05_synthesis/round_01/synthesis_report.md"
+
+claim_summary:
+  new_claims: 6
+  updated_claims: 0
+  contradicted_claims: 0
+  application_usable_claims: 5
+  helm_usable_claims: 6
+
+hypothesis_status:
+  confirmed: 4
+  partially: 1
+  rejected: 0
+  refined: 0
+  unresolved: 0
+
+gap_status:
+  high_confidence_gaps: 3
+  medium_confidence_gaps: 0
+  low_confidence_gaps: 0
+  weakened_or_rejected_gaps: 0
+
+technical_inspirations:
+  count: 4
+  helm_candidate_count: 3
+
+skip_recommendations: []
+
+new_research_needs: []
+
+ready_for_helm: true
+helm_readiness:
+  gate_1_core_gap_confirmed: true
+  gate_2_nearest_neighbors_covered: true
+  gate_3_landscape_clear: true
+  gate_4_technical_alternatives: true
+  gate_5_multi_round: false
+  gate_6_marginal_gain_declining: false
+  remaining_blockers: []
+  reason: "用户明确设置 min_rounds=1。3/3 核心 gap 获 strong evidence（≥6篇独立论文），25篇论文覆盖6个方向，3条候选技术路线有文献支撑。Gate 5-6 由用户指令覆盖。"
+
+intervention:
+  required: false
+  reason: ""
+  questions: []
+
+integrity:
+  all_outputs_present: true
+  checked_at: "2025-06-27T19:20:00+08:00"
+  missing_outputs: []
+  warnings: []
+
+notes:
+  - "首轮 synthesis 完成。25篇精读论文跨5批次综合，6项假设4确认/1部分确认/0推翻"
+  - "3个核心 gap 均为 high confidence——构建了清晰的'交叉空白'创新性论述"
+  - "建议 helm 以路线A（纯软件训练感知调度）为主路径，路线C的QoS分类为增强维度"

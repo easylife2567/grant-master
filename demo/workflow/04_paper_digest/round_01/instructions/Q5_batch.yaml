@@ -1,0 +1,66 @@
+batch_id: "Q5"
+round_dir: "workflow/04_paper_digest/round_01"
+
+round_goal_excerpt:
+  goal: "系统调研 RDMA 多租户性能隔离和分布式训练通信调度的现有方法"
+  core_question: "多任务并发训练的通信干扰问题在学术界如何被研究和量化？已有哪些智能调度和拥塞控制改进方案？"
+  what_not_to_find: "仅讨论计算资源争抢不涉及网络、单机多任务GPU共享不涉及网络通信"
+
+hypothesis_to_verify:
+  - "多任务训练的网络干扰是真实可量化的——通信重叠可导致平均18.9%的计算减速"
+  - "基于学习的方法（RL）在该场景下可行且有效——JCT降低18.2%"
+  - "现有RDMA拥塞控制方案未针对训练工作负载优化——集合通信天然避免incast需要专有方案"
+
+papers:
+  - pdf_path: "papers/inbox/2310.20209.pdf"
+    metadata:
+      title: "Network Contention-Aware Cluster Scheduling with Reinforcement Learning"
+      authors: ["Junyeol Ryu", "Jeongyoon Eo"]
+      year: 2023
+      venue: "arXiv"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "将GPU集群调度形式化为RL问题。学习捕获训练任务间网络争用敏感度的调度策略。相比广泛使用的调度策略，平均作业完成时间降低18.2%。"
+      query_id: "Q5"
+
+  - pdf_path: "papers/inbox/2025_ComputeCommOverlap_2507.03114.pdf"
+    metadata:
+      title: "Characterizing Compute-Communication Overlap in GPU-Accelerated Distributed Deep Learning"
+      authors: ["Seonho Lee", "Jihwan Oh", "Junkyum Kim", "Seokjin Go", "Jongse Park", "Divya Mahajan"]
+      year: 2025
+      venue: "arXiv"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "定量研究计算-通信重叠对GPU资源争用的影响：重叠可导致平均18.9%、最高40%的计算减速。对多任务共享GPU时的通信干扰有直接定量价值。"
+      query_id: "Q5"
+
+  - pdf_path: "papers/inbox/2207.10898.pdf"
+    metadata:
+      title: "Impact of RoCE Congestion Control Policies on Distributed Training of DNNs"
+      authors: ["Tarannum Khan", "Saeed Rashidi", "Srinivas Sridharan", "Pallavi Shurpali", "Aditya Akella", "Tushar Krishna"]
+      year: 2022
+      venue: "arXiv"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "分析多种SOTA RoCE拥塞控制方案在分布式训练平台上的表现。发现训练平台中集合通信算法天然避免incast，导致现有拥塞控制方案对训练性能影响有限，需设计训练专有方案。"
+      query_id: "Q5"
+
+  - pdf_path: "papers/inbox/2407.00550.pdf"
+    metadata:
+      title: "Ethereal: Divide and Conquer Network Load Balancing in Large-Scale Distributed Training"
+      authors: ["Vamsi Addanki", "Prateesh Goyal", "Ilias Marinos", "Stefan Schmid"]
+      year: 2024
+      venue: "arXiv"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "medium"
+      abstract_summary: "证明单路径传输在CLOS拓扑分布式训练中几乎可匹配packet spraying性能。提出利用集合通信模式特性的应用层流分割负载均衡算法，相比packet spraying完成时间最多降30%。"
+      query_id: "Q5"
+
+output:
+  batch_report: "workflow/04_paper_digest/round_01/reports/Q5/Q5_batch_report.md"
+  batch_manifest: "workflow/04_paper_digest/round_01/reports/Q5/Q5_batch_manifest.yaml"
+  paper_reports_dir: "workflow/04_paper_digest/round_01/reports/Q5/papers/"

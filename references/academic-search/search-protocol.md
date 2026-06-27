@@ -2,6 +2,8 @@
 
 > **重要信息**：本文件是学术搜索的完整权威参考。03-academic-search Skill 和 grant-searcher agent **必须在执行任何搜索操作前完整读取本文件**。本文件中的每条规则对搜索结果质量有直接影响，不得跳过或忽略。
 
+> **合规优先**：全文获取只允许使用合法开放来源或用户手动提供的本地文件。禁止搜索、访问、推荐或自动化使用 Sci-Hub、LibGen 等绕过付费墙的来源；遇到付费墙、机构权限、403、登录页、验证码或授权限制时，记录状态并停止自动下载。
+
 ---
 
 # academic-search Skill（完整搜索规范）
@@ -247,6 +249,8 @@ curl -s "https://api.semanticscholar.org/graph/v1/paper/{paper_id}/references?fi
 
 7. **告知用户**：如以上均无法获取，明确说明该论文无公开 OA 版本
 
+**付费墙边界（强制）**：禁止搜索、访问、推荐或自动化使用 Sci-Hub、LibGen 等绕过付费墙的来源。对 `needs_institution` 或 `no_open_pdf` 的论文，只能记录 DOI、出版社页面、开放获取状态、机构访问需求，并提示用户可通过机构订阅、馆际互借、作者公开版本或手动提供 PDF 等合法方式获取。
+
 **调研结果不受 PDF 获取状态影响**：无法下载全文不等于该论文无价值。论文仍应纳入调研结果和推荐列表，根据已有元数据提供分析和推送。PDF 获取失败只影响全文阅读，不影响该论文的收录与推荐。
 
 **Springer HTML 全文的特殊处理**：若 PDF 路由返回 HTML 而非 PDF 二进制（Content-Type 检查），记录为"HTML 全文可读，无独立 PDF"，不算获取失败。
@@ -268,20 +272,20 @@ curl -s "https://api.semanticscholar.org/graph/v1/paper/{paper_id}/references?fi
 
 边界：
 - 优先下载 `full_text_status="open_pdf"` 且存在 `pdf_url` 的论文（arXiv 直链 > Unpaywall > 出版平台）
-- **允许并推荐**通过 Sci-Hub、LibGen 等来源获取 paywalled 的重要论文（core + needs_institution/no_open_pdf）
+- **禁止绕过付费墙**：不得通过 Sci-Hub、LibGen 或其他未授权来源获取 paywalled 论文
 - 下载失败的标注原因（`download_error`），不无限重试
 - 批量任务先生成 manifest，再由用户确认是否下载
 
 推荐流程：
 1. 通过 arXiv、Semantic Scholar、OpenAlex、Unpaywall、PubMed Central 判断 OA 状态和 pdf_url
 2. 对 OA 论文：调用 `scripts/academic-search/oa-pdf-download.mjs` 直接下载
-3. 对 paywalled core 论文：搜索 Sci-Hub/LibGen 最新可用域名，尝试获取 PDF
-4. 生成下载 manifest，标注每篇的 download_source（arxiv / unpaywall / scihub / libgen）
+3. 对 paywalled core 论文：不下载、不绕过访问限制；在 manifest 中标注 `download_status: skipped`、`download_error: paywalled_do_not_bypass`，保留 DOI/URL 和合法获取建议
+4. 生成下载 manifest，标注每篇的 download_source（arxiv / unpaywall / openalex / semantic_scholar / pubmed_central）
 
 分工规则：
 - 用户要"找论文 / 筛论文 / 查引用" → 使用 Academic-Search
-- 用户要"尽可能下载这些 DOI 的 PDF" → searcher 自动尝试 OA + Sci-Hub/LibGen，结果写入 manifest
-- 遇到 Elsevier、Wiley、Springer、ACS 等商业出版平台，先判定 OA 状态；非 OA 则通过 Sci-Hub / LibGen 获取
+- 用户要"尽可能下载这些 DOI 的 PDF" → searcher 只自动尝试合法 OA 来源，结果写入 manifest；非 OA 论文标注为需合法获取
+- 遇到 Elsevier、Wiley、Springer、ACS 等商业出版平台，先判定 OA 状态；非 OA 只记录机构访问需求，不绕过付费墙
 
 ### BibTeX 导出
 
@@ -338,8 +342,8 @@ curl -s "http://127.0.0.1:${CDP_PROXY_PORT:-3456}/close?target=$TARGET"
 | 方式 | 端点 | 适用场景 |
 |------|------|---------|
 | JS click | `/click` | 通用，速度快 |
-| 真实鼠标 | `/clickAt` | 需要触发文件对话框或绕过反自动化检测 |
-| 文件上传 | `/setFiles` | 直接设置 file input，绕过对话框 |
+| 真实鼠标 | `/clickAt` | 需要触发合法页面交互，如文件对话框 |
+| 文件上传 | `/setFiles` | 为合法 file input 设置本地文件路径 |
 
 **先了解页面结构，再决定动作**：用 `/eval document.body.innerText.slice(0, 500)` 或截图快速了解当前页面状态。
 
@@ -408,13 +412,21 @@ curl -s "http://127.0.0.1:${CDP_PROXY_PORT:-3456}/close?target=$TARGET"
 2. 每条结果附带可点击链接
 3. 按本文件的筛选排序规则输出
 4. 首次调研至少 20 篇（重要 ≥10，一般 ≥10）
+5. 对确认 `full_text_status="open_pdf"` 且存在 `pdf_url` 的 core 论文，按下载策略下载合法 OA PDF，并写入 manifest
 
 **搜索执行者不允许做：**
 1. 不跨 query 搜索（Coordinator 负责合并去重）
-2. 不下载 PDF（Coordinator 负责）
+2. 不下载非 OA / 需机构权限 / 无合法开放全文的 PDF，不绕过付费墙
 3. 不生成 search_summary.md / candidate_papers.md（Coordinator 负责）
 4. 不编造论文、作者、引用数——所有数据必须来自 API
 5. 不包含非学术来源（博客、新闻稿、Reddit、知乎等）
+
+**Coordinator 必须做：**
+1. 生成 instruction sheet 并调度 grant-searcher agent
+2. 汇总各 searcher 的局部报告和 manifest
+3. 合并去重、生成 search_summary.md / candidate_papers.md / search_results.yaml
+4. 生成 download_queue.yaml，汇总已下载 OA PDF、非 OA 跳过项和失败项
+5. 不直接下载或移动 PDF；PDF 下载由 searcher 在合法 OA 边界内完成
 
 ---
 

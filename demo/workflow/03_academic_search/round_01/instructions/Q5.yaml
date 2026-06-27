@@ -1,0 +1,33 @@
+instruction_id: "Q5"
+round_dir: "workflow/03_academic_search/round_01"
+
+query_spec:
+  query_id: "Q5"
+  query_text: "multi-job training communication interference network contention GPU cluster"
+  query_type: "keyword"
+  platforms: ["arxiv", "semantic_scholar"]
+  year_range: [2021, 2026]
+  target_count: 15
+  venue_preference: "CCF-A/B prefer NSDI/SIGCOMM/SC/EuroSys"
+
+round_goal_excerpt:
+  goal: "系统调研 RDMA 多租户性能隔离和分布式训练通信调度的现有方法"
+  what_to_find: "多任务并发训练的通信干扰定量研究、训练任务网络争抢的实证分析和解决方案"
+  what_not_to_find: "仅讨论计算资源争抢不涉及网络、单机多任务GPU共享不涉及网络通信"
+  core_question: "多任务并发训练的通信干扰问题在学术界如何被研究和量化？"
+
+selection_policy:
+  authority_weight: "high"
+  recency_boost: true
+  min_citations: 0
+  diversity: true
+
+download_policy:
+  download_core_oa: true
+  do_not_bypass_paywalls: true
+  max_total_downloads: 10
+  target_dir: "papers/inbox/"
+
+output:
+  local_report: "workflow/03_academic_search/round_01/reports/Q5_report.md"
+  download_manifest: "workflow/03_academic_search/round_01/reports/Q5_manifest.yaml"

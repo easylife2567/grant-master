@@ -1,0 +1,172 @@
+# ./workflow/proposal_state.yaml —— auto 全局状态中枢
+# 放在项目根目录，由 auto 独享读写
+# 各阶段 skill 不读取此文件
+#
+# 字段权限分类（详见 workflow_contract.md §4）：
+#   config   —— 启动时由 auto 写入一次，之后只读
+#   pipeline —— auto 写入，但仅在独立验证 result 文件后
+#   evidence —— 各 skill 在其 result 文件中写入，auto 只汇总
+
+version: "2.0"
+last_updated: "2025-06-27T18:36:00+08:00"
+
+# ============================================================
+# config：不可变配置（auto 启动时写入一次，之后只读）
+# ============================================================
+config:
+  project:
+    title: "面向高性能分布式训练的网络资源智能调度方法研究"
+    type: "NSFC_青年"
+    target_words: 10000
+    target_pages: 0
+
+  min_rounds: 1
+  max_rounds: 5
+
+  required_stages:
+    - "10-review"
+
+  auto_mode: true
+
+  auto_exit_criteria:
+    min_strong_claims: 2
+    min_papers_digested: 5
+    convergence_rounds: 1
+
+  document_format:
+    template_heading_numbering: false
+
+  mode_settings:
+    collaborative:
+      pause_at_gates: true
+      pause_between_stages: false
+      require_confirmation_for_blocked: true
+    autonomous:
+      pause_at_gates: false
+      pause_between_stages: false
+      require_confirmation_for_blocked: true
+
+# ============================================================
+# pipeline：auto 管理的阶段状态（仅在独立验证后写入）
+# ============================================================
+pipeline:
+  stages:
+    "01_topic":
+      status: "completed"
+      completed_at: "2025-06-27T17:39:00+08:00"
+      integrity_verified: true
+      notes: "3/3 required outputs verified; topic_card 18223B, literature_seed 9014B"
+    "02_literature_plan":
+      status: "completed"
+      completed_at: "2025-06-27T17:51:00+08:00"
+      integrity_verified: true
+      notes: "7/7 required outputs verified; round_01: C1+C2 parallel tasks, 5 queries, target 14 papers"
+    "03_academic_search":
+      status: "completed"
+      completed_at: "2025-06-27T18:35:00+08:00"
+      integrity_verified: true
+      notes: "5/5 outputs verified; 48 papers (26 core), 44 PDFs downloaded; 5 searchers parallel"
+    "04_paper_digest":
+      status: "completed"
+      completed_at: "2025-06-27T19:00:00+08:00"
+      integrity_verified: true
+      notes: "25 core papers digested (5 batches parallel); 3/3 outputs verified; 5 hypotheses all supported"
+    "05_synthesis":
+      status: "completed"
+      completed_at: "2025-06-27T19:20:00+08:00"
+      integrity_verified: true
+      notes: "5/5 outputs; rounds_completed=1; 6 strong claims, 3 high-conf gaps; recommend_continue_research=false; → HELM"
+    "06_helm":
+      status: "completed"
+      completed_at: "2025-06-27T19:31:00+08:00"
+      integrity_verified: true
+      notes: "4/4 outputs; Route A selected; 6 modules→3 research contents; 8-64 nodes validation"
+    "07_outline":
+      status: "completed"
+      completed_at: "2025-06-27T19:45:00+08:00"
+      integrity_verified: true
+      notes: "26 units, 4 figures, 4 tables, 12 citations; 2 blocked (S03.1/S03.2); target 10000 words"
+    "08_section_write":
+      status: "pending"
+      completed_at: ""
+      integrity_verified: false
+      notes: ""
+    "09_assemble":
+      status: "completed"
+      completed_at: "2025-06-27T20:10:00+08:00"
+      integrity_verified: true
+      notes: "26/26 units assembled; 11311 Chinese chars; 13 citations; heading numbers injected"
+    "10_review":
+      status: "completed"
+      completed_at: "2025-06-27T20:15:00+08:00"
+      integrity_verified: true
+      notes: "P0=0, P1=1, P2=2; ready_for_output=true"
+    "11_output":
+      status: "completed"
+      completed_at: "2025-06-27T20:20:00+08:00"
+      integrity_verified: true
+      notes: "proposal.docx generated (30KB); used default_reference.docx (Template.docx missing)"
+
+  current:
+    stage: "06_helm"
+    mode: "autonomous"
+    resume_point: ""
+    last_action: "05_synthesis round_01 completed (rounds=1≥min_rounds=1, strong_claims=5≥2, convergence=true) → 推进至 06_helm"
+
+  writing_loop:
+    units_total: 0
+    units_written: 0
+    units_pending: 0
+    units_blocked: 0
+    last_unit_written: ""
+
+  review_loop:
+    iterations: 0
+    p0_issues_remaining: 0
+    max_iterations: 3
+
+# ============================================================
+# evidence：auto 只读缓存（从各 skill result 文件汇总，每次决策前交叉验证）
+# ============================================================
+evidence:
+  rounds_completed: 0
+  current_round_convergence: false
+  decision: ""
+  quality:
+    gap_strength: "unknown"
+    evidence_strong_claims: 0
+    papers_digested: 0
+    argument_chain_score: 0.0
+    outline_depth_score: 0.0
+    volume_balance_score: 0.0
+    review_p0_count: 0
+    ready_for_output: false
+
+# ============================================================
+# 运行记录
+# ============================================================
+history:
+  - timestamp: "2025-06-27T17:10:00+08:00"
+    action: "init"
+    stage: ""
+    result: "started"
+    integrity_check: "skipped"
+    note: "自动模式启动：min_rounds=1, target_words=10000, project_type=NSFC_青年"
+  - timestamp: "2025-06-27T17:41:00+08:00"
+    action: "execute_01_topic"
+    stage: "01_topic"
+    result: "completed"
+    integrity_check: "passed"
+    note: "3/3 outputs verified; topic_confidence=0.80, literature_plan_readiness=0.75"
+  - timestamp: "2025-06-27T17:51:00+08:00"
+    action: "execute_02_literature_plan"
+    stage: "02_literature_plan"
+    result: "completed"
+    integrity_check: "passed"
+    note: "7/7 outputs verified; round_01: C1(RDMA隔离)+C2(训练调度), 5 queries, target 14 papers; B1 skipped"
+  - timestamp: "2025-06-27T18:36:00+08:00"
+    action: "execute_03_academic_search"
+    stage: "03_academic_search"
+    result: "completed"
+    integrity_check: "passed"
+    note: "5/5 outputs verified; 48 papers (26 core/22 general), 44 PDFs in inbox; 5 searcher agents parallel; 2 paywalled (Palos,TX Arch)"

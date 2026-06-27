@@ -1,0 +1,268 @@
+[
+  {
+    "index": 1,
+    "title": "TicTac: Accelerating Distributed Deep Learning with Communication Scheduling",
+    "authors": [
+      "Sayed Hadi Hashemi",
+      "Sangeetha Abdu Jyothi",
+      "Roy H. Campbell"
+    ],
+    "year": 2018,
+    "doi": null,
+    "arxiv_id": "1803.03288",
+    "pdf_url": "https://arxiv.org/pdf/1803.03288",
+    "full_text_status": "open_pdf",
+    "source_platforms": [
+      "arxiv"
+    ],
+    "download_source": "arxiv",
+    "download_status": "downloaded",
+    "download_error": null,
+    "local_pdf_path": "papers/inbox/2018_TicTac_Accelerating_Distributed_Deep_Learning_with_Communication_Scheduling_1b759e2b78e6.pdf",
+    "filename": "2018_TicTac_Accelerating_Distributed_Deep_Learning_with_Communication_Scheduling_1b759e2b78e6.pdf"
+  },
+  {
+    "index": 2,
+    "title": "Priority-based Parameter Propagation for Distributed DNN Training",
+    "authors": [
+      "Anand Jayarajan",
+      "Jinliang Wei",
+      "Garth Gibson",
+      "Alexandra Fedorova",
+      "Gennady Pekhimenko"
+    ],
+    "year": 2019,
+    "doi": null,
+    "arxiv_id": "1905.03960",
+    "pdf_url": "https://arxiv.org/pdf/1905.03960",
+    "full_text_status": "open_pdf",
+    "source_platforms": [
+      "arxiv"
+    ],
+    "download_source": "arxiv",
+    "download_status": "downloaded",
+    "download_error": null,
+    "local_pdf_path": "papers/inbox/2019_Priority-based_Parameter_Propagation_for_Distributed_DNN_Training_cba7a84c34a0.pdf",
+    "filename": "2019_Priority-based_Parameter_Propagation_for_Distributed_DNN_Training_cba7a84c34a0.pdf"
+  },
+  {
+    "index": 3,
+    "title": "Domain-specific Communication Optimization for Distributed DNN Training",
+    "authors": [
+      "Hao Wang",
+      "Jingrong Chen",
+      "Xinchen Wan",
+      "Han Tian",
+      "Jiacheng Xia",
+      "Gaoxiong Zeng",
+      "Weiyan Wang",
+      "Kai Chen",
+      "Wei Bai",
+      "Junchen Jiang"
+    ],
+    "year": 2020,
+    "doi": null,
+    "arxiv_id": "2008.08445",
+    "pdf_url": "https://arxiv.org/pdf/2008.08445",
+    "full_text_status": "open_pdf",
+    "source_platforms": [
+      "arxiv"
+    ],
+    "download_source": "arxiv",
+    "download_status": "downloaded",
+    "download_error": null,
+    "local_pdf_path": "papers/inbox/2020_Domain-specific_Communication_Optimization_for_Distributed_DNN_Training_d6a21b768315.pdf",
+    "filename": "2020_Domain-specific_Communication_Optimization_for_Distributed_DNN_Training_d6a21b768315.pdf"
+  },
+  {
+    "index": 4,
+    "title": "MergeComp: A Compression Scheduler for Scalable Communication-Efficient Distributed Training",
+    "authors": [
+      "Zhuang Wang",
+      "Xinyu Wu",
+      "T. S. Eugene Ng"
+    ],
+    "year": 2021,
+    "doi": null,
+    "arxiv_id": "2103.15195",
+    "pdf_url": "https://arxiv.org/pdf/2103.15195",
+    "full_text_status": "open_pdf",
+    "source_platforms": [
+      "arxiv"
+    ],
+    "download_source": "arxiv",
+    "download_status": "downloaded",
+    "download_error": null,
+    "local_pdf_path": "papers/inbox/2021_MergeComp_A_Compression_Scheduler_for_Scalable_Communication-Efficient_Distribut_52e8177931fb.pdf",
+    "filename": "2021_MergeComp_A_Compression_Scheduler_for_Scalable_Communication-Efficient_Distribut_52e8177931fb.pdf"
+  },
+  {
+    "index": 5,
+    "title": "DynaComm: Accelerating Distributed CNN Training between Edges and Clouds through Dynamic Communication Scheduling",
+    "authors": [
+      "Shangming Cai",
+      "Dongsheng Wang",
+      "Haixia Wang",
+      "Yongqiang Lyu",
+      "Guangquan Xu",
+      "Xi Zheng",
+      "Athanasios V. Vasilakos"
+    ],
+    "year": 2021,
+    "doi": null,
+    "arxiv_id": "2101.07968",
+    "pdf_url": "https://arxiv.org/pdf/2101.07968",
+    "full_text_status": "open_pdf",
+    "source_platforms": [
+      "arxiv"
+    ],
+    "download_source": "arxiv",
+    "download_status": "downloaded",
+    "download_error": null,
+    "local_pdf_path": "papers/inbox/2021_DynaComm_Accelerating_Distributed_CNN_Training_between_Edges_and_Clouds_through__ef0a266b4997.pdf",
+    "filename": "2021_DynaComm_Accelerating_Distributed_CNN_Training_between_Edges_and_Clouds_through__ef0a266b4997.pdf"
+  },
+  {
+    "index": 6,
+    "title": "DHelix: Hiding Communication Cost in Distributed LLM Training via Micro-batch Co-execution",
+    "authors": [
+      "Haiquan Wang",
+      "Chaoyi Ruan",
+      "Jia He",
+      "Jiaqi Ruan",
+      "Chengjie Tang",
+      "Xiaosong Ma",
+      "Cheng Li"
+    ],
+    "year": 2024,
+    "doi": null,
+    "arxiv_id": "2411.15871",
+    "pdf_url": "https://arxiv.org/pdf/2411.15871",
+    "full_text_status": "open_pdf",
+    "source_platforms": [
+      "arxiv"
+    ],
+    "download_source": "arxiv",
+    "download_status": "downloaded",
+    "download_error": null,
+    "local_pdf_path": "papers/inbox/2024_DHelix_Hiding_Communication_Cost_in_Distributed_LLM_Training_via_Micro-batch_Co-_a27be85edb8b.pdf",
+    "filename": "2024_DHelix_Hiding_Communication_Cost_in_Distributed_LLM_Training_via_Micro-batch_Co-_a27be85edb8b.pdf"
+  },
+  {
+    "index": 7,
+    "title": "CrossPipe: Towards Optimal Pipeline Schedules for Cross-Datacenter Training",
+    "authors": [
+      "Tiancheng Chen",
+      "Ales Kubicek",
+      "Langwen Huang",
+      "Torsten Hoefler"
+    ],
+    "year": 2025,
+    "doi": null,
+    "arxiv_id": "2507.00217",
+    "pdf_url": "https://arxiv.org/pdf/2507.00217",
+    "full_text_status": "open_pdf",
+    "source_platforms": [
+      "arxiv"
+    ],
+    "download_source": "arxiv",
+    "download_status": "downloaded",
+    "download_error": null,
+    "local_pdf_path": "papers/inbox/2025_CrossPipe_Towards_Optimal_Pipeline_Schedules_for_Cross-Datacenter_Training_6f22ba8447dc.pdf",
+    "filename": "2025_CrossPipe_Towards_Optimal_Pipeline_Schedules_for_Cross-Datacenter_Training_6f22ba8447dc.pdf"
+  },
+  {
+    "index": 8,
+    "title": "Arnold: Efficient Pre-Training of LLMs via Topology-Aware Communication Alignment on More Than 9600 GPUs",
+    "authors": [
+      "Guoliang He",
+      "Youhe Jiang",
+      "Wencong Xiao",
+      "Kaihua Jiang",
+      "Shuguang Wang",
+      "Jun Wang",
+      "Zixian Du",
+      "Zhuo Jiang",
+      "Xinlei Zhang",
+      "Binhang Yuan",
+      "Eiko Yoneki"
+    ],
+    "year": 2025,
+    "doi": null,
+    "arxiv_id": "2509.15940",
+    "pdf_url": "https://arxiv.org/pdf/2509.15940",
+    "full_text_status": "open_pdf",
+    "source_platforms": [
+      "arxiv"
+    ],
+    "download_source": "arxiv",
+    "download_status": "downloaded",
+    "download_error": null,
+    "local_pdf_path": "papers/inbox/2025_Arnold_Efficient_Pre-Training_of_LLMs_via_Topology-Aware_Communication_Alignment_56448e3a5d52.pdf",
+    "filename": "2025_Arnold_Efficient_Pre-Training_of_LLMs_via_Topology-Aware_Communication_Alignment_56448e3a5d52.pdf"
+  },
+  {
+    "index": 9,
+    "title": "ScaleAcross Explorer: Exploring Communication Optimization for Scale-Across AI Model Training",
+    "authors": [
+      "Minghao Li",
+      "Alicia Golden",
+      "Samuel Hsia",
+      "Michael Kuchnik",
+      "Adi Gangidi",
+      "Xu Zhang",
+      "Ashmitha Jeevaraj Shetty",
+      "Zachary DeVito",
+      "Weiwei Chu",
+      "Dong He",
+      "Haoci Zhang",
+      "Yuchen Hao",
+      "Ruoming Pang",
+      "James Hongyi Zeng",
+      "Ying Zhang",
+      "Minlan Yu",
+      "Carole-Jean Wu"
+    ],
+    "year": 2026,
+    "doi": null,
+    "arxiv_id": "2605.24326",
+    "pdf_url": "https://arxiv.org/pdf/2605.24326",
+    "full_text_status": "open_pdf",
+    "source_platforms": [
+      "arxiv"
+    ],
+    "download_source": "arxiv",
+    "download_status": "downloaded",
+    "download_error": null,
+    "local_pdf_path": "papers/inbox/2026_ScaleAcross_Explorer_Exploring_Communication_Optimization_for_Scale-Across_AI_Mo_f1cb208adf47.pdf",
+    "filename": "2026_ScaleAcross_Explorer_Exploring_Communication_Optimization_for_Scale-Across_AI_Mo_f1cb208adf47.pdf"
+  },
+  {
+    "index": 10,
+    "title": "Demystifying NCCL: An In-depth Analysis of GPU Communication Protocols and Algorithms",
+    "authors": [
+      "Zhiyi Hu",
+      "Siyuan Shen",
+      "Tommaso Bonato",
+      "Sylvain Jeaugey",
+      "Cedell Alexander",
+      "Eric Spada",
+      "James Dinan",
+      "Jeff Hammond",
+      "Torsten Hoefler"
+    ],
+    "year": 2025,
+    "doi": null,
+    "arxiv_id": "2507.04786",
+    "pdf_url": "https://arxiv.org/pdf/2507.04786",
+    "full_text_status": "open_pdf",
+    "source_platforms": [
+      "arxiv"
+    ],
+    "download_source": "arxiv",
+    "download_status": "downloaded",
+    "download_error": null,
+    "local_pdf_path": "papers/inbox/2025_Demystifying_NCCL_An_In-depth_Analysis_of_GPU_Communication_Protocols_and_Algori_8883d315926b.pdf",
+    "filename": "2025_Demystifying_NCCL_An_In-depth_Analysis_of_GPU_Communication_Protocols_and_Algori_8883d315926b.pdf"
+  }
+]

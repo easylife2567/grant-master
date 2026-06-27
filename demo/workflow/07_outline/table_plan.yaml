@@ -1,0 +1,97 @@
+stage: "OUTLINE"
+version: "v1"
+total_tables: 4
+
+tables:
+  - table_id: "T01"
+    table_no: 1
+    type: "innovation_comparison"
+    required: true
+    target:
+      section_id: "S02.5"
+      unit_id: "S02.5-U001"
+    title: "本项目与现有方案的对比"
+    caption_draft: "表1 本项目与现有RDMA多租户隔离方案的对比"
+    argument_role: "在'训练通信模式感知'和'多租户动态调度'两个维度上对比本项目与现有工作"
+    columns:
+      - {name: "方案", source: "related_work"}
+      - {name: "隔离机制", source: "related_work"}
+      - {name: "是否感知训练通信模式", source: "evidence_ledger CL-002"}
+      - {name: "是否支持多租户动态调度", source: "evidence_ledger CL-003"}
+      - {name: "硬件需求", source: "paper_reports"}
+    rows:
+      mode: "explicit"
+      items:
+        - ["Husky (NSDI'23)", "微架构诊断", "否", "否", "无"]
+        - ["Harmonic (NSDI'24)", "FPGA辅助限速", "否", "否", "FPGA"]
+        - ["PeRF (ATC'24)", "软件抢占", "否", "否", "无"]
+        - ["Palladium (SIGCOMM'25)", "DPU反向代理", "否", "部分(DWRR)", "DPU"]
+        - ["本项目", "训练语义驱动调度", "是", "是", "无(纯软件)"]
+    status: "planned"
+
+  - table_id: "T02"
+    table_no: 2
+    type: "timeline"
+    required: true
+    target:
+      section_id: "S02.6"
+      unit_id: "S02.6-U001"
+    title: "年度研究计划"
+    caption_draft: "表2 年度研究计划与预期成果"
+    columns:
+      - {name: "年度", source: "project_plan"}
+      - {name: "研究任务", source: "research_contents"}
+      - {name: "里程碑", source: "project_plan"}
+      - {name: "预期成果", source: "expected_outputs"}
+    rows:
+      mode: "explicit"
+      items:
+        - ["第一年", "R1:通信模式感知框架开发", "完成NCCL拦截器和分类器原型", "技术报告+开源代码"]
+        - ["第二年", "R2:调度算法设计与实现", "完成调度器原型并小规模验证", "会议论文1篇+系统原型"]
+        - ["第三年", "R3:端到端集成验证", "完成3场景×3规模全量实验", "期刊论文1篇+开源系统+毕业论文"]
+    status: "planned"
+
+  - table_id: "T03"
+    table_no: 3
+    type: "validation_metrics"
+    required: true
+    target:
+      section_id: "S02.2.3"
+      unit_id: "S02.2.3-U001"
+    title: "验证任务与评价指标"
+    caption_draft: "表3 验证任务与评价指标表"
+    columns:
+      - {name: "验证任务", source: "validation_plan"}
+      - {name: "核心指标", source: "validation_plan.metrics"}
+      - {name: "基线方案", source: "validation_plan.baselines"}
+      - {name: "预期结果", source: "research_contents"}
+    rows:
+      mode: "explicit"
+      items:
+        - ["通信模式感知精度", "分类准确率>90%", "NCCL内部日志ground truth", "精度>90%"]
+        - ["调度隔离效果", "高优任务带宽退化<10%", "无隔离/静态均分/PeRF原方案", "退化<10%"]
+        - ["最差任务JCT", "相比无隔离降低>30%", "无隔离/静态均分/PeRF原方案", "降低>30%"]
+        - ["集群利用率", "相比静态均分提升>15%", "静态均分带宽", "提升>15%"]
+        - ["调度器开销", "CPU<3%", "原生NCCL", "开销<3%"]
+    status: "planned"
+
+  - table_id: "T04"
+    table_no: 4
+    type: "risk_mitigation"
+    required: false
+    target:
+      section_id: "S03.1"
+      unit_id: "S03.1-U001"
+    title: "风险分析与应对措施"
+    caption_draft: "表4 主要技术风险与应对措施"
+    columns:
+      - {name: "风险", source: "helm_report §12"}
+      - {name: "影响", source: "helm_report §12"}
+      - {name: "应对措施", source: "project_plan"}
+    rows:
+      mode: "explicit"
+      items:
+        - ["PeRF抢占原语不可用", "放弃抢占式调度", "降级为QP速率限制+源路由"]
+        - ["NCCL API变化", "劫持失败", "使用RDMA计数器间接推断"]
+        - ["实验集群不足", "无法大规模验证", "仿真+小规模物理混合验证"]
+    status: "planned"

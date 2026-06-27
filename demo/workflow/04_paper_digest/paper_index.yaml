@@ -1,0 +1,303 @@
+last_updated_round: 1
+total_digested: 25
+
+papers:
+  - filename: "2024_Harmonic_RDMA_Isolation.pdf"
+    title: "Harmonic: Hardware-assisted RDMA Performance Isolation for Public Clouds"
+    authors: ["Jiaqi Lou", "Xinhao Kong", "Jinghan Huang", "Wei Bai", "Nam Sung Kim", "Danyang Zhuo"]
+    year: 2024
+    venue: "NSDI (CCF-A)"
+    relevance: "core"
+    batch_id: "Q1"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q1/papers/2024_Harmonic_RDMA_Isolation.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2024_Harmonic_RDMA_Isolation.pdf"
+    status: "digested"
+
+  - filename: "2023_Husky_RDMA_Microarchitecture.pdf"
+    title: "Understanding RDMA Microarchitecture Resources for Performance Isolation"
+    authors: ["Xinhao Kong", "Jingrong Chen", "Wei Bai", "Yechen Xu", "Mahmoud Elhaddad", "Shachar Raindel", "Jitendra Padhye", "Alvin R. Lebeck", "Danyang Zhuo"]
+    year: 2023
+    venue: "NSDI (CCF-A)"
+    relevance: "core"
+    batch_id: "Q1"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q1/papers/2023_Husky_RDMA_Microarchitecture.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2023_Husky_RDMA_Microarchitecture.pdf"
+    status: "digested"
+
+  - filename: "2024_PeRF_Preemption_RDMA.pdf"
+    title: "PeRF: Preemption-enabled RDMA Framework"
+    authors: ["Sugi Lee", "Mingyu Choi", "Ikjun Yeom", "Younghoon Kim"]
+    year: 2024
+    venue: "USENIX ATC (CCF-A)"
+    relevance: "core"
+    batch_id: "Q1"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q1/papers/2024_PeRF_Preemption_RDMA.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2024_PeRF_Preemption_RDMA.pdf"
+    status: "digested"
+
+  - filename: "2505.11339.pdf"
+    title: "Palladium: A DPU-enabled Multi-Tenant Serverless Cloud over Zero-copy Multi-node RDMA Fabrics"
+    authors: ["Shixiong Qi", "Songyu Zhang", "K. K. Ramakrishnan", "Diman Z. Tootaghaj", "Hardik Soni", "Puneet Sharma"]
+    year: 2025
+    venue: "SIGCOMM (CCF-A)"
+    relevance: "core"
+    batch_id: "Q1"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q1/papers/2505.11339.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2505.11339.pdf"
+    status: "digested"
+
+  - filename: "2023_OSMOSIS_SmartNIC_MultiTenant.pdf"
+    title: "OSMOSIS: Enabling Multi-Tenancy in Datacenter SmartNICs"
+    authors: ["ETH Zurich"]
+    year: 2023
+    venue: "USENIX ATC (CCF-A)"
+    relevance: "core"
+    batch_id: "Q1"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q1/papers/2023_OSMOSIS_SmartNIC_MultiTenant.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2023_OSMOSIS_SmartNIC_MultiTenant.pdf"
+    status: "digested"
+
+  - filename: "2508.09663.pdf"
+    title: "Closing the HPC-Cloud Convergence Gap: Multi-Tenant Slingshot RDMA for Kubernetes"
+    authors: ["Philipp A. Friese", "Ahmed Eleliemy", "Utz-Uwe Haus", "Martin Schulz"]
+    year: 2025
+    venue: "IEEE Cluster 2025"
+    relevance: "core"
+    batch_id: "Q1"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q1/papers/2508.09663.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2508.09663.pdf"
+    status: "digested"
+
+  - filename: "2018_TicTac_Accelerating_Distributed_Deep_Learning_with_Communication_Scheduling_1b759e2b78e6.pdf"
+    title: "TicTac: Accelerating Distributed Deep Learning with Communication Scheduling"
+    authors: ["Sayed Hadi Hashemi", "Sangeetha Abdu Jyothi", "Roy H. Campbell"]
+    year: 2018
+    venue: "MLSys"
+    relevance: "core"
+    batch_id: "Q2"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q2/papers/2018_TicTac_Accelerating_Distributed_Deep_Learning_with_Communication_Scheduling_1b759e2b78e6.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2018_TicTac_Accelerating_Distributed_Deep_Learning_with_Communication_Scheduling_1b759e2b78e6.pdf"
+    status: "digested"
+
+  - filename: "2019_Priority-based_Parameter_Propagation_for_Distributed_DNN_Training_cba7a84c34a0.pdf"
+    title: "P3: Priority-based Parameter Propagation for Distributed DNN Training"
+    authors: ["Anand Jayarajan", "Jinliang Wei", "Garth Gibson", "Alexandra Fedorova", "Gennady Pekhimenko"]
+    year: 2019
+    venue: "SysML"
+    relevance: "core"
+    batch_id: "Q2"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q2/papers/2019_Priority-based_Parameter_Propagation_for_Distributed_DNN_Training_cba7a84c34a0.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2019_Priority-based_Parameter_Propagation_for_Distributed_DNN_Training_cba7a84c34a0.pdf"
+    status: "digested"
+
+  - filename: "2020_Domain-specific_Communication_Optimization_for_Distributed_DNN_Training_d6a21b768315.pdf"
+    title: "DLCP: Domain-specific Communication Optimization for Distributed DNN Training"
+    authors: ["Hao Wang", "Jingrong Chen", "Xinchen Wan", "Han Tian", "Jiacheng Xia", "Gaoxiong Zeng", "Weiyan Wang", "Kai Chen", "Wei Bai", "Junchen Jiang"]
+    year: 2020
+    venue: "arXiv"
+    relevance: "core"
+    batch_id: "Q2"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q2/papers/2020_Domain-specific_Communication_Optimization_for_Distributed_DNN_Training_d6a21b768315.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2020_Domain-specific_Communication_Optimization_for_Distributed_DNN_Training_d6a21b768315.pdf"
+    status: "digested"
+
+  - filename: "2021_MergeComp_A_Compression_Scheduler_for_Scalable_Communication-Efficient_Distribut_52e8177931fb.pdf"
+    title: "MergeComp: A Compression Scheduler for Scalable Communication-Efficient Distributed Training"
+    authors: ["Zhuang Wang", "Xinyu Wu", "T.S. Eugene Ng"]
+    year: 2021
+    venue: "arXiv"
+    relevance: "core"
+    batch_id: "Q2"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q2/papers/2021_MergeComp_A_Compression_Scheduler_for_Scalable_Communication-Efficient_Distribut_52e8177931fb.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2021_MergeComp_A_Compression_Scheduler_for_Scalable_Communication-Efficient_Distribut_52e8177931fb.pdf"
+    status: "digested"
+
+  - filename: "2021_DynaComm_Accelerating_Distributed_CNN_Training_between_Edges_and_Clouds_through__ef0a266b4997.pdf"
+    title: "DynaComm: Accelerating Distributed CNN Training between Edges and Clouds through Dynamic Communication Scheduling"
+    authors: ["Shangming Cai", "Dongsheng Wang", "Haixia Wang", "Yongqiang Lyu", "Guangquan Xu", "Xi Zheng", "Athanasios V. Vasilakos"]
+    year: 2021
+    venue: "IEEE JSAC (CCF-A)"
+    relevance: "core"
+    batch_id: "Q2"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q2/papers/2021_DynaComm_Accelerating_Distributed_CNN_Training_between_Edges_and_Clouds_through__ef0a266b4997.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2021_DynaComm_Accelerating_Distributed_CNN_Training_between_Edges_and_Clouds_through__ef0a266b4997.pdf"
+    status: "digested"
+
+  - filename: "2024_DHelix_Hiding_Communication_Cost_in_Distributed_LLM_Training_via_Micro-batch_Co-_a27be85edb8b.pdf"
+    title: "DHelix: Hiding Communication Cost in Distributed LLM Training via Micro-batch Co-execution"
+    authors: ["Haiquan Wang", "Chaoyi Ruan", "Jia He", "Jiaqi Ruan", "Chengjie Tang", "Xiaosong Ma", "Cheng Li"]
+    year: 2024
+    venue: "arXiv"
+    relevance: "core"
+    batch_id: "Q2"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q2/papers/2024_DHelix_Hiding_Communication_Cost_in_Distributed_LLM_Training_via_Micro-batch_Co-_a27be85edb8b.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2024_DHelix_Hiding_Communication_Cost_in_Distributed_LLM_Training_via_Micro-batch_Co-_a27be85edb8b.pdf"
+    status: "digested"
+
+  - filename: "2025_CrossPipe_Towards_Optimal_Pipeline_Schedules_for_Cross-Datacenter_Training_6f22ba8447dc.pdf"
+    title: "CrossPipe: Towards Optimal Pipeline Schedules for Cross-Datacenter Training"
+    authors: ["Tiancheng Chen", "Ales Kubicek", "Langwen Huang", "Torsten Hoefler"]
+    year: 2025
+    venue: "USENIX ATC (CCF-A)"
+    relevance: "core"
+    batch_id: "Q2"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q2/papers/2025_CrossPipe_Towards_Optimal_Pipeline_Schedules_for_Cross-Datacenter_Training_6f22ba8447dc.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2025_CrossPipe_Towards_Optimal_Pipeline_Schedules_for_Cross-Datacenter_Training_6f22ba8447dc.pdf"
+    status: "digested"
+
+  - filename: "2509.15940.pdf"
+    title: "Arnold: Efficient Pre-Training of LLMs via Topology-Aware Communication Alignment"
+    authors: ["Guoliang He", "Youhe Jiang", "Wencong Xiao", "Kaihua Jiang", "Binhang Yuan", "Eiko Yoneki"]
+    year: 2025
+    venue: "NeurIPS (CCF-A)"
+    relevance: "core"
+    batch_id: "Q3"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q3/papers/2509.15940.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2509.15940.pdf"
+    status: "digested"
+
+  - filename: "2308.05692.pdf"
+    title: "Isolated Scheduling for Distributed Training Tasks in GPU Clusters (vClos)"
+    authors: ["Xinchi Han", "Weihao Jiang", "Peirui Cao", "Shizhen Zhao"]
+    year: 2023
+    venue: "arXiv"
+    relevance: "core"
+    batch_id: "Q3"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q3/papers/2308.05692.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2308.05692.pdf"
+    status: "digested"
+
+  - filename: "2025_BandPilot_2506.15595.pdf"
+    title: "BandPilot: Towards Performance- and Contention-Aware GPU Dispatching in AI Clusters"
+    authors: ["Kunming Zhang", "Hanlong Liao", "Junyu Xue", "Deke Guo", "Guoming Tang"]
+    year: 2025
+    venue: "arXiv"
+    relevance: "core"
+    batch_id: "Q3"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q3/papers/2025_BandPilot_2506.15595.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2025_BandPilot_2506.15595.pdf"
+    status: "digested"
+
+  - filename: "2603.04424.pdf"
+    title: "When Scaling Fails: Network and Fabric Effects on Distributed GPU Training Performance"
+    authors: ["Dinesh Gopalan", "Ratul Ali"]
+    year: 2026
+    venue: "arXiv"
+    relevance: "core"
+    batch_id: "Q3"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q3/papers/2603.04424.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2603.04424.pdf"
+    status: "digested"
+
+  - filename: "2025_VCCL_2510.00991.pdf"
+    title: "VCCL: An Efficient, Reliable and Observable Collective Communication Library"
+    authors: ["Mingjun Zhang", "Xiaohe Hu", "Menghao Zhang", "Mingwei Xu", "Chunming Hu"]
+    year: 2025
+    venue: "arXiv"
+    relevance: "core"
+    batch_id: "Q3"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q3/papers/2025_VCCL_2510.00991.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2025_VCCL_2510.00991.pdf"
+    status: "digested"
+
+  - filename: "2025_OptiNIC_RDMA_ML.pdf"
+    title: "OptiNIC: A Resilient and Tail-Optimal RDMA NIC for Distributed ML Workloads"
+    authors: ["Ertza Warraich", "Ali Imran", "Annus Zulfiqar", "Shay Vargaftik", "Sonia Fahmy", "Muhammad Shahbaz"]
+    year: 2025
+    venue: "arXiv"
+    relevance: "core"
+    batch_id: "Q4"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q4/papers/2025_OptiNIC_RDMA_ML.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2025_OptiNIC_RDMA_ML.pdf"
+    status: "digested"
+
+  - filename: "2510.16606.pdf"
+    title: "Reimagining RDMA Through the Lens of ML (Celeris)"
+    authors: ["Ertza Warraich", "Ali Imran", "Annus Zulfiqar", "Shay Vargaftik", "Sonia Fahmy", "Muhammad Shahbaz"]
+    year: 2025
+    venue: "IEEE Computer Architecture Letters"
+    relevance: "core"
+    batch_id: "Q4"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q4/papers/2510.16606.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2510.16606.pdf"
+    status: "digested"
+
+  - filename: "2504.17307.pdf"
+    title: "An Extensible Software Transport Layer for GPU Networking"
+    authors: ["Yang Zhou", "Zhongjie Chen", "Ziming Mao", "et al."]
+    year: 2025
+    venue: "arXiv"
+    relevance: "core"
+    batch_id: "Q4"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q4/papers/2504.17307.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2504.17307.pdf"
+    status: "digested"
+
+  - filename: "2310.20209.pdf"
+    title: "Network Contention-Aware Cluster Scheduling with Reinforcement Learning"
+    authors: ["Junyeol Ryu", "Jeongyoon Eo"]
+    year: 2023
+    venue: "arXiv"
+    relevance: "core"
+    batch_id: "Q5"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q5/papers/2310.20209.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2310.20209.pdf"
+    status: "digested"
+
+  - filename: "2025_ComputeCommOverlap_2507.03114.pdf"
+    title: "Characterizing Compute-Communication Overlap in GPU-Accelerated Distributed Deep Learning"
+    authors: ["Seonho Lee", "Jihwan Oh", "Junkyum Kim", "Seokjin Go", "Jongse Park", "Divya Mahajan"]
+    year: 2025
+    venue: "arXiv"
+    relevance: "core"
+    batch_id: "Q5"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q5/papers/2025_ComputeCommOverlap_2507.03114.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2025_ComputeCommOverlap_2507.03114.pdf"
+    status: "digested"
+
+  - filename: "2207.10898.pdf"
+    title: "Impact of RoCE Congestion Control Policies on Distributed Training of DNNs"
+    authors: ["Tarannum Khan", "Saeed Rashidi", "Srinivas Sridharan", "Pallavi Shurpali", "Aditya Akella", "Tushar Krishna"]
+    year: 2022
+    venue: "arXiv"
+    relevance: "core"
+    batch_id: "Q5"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q5/papers/2207.10898.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2207.10898.pdf"
+    status: "digested"
+
+  - filename: "2407.00550.pdf"
+    title: "Ethereal: Divide and Conquer Network Load Balancing in Large-Scale Distributed Training"
+    authors: ["Vamsi Addanki", "Prateesh Goyal", "Ilias Marinos", "Stefan Schmid"]
+    year: 2024
+    venue: "arXiv"
+    relevance: "core"
+    batch_id: "Q5"
+    digest_file: "workflow/04_paper_digest/round_01/reports/Q5/papers/2407.00550.md"
+    digested_in_round: 1
+    proceeded_path: "papers/proceeded/2407.00550.pdf"
+    status: "digested"

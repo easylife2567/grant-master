@@ -1,0 +1,567 @@
+stage: "OUTLINE"
+version: "v3"
+
+sections:
+  # ===== 一、立项依据 =====
+  - section_id: "S01"
+    heading: "一、立项依据"
+    level: 1
+    is_leaf: false
+    target_words: 0
+    units:
+      - unit_id: "S01-U001"
+        section_id: "S01"
+        heading_level: 1
+        heading_number: "一"
+        is_first_unit_of_section: true
+        unit_type: "section_intro"
+        needs_intro_paragraph: false
+        priority: "high"
+        status: "pending"
+        title: "一、立项依据"
+        target_words: 0
+        paragraph_slots: []
+
+  - section_id: "S01.1"
+    heading: "1. 研究意义"
+    level: 2
+    is_leaf: true
+    target_words: 600
+    units:
+      - unit_id: "S01.1-U001"
+        section_id: "S01.1"
+        heading_level: 2
+        heading_number: "1"
+        is_first_unit_of_section: true
+        unit_type: "background"
+        priority: "high"
+        status: "pending"
+        title: "研究意义"
+        target_words: 600
+        purpose: "说明多租户训练RDMA网络隔离问题的工程意义和学术价值"
+        role_in_document: "立项依据开篇——建立问题的重要性和迫切性"
+        core_argument: "智算中心从独占向共享演进，多租户RDMA网络性能隔离成为关键挑战"
+        required_elements: ["智算中心共享化趋势", "RDMA多租户干扰量化数据(Husky/vClos/RL-Sched)", "学术价值定位"]
+        paragraph_slots:
+          - {slot_id: "P1", role: "引入智算中心从独占到共享的演进趋势", target_words: 150}
+          - {slot_id: "P2", role: "展示RDMA多租户干扰的量化证据(Husky 60%吞吐下降/Compute-Comm Overlap 18.9%减速)", target_words: 200}
+          - {slot_id: "P3", role: "说明该问题的学术价值——从单租户优化到多租户公平共享的范式转移", target_words: 150}
+          - {slot_id: "P4", role: "引出本项目的切入点和研究动机", target_words: 100}
+        evidence_claims: ["CL-001", "CL-005"]
+        avoid: ["空泛的'意义重大'", "无数据支撑的问题严重性描述"]
+
+  - section_id: "S01.2"
+    heading: "2. 国内外研究现状"
+    level: 2
+    is_leaf: false
+    target_words: 0
+    units:
+      - unit_id: "S01.2-U001"
+        section_id: "S01.2"
+        heading_level: 2
+        heading_number: "2"
+        is_first_unit_of_section: true
+        unit_type: "section_intro"
+        needs_intro_paragraph: true
+        priority: "high"
+        status: "pending"
+        title: "国内外研究现状"
+        target_words: 200
+        purpose: "概述本节按三个方向组织研究现状综述"
+        paragraph_slots:
+          - {slot_id: "P1", role: "说明本节按RDMA隔离、训练通信调度、拓扑感知三个方向组织文献综述", target_words: 200}
+
+  - section_id: "S01.2.1"
+    heading: "2.1 RDMA多租户性能隔离"
+    level: 3
+    is_leaf: true
+    target_words: 500
+    units:
+      - unit_id: "S01.2.1-U001"
+        section_id: "S01.2.1"
+        heading_level: 3
+        heading_number: "2.1"
+        is_first_unit_of_section: true
+        unit_type: "related_work"
+        priority: "high"
+        status: "pending"
+        title: "RDMA多租户性能隔离"
+        target_words: 500
+        purpose: "综述RDMA多租户隔离的5条技术路线"
+        core_argument: "RDMA多租户隔离从微架构诊断(Husky)到硬件辅助(Harmonic)到软件抢占(PeRF)的技术演进，但均不感知训练通信模式"
+        paragraph_slots:
+          - {slot_id: "P1", role: "概述RDMA多租户隔离问题的起源——Husky(NSDI'23)的微架构诊断", target_words: 120}
+          - {slot_id: "P2", role: "硬件辅助路线：Harmonic(NSDI'24)的FPGA方案", target_words: 100}
+          - {slot_id: "P3", role: "软件抢占路线：PeRF(ATC'24)的纯软件方案", target_words: 100}
+          - {slot_id: "P4", role: "DPU/SmartNIC路线：Palladium(SIGCOMM'25)和OSMOSIS", target_words: 80}
+          - {slot_id: "P5", role: "小结：五条路线的共同局限——不感知训练通信模式", target_words: 100}
+        evidence_claims: ["CL-002"]
+
+  - section_id: "S01.2.2"
+    heading: "2.2 分布式训练通信调度"
+    level: 3
+    is_leaf: true
+    target_words: 500
+    units:
+      - unit_id: "S01.2.2-U001"
+        section_id: "S01.2.2"
+        heading_level: 3
+        heading_number: "2.2"
+        is_first_unit_of_section: true
+        unit_type: "related_work"
+        priority: "high"
+        status: "pending"
+        title: "分布式训练通信调度"
+        target_words: 500
+        purpose: "综述训练通信调度的4维度演进"
+        core_argument: "从优先级调度(TicTac/P3)到训练语义嵌入网络层(DLCP)到operator级通信隐藏(DHelix)，但全部聚焦单作业优化"
+        paragraph_slots:
+          - {slot_id: "P1", role: "优先级调度路线：TicTac(MLSys'18)→P3(SysML'19)", target_words: 120}
+          - {slot_id: "P2", role: "训练语义嵌入网络层：DLCP(2020)的gradient-aware paradigm", target_words: 120}
+          - {slot_id: "P3", role: "通信隐藏与拓扑感知：DHelix(2024)→CrossPipe(ATC'25)→Arnold(NeurIPS'25)", target_words: 120}
+          - {slot_id: "P4", role: "小结：7篇代表工作全部聚焦单作业，多租户隔离为空白", target_words: 140}
+        evidence_claims: ["CL-003", "CL-004"]
+
+  - section_id: "S01.2.3"
+    heading: "2.3 智算中心网络资源调度"
+    level: 3
+    is_leaf: true
+    target_words: 400
+    units:
+      - unit_id: "S01.2.3-U001"
+        section_id: "S01.2.3"
+        heading_level: 3
+        heading_number: "2.3"
+        is_first_unit_of_section: true
+        unit_type: "related_work"
+        priority: "high"
+        status: "pending"
+        title: "智算中心网络资源调度"
+        target_words: 400
+        purpose: "综述拓扑感知调度和智能调度方法"
+        core_argument: "vClos(独占隔离)→BandPilot(学习预测)→RL调度(智能决策)提供了多任务管理的三种范式，但均未结合训练通信语义"
+        paragraph_slots:
+          - {slot_id: "P1", role: "拓扑感知范式：vClos独占子拓扑→Arnold拓扑对齐", target_words: 150}
+          - {slot_id: "P2", role: "智能调度范式：BandPilot学习带宽预测→RL调度网络争用感知", target_words: 150}
+          - {slot_id: "P3", role: "小结：三种范式的共同局限与本文定位", target_words: 100}
+        evidence_claims: ["CL-006"]
+
+  - section_id: "S01.3"
+    heading: "3. 现有方法不足与本项目切入点"
+    level: 2
+    is_leaf: true
+    target_words: 800
+    units:
+      - unit_id: "S01.3-U001"
+        section_id: "S01.3"
+        heading_level: 2
+        heading_number: "3"
+        is_first_unit_of_section: true
+        unit_type: "gap"
+        priority: "high"
+        status: "pending"
+        title: "现有方法不足与本项目切入点"
+        target_words: 800
+        purpose: "凝练两个核心gap，建立本项目的创新性论述"
+        core_argument: "RDMA隔离社区假设稳态流量，训练调度社区假设网络无争用——两者的交汇空白=本项目的核心创新空间"
+        paragraph_slots:
+          - {slot_id: "P1", role: "凝练Gap1：RDMA隔离不感知训练模式(6篇论文证据)", target_words: 250}
+          - {slot_id: "P2", role: "凝练Gap2：训练调度不考虑多租户(7篇论文证据)", target_words: 200}
+          - {slot_id: "P3", role: "'交叉空白'论述：两个社区研究范式的天然壁垒", target_words: 200}
+          - {slot_id: "P4", role: "本项目的切入点：训练通信语义驱动的RDMA网络资源智能调度", target_words: 150}
+        evidence_claims: ["CL-001", "CL-002", "CL-003"]
+
+  # ===== 二、研究内容 =====
+  - section_id: "S02"
+    heading: "二、研究内容"
+    level: 1
+    is_leaf: false
+    target_words: 0
+    units:
+      - unit_id: "S02-U001"
+        section_id: "S02"
+        heading_level: 1
+        heading_number: "二"
+        is_first_unit_of_section: true
+        unit_type: "section_intro"
+        needs_intro_paragraph: false
+        priority: "high"
+        status: "pending"
+        title: "二、研究内容"
+        target_words: 0
+        paragraph_slots: []
+
+  - section_id: "S02.1"
+    heading: "1. 研究目标"
+    level: 2
+    is_leaf: true
+    target_words: 400
+    units:
+      - unit_id: "S02.1-U001"
+        section_id: "S02.1"
+        heading_level: 2
+        heading_number: "1"
+        is_first_unit_of_section: true
+        unit_type: "objective"
+        priority: "high"
+        status: "pending"
+        title: "研究目标"
+        target_words: 400
+        purpose: "明确项目的总目标和三个子目标"
+        core_argument: "面向智算中心多租户RDMA训练场景，设计训练通信语义驱动的网络资源智能调度方法，实现性能隔离与资源高效利用"
+        paragraph_slots:
+          - {slot_id: "P1", role: "总目标表述", target_words: 150}
+          - {slot_id: "P2", role: "子目标1（感知）→子目标2（调度）→子目标3（验证）的递进关系", target_words: 250}
+        evidence_claims: []
+
+  - section_id: "S02.2"
+    heading: "2. 研究内容"
+    level: 2
+    is_leaf: false
+    target_words: 0
+    units:
+      - unit_id: "S02.2-U001"
+        section_id: "S02.2"
+        heading_level: 2
+        heading_number: "2"
+        is_first_unit_of_section: true
+        unit_type: "section_intro"
+        needs_intro_paragraph: true
+        priority: "high"
+        status: "pending"
+        title: "研究内容"
+        target_words: 150
+        purpose: "概述三项研究内容的递进逻辑"
+        paragraph_slots:
+          - {slot_id: "P1", role: "说明R1→R2→R3的关系", target_words: 150}
+
+  - section_id: "S02.2.1"
+    heading: "研究内容一：多租户训练通信模式在线感知与表征"
+    level: 3
+    is_leaf: true
+    target_words: 400
+    units:
+      - unit_id: "S02.2.1-U001"
+        section_id: "S02.2.1"
+        heading_level: 3
+        heading_number: "（一）"
+        is_first_unit_of_section: true
+        unit_type: "content"
+        priority: "high"
+        status: "pending"
+        title: "研究内容一：多租户训练通信模式在线感知与表征"
+        target_words: 400
+        purpose: "描述R1：如何在不侵入训练代码的前提下感知通信模式"
+        core_argument: "通过LD_PRELOAD劫持NCCL API+RDMA计数器，设计低开销通信模式感知框架"
+        paragraph_slots:
+          - {slot_id: "P1", role: "问题描述：为何需要感知训练通信模式", target_words: 80}
+          - {slot_id: "P2", role: "方法：NCCL Trace拦截+RDMA计数器+滑动窗口分类器", target_words: 150}
+          - {slot_id: "P3", role: "关键技术挑战和解决方案", target_words: 100}
+          - {slot_id: "P4", role: "预期结果：精度>90%，开销<3%", target_words: 70}
+        evidence_claims: ["CL-004"]
+
+  - section_id: "S02.2.2"
+    heading: "研究内容二：通信语义驱动的RDMA动态调度"
+    level: 3
+    is_leaf: true
+    target_words: 450
+    units:
+      - unit_id: "S02.2.2-U001"
+        section_id: "S02.2.2"
+        heading_level: 3
+        heading_number: "（二）"
+        is_first_unit_of_section: true
+        unit_type: "content"
+        priority: "high"
+        status: "pending"
+        title: "研究内容二：通信语义驱动的RDMA网络资源动态调度"
+        target_words: 450
+        purpose: "描述R2：将通信模式转化为调度策略"
+        core_argument: "通信模式→优先级映射→QP令牌桶速率控制+PeRF抢占原语+确定性路径分配"
+        paragraph_slots:
+          - {slot_id: "P1", role: "问题描述：如何将感知的通信模式转化为调度决策", target_words: 80}
+          - {slot_id: "P2", role: "方法：差异化优先级分配+QP粒度抢占式调度+ECMP冲突避免", target_words: 180}
+          - {slot_id: "P3", role: "调度算法设计（启发式+可选学习增强）", target_words: 120}
+          - {slot_id: "P4", role: "预期结果：高优任务带宽退化<10%，JCT降>30%", target_words: 70}
+        evidence_claims: ["CL-001", "CL-002", "CL-006"]
+
+  - section_id: "S02.2.3"
+    heading: "研究内容三：原型系统构建与实验验证"
+    level: 3
+    is_leaf: true
+    target_words: 400
+    units:
+      - unit_id: "S02.2.3-U001"
+        section_id: "S02.2.3"
+        heading_level: 3
+        heading_number: "（三）"
+        is_first_unit_of_section: true
+        unit_type: "content"
+        priority: "high"
+        status: "pending"
+        title: "研究内容三：原型系统构建与实验验证"
+        target_words: 400
+        purpose: "描述R3：端到端验证"
+        core_argument: "8-64节点RoCEv2集群，3场景×3基线对比验证"
+        paragraph_slots:
+          - {slot_id: "P1", role: "原型系统架构概述", target_words: 100}
+          - {slot_id: "P2", role: "实验设计：3种多任务并发场景", target_words: 120}
+          - {slot_id: "P3", role: "基线方案和评价指标", target_words: 100}
+          - {slot_id: "P4", role: "预期结果和开源计划", target_words: 80}
+        evidence_claims: []
+
+  - section_id: "S02.3"
+    heading: "3. 关键科学问题"
+    level: 2
+    is_leaf: true
+    target_words: 500
+    units:
+      - unit_id: "S02.3-U001"
+        section_id: "S02.3"
+        heading_level: 2
+        heading_number: "3"
+        is_first_unit_of_section: true
+        unit_type: "content"
+        priority: "medium"
+        status: "pending"
+        title: "关键科学问题"
+        target_words: 500
+        purpose: "提炼3个关键科学问题"
+        core_argument: "通信模式在线感知精度、通信语义到网络资源的映射方法、隔离与利用率的权衡"
+        paragraph_slots:
+          - {slot_id: "P1", role: "问题1：如何在不侵入训练代码的前提下精准感知通信模式", target_words: 150}
+          - {slot_id: "P2", role: "问题2：如何将离散的通信模式结构化为连续的网络资源调度决策", target_words: 150}
+          - {slot_id: "P3", role: "问题3：如何在性能隔离与资源利用率之间取得在线最优平衡", target_words: 200}
+        evidence_claims: []
+
+  - section_id: "S02.4"
+    heading: "4. 研究方案与技术路线"
+    level: 2
+    is_leaf: false
+    target_words: 0
+    units:
+      - unit_id: "S02.4-U001"
+        section_id: "S02.4"
+        heading_level: 2
+        heading_number: "4"
+        is_first_unit_of_section: true
+        unit_type: "section_intro"
+        needs_intro_paragraph: true
+        priority: "high"
+        status: "pending"
+        title: "研究方案与技术路线"
+        target_words: 200
+        purpose: "概述三层架构的整体技术路线"
+        paragraph_slots:
+          - {slot_id: "P1", role: "三层架构总览", target_words: 200}
+        figure_refs: ["F01"]
+
+  - section_id: "S02.4.1"
+    heading: "感知层：通信模式在线采集与分类"
+    level: 3
+    is_leaf: true
+    target_words: 350
+    units:
+      - unit_id: "S02.4.1-U001"
+        section_id: "S02.4.1"
+        heading_level: 3
+        heading_number: "（1）"
+        is_first_unit_of_section: true
+        unit_type: "route"
+        priority: "high"
+        status: "pending"
+        title: "感知层：通信模式在线采集与分类"
+        target_words: 350
+        purpose: "描述感知层的技术方案"
+        core_argument: "LD_PRELOAD拦截+sysfs计数+滑动窗口分类"
+        paragraph_slots:
+          - {slot_id: "P1", role: "NCCL Trace拦截机制", target_words: 120}
+          - {slot_id: "P2", role: "RDMA计数器采集与预处理", target_words: 100}
+          - {slot_id: "P3", role: "通信模式分类器", target_words: 130}
+        evidence_claims: ["CL-004"]
+
+  - section_id: "S02.4.2"
+    heading: "决策层：通信语义驱动的调度算法"
+    level: 3
+    is_leaf: true
+    target_words: 350
+    units:
+      - unit_id: "S02.4.2-U001"
+        section_id: "S02.4.2"
+        heading_level: 3
+        heading_number: "（2）"
+        is_first_unit_of_section: true
+        unit_type: "route"
+        priority: "high"
+        status: "pending"
+        title: "决策层：通信语义驱动的调度算法"
+        target_words: 350
+        purpose: "描述决策层的算法设计"
+        core_argument: "通信模式→优先级映射→资源分配→策略生成"
+        paragraph_slots:
+          - {slot_id: "P1", role: "优先级映射规则", target_words: 120}
+          - {slot_id: "P2", role: "带宽与路径分配算法", target_words: 130}
+          - {slot_id: "P3", role: "学习增强（可选）", target_words: 100}
+        evidence_claims: ["CL-006"]
+
+  - section_id: "S02.4.3"
+    heading: "执行层：RDMA抢占与路径控制"
+    level: 3
+    is_leaf: true
+    target_words: 300
+    units:
+      - unit_id: "S02.4.3-U001"
+        section_id: "S02.4.3"
+        heading_level: 3
+        heading_number: "（3）"
+        is_first_unit_of_section: true
+        unit_type: "route"
+        priority: "high"
+        status: "pending"
+        title: "执行层：RDMA抢占与路径控制"
+        target_words: 300
+        purpose: "描述执行层的实现方案"
+        core_argument: "PeRF抢占原语+QP令牌桶+Ethereal路径分配"
+        paragraph_slots:
+          - {slot_id: "P1", role: "PeRF抢占原语封装", target_words: 120}
+          - {slot_id: "P2", role: "QP速率控制与路径分配", target_words: 100}
+          - {slot_id: "P3", role: "回退机制", target_words: 80}
+        evidence_claims: ["CL-001"]
+
+  - section_id: "S02.5"
+    heading: "5. 特色与创新"
+    level: 2
+    is_leaf: true
+    target_words: 600
+    units:
+      - unit_id: "S02.5-U001"
+        section_id: "S02.5"
+        heading_level: 2
+        heading_number: "5"
+        is_first_unit_of_section: true
+        unit_type: "innovation"
+        priority: "high"
+        status: "pending"
+        title: "特色与创新"
+        target_words: 600
+        purpose: "阐述3个创新点"
+        core_argument: "训练语义驱动的RDMA调度范式创新+差异化分配算法+纯软件实现"
+        paragraph_slots:
+          - {slot_id: "P1", role: "创新点1：首次提出训练通信语义驱动的RDMA多租户调度范式", target_words: 200}
+          - {slot_id: "P2", role: "创新点2：设计了通信语义感知的差异化RDMA资源分配算法", target_words: 200}
+          - {slot_id: "P3", role: "创新点3：纯软件实现，不改NIC硬件，可增量部署", target_words: 200}
+        table_refs: ["T01"]
+        evidence_claims: ["CL-002", "CL-003", "CL-004"]
+
+  - section_id: "S02.6"
+    heading: "6. 年度研究计划"
+    level: 2
+    is_leaf: true
+    target_words: 400
+    units:
+      - unit_id: "S02.6-U001"
+        section_id: "S02.6"
+        heading_level: 2
+        heading_number: "6"
+        is_first_unit_of_section: true
+        unit_type: "other"
+        priority: "low"
+        status: "pending"
+        title: "年度研究计划"
+        target_words: 400
+        purpose: "展示三年研究计划的合理性和可行性"
+        paragraph_slots:
+          - {slot_id: "P1", role: "第一年(R1)：通信模式感知框架", target_words: 130}
+          - {slot_id: "P2", role: "第二年(R2)：调度算法设计与实现", target_words: 130}
+          - {slot_id: "P3", role: "第三年(R3)：原型集成与实验验证", target_words: 140}
+        table_refs: ["T02"]
+
+  # ===== 三、研究基础 =====
+  - section_id: "S03"
+    heading: "三、研究基础"
+    level: 1
+    is_leaf: false
+    target_words: 0
+    units:
+      - unit_id: "S03-U001"
+        section_id: "S03"
+        heading_level: 1
+        heading_number: "三"
+        is_first_unit_of_section: true
+        unit_type: "section_intro"
+        needs_intro_paragraph: false
+        priority: "high"
+        status: "pending"
+        title: "三、研究基础"
+        target_words: 0
+        paragraph_slots: []
+
+  - section_id: "S03.1"
+    heading: "1. 研究基础与可行性分析"
+    level: 2
+    is_leaf: true
+    target_words: 1200
+    units:
+      - unit_id: "S03.1-U001"
+        section_id: "S03.1"
+        heading_level: 2
+        heading_number: "1"
+        is_first_unit_of_section: true
+        unit_type: "foundation"
+        priority: "medium"
+        status: "blocked"
+        blocked_reason: "缺少applicant_profile.md——需用户补充团队基础和前期成果"
+        title: "研究基础与可行性分析"
+        target_words: 1200
+        purpose: "展示团队在RDMA系统和分布式训练方面的基础"
+        paragraph_slots:
+          - {slot_id: "P1", role: "团队在RDMA网络系统方面的前期积累[待补充]", target_words: 300}
+          - {slot_id: "P2", role: "团队在分布式训练方面的研究基础[待补充]", target_words: 300}
+          - {slot_id: "P3", role: "技术可行性分析（基于已有软硬件条件）", target_words: 300}
+          - {slot_id: "P4", role: "前期相关论文/项目/系统原型[待补充]", target_words: 300}
+        avoid: ["编造不存在的论文和项目"]
+
+  - section_id: "S03.2"
+    heading: "2. 工作条件"
+    level: 2
+    is_leaf: true
+    target_words: 600
+    units:
+      - unit_id: "S03.2-U001"
+        section_id: "S03.2"
+        heading_level: 2
+        heading_number: "2"
+        is_first_unit_of_section: true
+        unit_type: "foundation"
+        priority: "medium"
+        status: "blocked"
+        blocked_reason: "缺少实验环境信息——需用户确认可用的RDMA集群规格"
+        title: "工作条件"
+        target_words: 600
+        purpose: "说明可用的实验平台和软硬件条件"
+        paragraph_slots:
+          - {slot_id: "P1", role: "RDMA集群硬件条件[待补充]", target_words: 200}
+          - {slot_id: "P2", role: "软件栈和开发工具[待补充]", target_words: 200}
+          - {slot_id: "P3", role: "仿真平台（如有）", target_words: 200}
+
+  # ===== 四、其他 =====
+  - section_id: "S04"
+    heading: "四、其他需要说明的情况"
+    level: 1
+    is_leaf: true
+    target_words: 700
+    units:
+      - unit_id: "S04-U001"
+        section_id: "S04"
+        heading_level: 1
+        heading_number: "四"
+        is_first_unit_of_section: true
+        unit_type: "other"
+        priority: "low"
+        status: "pending"
+        title: "其他需要说明的情况"
+        target_words: 700
+        purpose: "补充AI使用说明和其他声明"
+        paragraph_slots:
+          - {slot_id: "P1", role: "AI辅助写作说明（符合NSFC 2026 AI使用规范）", target_words: 350}
+          - {slot_id: "P2", role: "其他声明和说明", target_words: 350}

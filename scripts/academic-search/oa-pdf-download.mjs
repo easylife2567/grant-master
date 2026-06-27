@@ -83,6 +83,9 @@ function sourceFromRecord(record) {
 
 function skipReason(record) {
   if (record.full_text_status !== 'open_pdf') {
+    if (record.full_text_status === 'needs_institution' || record.full_text_status === 'no_open_pdf') {
+      return 'paywalled_do_not_bypass';
+    }
     return `full_text_status=${record.full_text_status || 'unknown'}`;
   }
   if (!record.pdf_url) {

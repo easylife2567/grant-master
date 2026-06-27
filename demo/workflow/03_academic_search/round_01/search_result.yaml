@@ -1,0 +1,56 @@
+stage: "ACADEMIC_SEARCH"
+round: 1
+status: "completed"
+can_continue: true
+recommended_next_stage: "PAPER_DIGEST"
+
+query_stats:
+  total_queries: 5
+  completed_queries: 5
+  failed_queries: 0
+
+paper_counts:
+  total_candidates: 48
+  core: 26
+  general: 22
+  recent_count: 19
+  sources:
+    Q1: 16
+    Q2: 15
+    Q3: 15
+    Q4: 20
+    Q5: 15
+
+download_summary:
+  total_eligible: 48
+  downloaded: 44
+  paywalled_skipped: 2
+  failed: 0
+  skipped_general: 2
+
+outputs:
+  search_summary: "workflow/03_academic_search/round_01/search_summary.md"
+  candidate_papers: "workflow/03_academic_search/round_01/candidate_papers.md"
+  search_results: "workflow/03_academic_search/round_01/search_results.yaml"
+  download_queue: "workflow/03_academic_search/round_01/download_queue.yaml"
+  instructions_dir: "workflow/03_academic_search/round_01/instructions/"
+  reports_dir: "workflow/03_academic_search/round_01/reports/"
+
+integrity:
+  all_outputs_present: true
+  checked_at: "2025-06-27T18:35:00+08:00"
+  missing_outputs: []
+  warnings:
+    - "2 篇 core 论文非 OA（Palos, TX Architecture），需机构获取"
+    - "Semantic Scholar API 持续 429，引用数数据缺失"
+    - "Q4 searcher 报告提及的 STELLAR (SIGCOMM 2025) 和 PeRF 因元数据不完整未纳入候选列表"
+
+errors:
+  - "semantic_scholar_429_all_queries"
+  - "openalex_credit_exhausted_Q5"
+
+notes:
+  - "首次调研达到 48 篇候选论文（core 26, general 22），满足 ≥20 篇候选（core ≥10）的最低要求"
+  - "44 篇 PDF 已下载到 papers/inbox/，可供 04-paper-digest 直接使用"
+  - "调研覆盖路线：RDMA隔离5路线 + 训练通信调度3维度 + 多租户干扰定量证据 + ML感知RDMA新范式"
+  - "建议 04-paper-digest 按 query_id 标签分组精读，优先处理 C1（Q1）和 C2（Q2）论文"

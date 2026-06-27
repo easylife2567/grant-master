@@ -65,13 +65,13 @@ curl -s -X POST "http://127.0.0.1:${CDP_PROXY_PORT:-3456}/click?target=ID" -d 'b
 ```
 
 ### POST /clickAt?target=ID
-CDP 浏览器级真实鼠标点击（`Input.dispatchMouseEvent`），POST body 为 CSS 选择器。先获取元素坐标，再模拟鼠标按下/释放。算真实用户手势，能触发文件对话框、绕过部分反自动化检测。
+CDP 浏览器级真实鼠标点击（`Input.dispatchMouseEvent`），POST body 为 CSS 选择器。先获取元素坐标，再模拟鼠标按下/释放。用于触发合法页面交互，例如文件对话框。
 ```bash
 curl -s -X POST "http://127.0.0.1:${CDP_PROXY_PORT:-3456}/clickAt?target=ID" -d 'button.upload'
 ```
 
 ### POST /setFiles?target=ID
-给 file input 设置本地文件路径（`DOM.setFileInputFiles`），完全绕过文件对话框。POST body 为 JSON。
+给 file input 设置本地文件路径（`DOM.setFileInputFiles`）。POST body 为 JSON。
 ```bash
 curl -s -X POST "http://127.0.0.1:${CDP_PROXY_PORT:-3456}/setFiles?target=ID" \
   -d '{"selector":"input[type=file]","files":["/path/to/file.pdf"]}'

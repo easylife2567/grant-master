@@ -1,0 +1,97 @@
+query_id: "Q5"
+generated_at: "2026-06-27T17:45:00Z"
+
+download_summary:
+  eligible: 8
+  paywalled_skipped: 0
+  downloaded: 8
+  failed: 0
+
+papers:
+  - title: "When Scaling Fails: Network and Fabric Effects on Distributed GPU Training Performance"
+    arxiv_id: "2603.04424"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2603.04424"
+    local_pdf: "papers/inbox/2603.04424.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 647084
+
+  - title: "Network Contention-Aware Cluster Scheduling with Reinforcement Learning"
+    arxiv_id: "2310.20209"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2310.20209"
+    local_pdf: "papers/inbox/2310.20209.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 735590
+
+  - title: "Isolated Scheduling for Distributed Training Tasks in GPU Clusters"
+    arxiv_id: "2308.05692"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2308.05692"
+    local_pdf: "papers/inbox/2308.05692.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 952045
+
+  - title: "Impact of RoCE Congestion Control Policies on Distributed Training of DNNs"
+    arxiv_id: "2207.10898"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2207.10898"
+    local_pdf: "papers/inbox/2207.10898.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 571199
+
+  - title: "Congestion-Aware Path Selection for Load Balancing in AI Clusters"
+    arxiv_id: "2506.08132"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2506.08132"
+    local_pdf: "papers/inbox/2506.08132.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 1361194
+
+  - title: "Efficient Pre-Training of LLMs via Topology-Aware Communication Alignment on More Than 9600 GPUs"
+    arxiv_id: "2509.15940"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2509.15940"
+    local_pdf: "papers/inbox/2509.15940.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 1271578
+
+  - title: "Palladium: A DPU-enabled Multi-Tenant Serverless Cloud over Zero-copy Multi-node RDMA Fabrics"
+    arxiv_id: "2505.11339"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2505.11339"
+    local_pdf: "papers/inbox/2505.11339.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 1519707
+
+  - title: "Ethereal: Divide and Conquer Network Load Balancing in Large-Scale Distributed Training"
+    arxiv_id: "2407.00550"
+    doi: null
+    oa_status: "open_pdf"
+    pdf_url: "https://arxiv.org/pdf/2407.00550"
+    local_pdf: "papers/inbox/2407.00550.pdf"
+    download_source: "arxiv"
+    download_status: "downloaded"
+    download_error: null
+    file_size_bytes: 1550980

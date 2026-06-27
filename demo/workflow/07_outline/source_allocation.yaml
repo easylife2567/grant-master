@@ -1,0 +1,42 @@
+stage: "OUTLINE"
+version: "v1"
+
+helm_sources:
+  scheme_blueprint: "workflow/06_helm/scheme_blueprint.yaml"
+  helm_report: "workflow/06_helm/helm_report.md"
+  decision_log: "workflow/06_helm/decision_log.md"
+
+synthesis_sources:
+  current_view: "workflow/05_synthesis/current_view.md"
+  evidence_ledger: "workflow/05_synthesis/evidence_ledger.yaml"
+  latest_result: "workflow/05_synthesis/latest_result.yaml"
+
+evidence_claim_map:
+  CL-001: {title: "多租户RDMA共享下存在严重性能干扰", evidence_level: "strong", allocated_to: ["S01.1-U001", "S01.3-U001"]}
+  CL-002: {title: "现有RDMA隔离方案不感知训练通信模式", evidence_level: "strong", allocated_to: ["S01.2.1-U001", "S01.3-U001", "S02.5-U001"]}
+  CL-003: {title: "训练通信调度全部聚焦单作业无多租户", evidence_level: "strong", allocated_to: ["S01.2.2-U001", "S01.3-U001", "S02.5-U001"]}
+  CL-004: {title: "训练语义嵌入网络层决策可显著提升性能", evidence_level: "strong", allocated_to: ["S01.2.2-U001", "S02.2.1-U001", "S02.5-U001"]}
+  CL-005: {title: "通用RDMA CC对训练影响有限需专有方案", evidence_level: "strong", allocated_to: ["S01.1-U001"]}
+  CL-006: {title: "基于学习的方法在GPU集群调度中可行", evidence_level: "medium", allocated_to: ["S01.2.3-U001", "S02.4.2-U001"]}
+
+forbidden_directions:
+  - "RDMA硬件协议重新设计 (dropped)"
+  - "推理场景网络优化 (dropped)"
+  - "大规模并发>100任务 (future_work)"
+  - "ML容忍度差异化QoS (future_work)"
+
+unit_source_map:
+  S01.1-U001: {helm: ["scheme_blueprint.outline_guidance.background_focus"], evidence: ["CL-001", "CL-005"], papers: ["kong2023husky", "han2023vclos", "ryu2023rl", "lee2025overlap"]}
+  S01.2.1-U001: {helm: ["scheme_blueprint.outline_guidance.related_work_focus"], evidence: ["CL-002"], papers: ["kong2023husky", "lou2024harmonic", "lee2024perf", "qi2025palladium"]}
+  S01.2.2-U001: {helm: ["scheme_blueprint.outline_guidance.related_work_focus"], evidence: ["CL-003", "CL-004"], papers: ["hashemi2018tictac", "wang2020dlcp", "wang2024dhelix"]}
+  S01.2.3-U001: {helm: ["scheme_blueprint.outline_guidance.related_work_focus"], evidence: ["CL-006"], papers: ["he2025arnold", "zhang2025bandpilot", "ryu2023rl", "han2023vclos"]}
+  S01.3-U001: {helm: ["scheme_blueprint.selected_problem"], evidence: ["CL-001", "CL-002", "CL-003"], papers: ["kong2023husky", "lee2024perf", "wang2020dlcp"]}
+  S02.1-U001: {helm: ["scheme_blueprint.outline_guidance.objective_expression"]}
+  S02.2.1-U001: {helm: ["scheme_blueprint.research_contents[0]"], evidence: ["CL-004"]}
+  S02.2.2-U001: {helm: ["scheme_blueprint.research_contents[1]"], evidence: ["CL-001", "CL-002", "CL-006"]}
+  S02.2.3-U001: {helm: ["scheme_blueprint.research_contents[2]"]}
+  S02.3-U001: {helm: ["scheme_blueprint.selected_problem.supporting_problems"]}
+  S02.4.1-U001: {helm: ["scheme_blueprint.system_scheme.modules[0:3]"]}
+  S02.4.2-U001: {helm: ["scheme_blueprint.system_scheme.modules[3]"]}
+  S02.4.3-U001: {helm: ["scheme_blueprint.system_scheme.modules[4:6]"]}
+  S02.5-U001: {helm: ["scheme_blueprint.outline_guidance.innovation_expression"], evidence: ["CL-002", "CL-003", "CL-004"]}

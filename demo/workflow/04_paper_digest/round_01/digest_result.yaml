@@ -1,0 +1,38 @@
+stage: "PAPER_DIGEST"
+round: 1
+status: "completed"
+can_continue: true
+recommended_next_stage: "SYNTHESIS"
+
+paper_counts:
+  total_digested: 25
+  core_digested: 25
+  general_digested: 0
+  unreadable: 0
+
+outputs:
+  digest_report: "workflow/04_paper_digest/round_01/digest_report.md"
+  paper_index: "workflow/04_paper_digest/paper_index.yaml"
+  reports_dir: "workflow/04_paper_digest/round_01/reports/"
+
+next_expected_outputs:
+  synthesis_dir: "workflow/05_synthesis/round_01"
+
+intervention:
+  required: false
+  reason: ""
+  questions: []
+
+integrity:
+  all_outputs_present: true
+  checked_at: "2025-06-27T19:00:00+08:00"
+  missing_outputs: []
+  warnings:
+    - "25 core papers digested across 5 batches; 19 general papers in inbox not processed (within policy for core-only focus)"
+    - "2 paywalled papers (Palos, TX Architecture) not available for digest"
+
+notes:
+  - "25 篇核心论文完成 7 节精读，5 个批次均生成批次汇总报告和跨论文发现"
+  - "三层隔离体系诊断确认 Layer 3（工作负载感知动态调度）为本课题核心创新空间"
+  - "全部 5 项假设均获跨批次论文支持，证据链完整"
+  - "建议直接进入 05-synthesis，不需补充调研"

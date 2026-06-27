@@ -1,0 +1,101 @@
+batch_id: "Q2"
+round_dir: "workflow/04_paper_digest/round_01"
+
+round_goal_excerpt:
+  goal: "系统调研 RDMA 多租户性能隔离和分布式训练通信调度的现有方法"
+  core_question: "分布式训练的通信调度主要关注哪些维度？现有训练通信调度是否考虑多任务并发的隔离和公平性？"
+  what_not_to_find: "纯训练算法优化不涉及网络调度、将通信优化仅作为训练加速技巧不涉及系统设计"
+
+hypothesis_to_verify:
+  - "分布式训练的通信调度已有成熟的技术路线（优先级调度、压缩协同、拓扑感知），但多任务隔离尚未被充分考虑"
+  - "将训练语义纳入网络层调度决策可获得比纯网络层调度更好的效果"
+
+papers:
+  - pdf_path: "papers/inbox/2018_TicTac_Accelerating_Distributed_Deep_Learning_with_Communication_Scheduling_1b759e2b78e6.pdf"
+    metadata:
+      title: "TicTac: Accelerating Distributed Deep Learning with Communication Scheduling"
+      authors: ["Sayed Hadi Hashemi", "Sangeetha Abdu Jyothi", "Roy H. Campbell"]
+      year: 2018
+      venue: "MLSys (CCF-B)"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "奠基性工作：针对Parameter Server架构中参数到达顺序随机导致迭代时间方差大的问题，通过优先级调度强制传输顺序，消除straggler效应。训练吞吐提升19.2%。"
+      query_id: "Q2"
+
+  - pdf_path: "papers/inbox/2019_Priority-based_Parameter_Propagation_for_Distributed_DNN_Training_cba7a84c34a0.pdf"
+    metadata:
+      title: "P3: Priority-based Parameter Propagation for Distributed DNN Training"
+      authors: ["Anand Jayarajan", "Jinliang Wei", "Garth Gibson", "Alexandra Fedorova", "Gennady Pekhimenko"]
+      year: 2019
+      venue: "SysML (CCF-B)"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "细粒度优先级参数同步：利用不同参数可容忍不同同步延迟的洞察。ResNet-50/Sockeye/VGG-19吞吐分别提升25%/38%/66%。"
+      query_id: "Q2"
+
+  - pdf_path: "papers/inbox/2020_Domain-specific_Communication_Optimization_for_Distributed_DNN_Training_d6a21b768315.pdf"
+    metadata:
+      title: "DLCP: Domain-specific Communication Optimization for Distributed DNN Training"
+      authors: ["Hao Wang", "Jingrong Chen", "Xinchen Wan", "Han Tian", "Jiacheng Xia", "Gaoxiong Zeng", "Weiyan Wang", "Kai Chen", "Wei Bai", "Junchen Jiang"]
+      year: 2020
+      venue: "arXiv"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "利用DL领域特性做细粒度通信优化：利用SGD有界损失容忍度优化尾部延迟；基于梯度层级和大小的包级优先级调度和丢弃；包间无序逐包负载均衡。最高额外提供84.3%加速。"
+      query_id: "Q2"
+
+  - pdf_path: "papers/inbox/2021_MergeComp_A_Compression_Scheduler_for_Scalable_Communication-Efficient_Distribut_52e8177931fb.pdf"
+    metadata:
+      title: "MergeComp: A Compression Scheduler for Scalable Communication-Efficient Distributed Training"
+      authors: ["Zhuang Wang", "Xinyu Wu", "T. S. Eugene Ng"]
+      year: 2021
+      venue: "arXiv"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "medium"
+      abstract_summary: "针对梯度压缩在某些情况下反降性能的问题，提出压缩调度器自动调度压缩操作时间点和方式。9种压缩算法上性能提升最高3.83x，高速网络上扩展效率达99%。"
+      query_id: "Q2"
+
+  - pdf_path: "papers/inbox/2021_DynaComm_Accelerating_Distributed_CNN_Training_between_Edges_and_Clouds_through__ef0a266b4997.pdf"
+    metadata:
+      title: "DynaComm: Accelerating Distributed CNN Training between Edges and Clouds through Dynamic Communication Scheduling"
+      authors: ["Shangming Cai", "Dongsheng Wang", "Haixia Wang", "Yongqiang Lyu", "Guangquan Xu", "Xi Zheng", "Athanasios V. Vasilakos"]
+      year: 2021
+      venue: "IEEE JSAC (CCF-A)"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "medium"
+      abstract_summary: "面向边云协同训练的逐层动态通信调度器。将每次传输分解为多个段实现运行时最优计算-通信重叠。IEEE JSAC发表。"
+      query_id: "Q2"
+
+  - pdf_path: "papers/inbox/2024_DHelix_Hiding_Communication_Cost_in_Distributed_LLM_Training_via_Micro-batch_Co-_a27be85edb8b.pdf"
+    metadata:
+      title: "DHelix: Hiding Communication Cost in Distributed LLM Training via Micro-batch Co-execution"
+      authors: ["Haiquan Wang", "Chaoyi Ruan", "Jia He", "Jiaqi Ruan", "Chengjie Tang", "Xiaosong Ma", "Cheng Li"]
+      year: 2024
+      venue: "arXiv"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "medium"
+      abstract_summary: "受DNA双螺旋启发，通过Strand Interleaving交错排列前后向传播、DP搜索最优协同调度方案隐藏通信。A40/A800/H100上MFU提升12-40%，仅需不到3%额外显存。"
+      query_id: "Q2"
+
+  - pdf_path: "papers/inbox/2025_CrossPipe_Towards_Optimal_Pipeline_Schedules_for_Cross-Datacenter_Training_6f22ba8447dc.pdf"
+    metadata:
+      title: "CrossPipe: Towards Optimal Pipeline Schedules for Cross-Datacenter Training"
+      authors: ["Tiancheng Chen", "Ales Kubicek", "Langwen Huang", "Torsten Hoefler"]
+      year: 2025
+      venue: "USENIX ATC (CCF-A)"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "跨数据中心LLM训练的最优pipeline调度框架。显式建模网络延迟和带宽，统一分析PP与DP通信重叠。基于求解器的最优和贪心近最优算法。训练时间减少最高33.6%。"
+      query_id: "Q2"
+
+output:
+  batch_report: "workflow/04_paper_digest/round_01/reports/Q2/Q2_batch_report.md"
+  batch_manifest: "workflow/04_paper_digest/round_01/reports/Q2/Q2_batch_manifest.yaml"
+  paper_reports_dir: "workflow/04_paper_digest/round_01/reports/Q2/papers/"

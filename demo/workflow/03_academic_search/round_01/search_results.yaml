@@ -1,0 +1,673 @@
+# 结构化论文列表（供 04-paper-digest 读取）
+# 每篇论文保留 query_id 标签，以便 04 按标签分组
+
+round: 1
+total_papers: 48
+core_count: 26
+general_count: 22
+generated_at: "2025-06-27T18:30:00+08:00"
+
+papers:
+  # === C1 核心：RDMA多租户性能隔离 ===
+  - id: "P001"
+    title: "Harmonic: Hardware-assisted RDMA Performance Isolation for Public Clouds"
+    authors: ["Jiaqi Lou", "Xinhao Kong", "Jinghan Huang", "Wei Bai", "Nam Sung Kim", "Danyang Zhuo"]
+    year: 2024
+    venue: "NSDI"
+    venue_rank: "CCF-A"
+    doi: null
+    arxiv_id: null
+    url: "https://www.usenix.org/conference/nsdi24/presentation/lou"
+    relevance: "core"
+    query_ids: ["Q1", "Q4"]
+    local_pdf: "papers/inbox/2024_Harmonic_RDMA_Isolation.pdf"
+    download_source: "usenix_oa"
+    oa_status: "open_pdf"
+
+  - id: "P002"
+    title: "Understanding RDMA Microarchitecture Resources for Performance Isolation"
+    authors: ["Xinhao Kong", "Jingrong Chen", "Wei Bai", "Yechen Xu", "Mahmoud Elhaddad", "Shachar Raindel", "Jitendra Padhye", "Alvin R. Lebeck", "Danyang Zhuo"]
+    year: 2023
+    venue: "NSDI"
+    venue_rank: "CCF-A"
+    doi: null
+    arxiv_id: null
+    url: "https://www.usenix.org/conference/nsdi23/presentation/kong"
+    relevance: "core"
+    query_ids: ["Q1", "Q4"]
+    local_pdf: "papers/inbox/2023_Husky_RDMA_Microarchitecture.pdf"
+    download_source: "usenix_oa"
+    oa_status: "open_pdf"
+
+  - id: "P003"
+    title: "PeRF: Preemption-enabled RDMA Framework"
+    authors: ["Sugi Lee", "Mingyu Choi", "Ikjun Yeom", "Younghoon Kim"]
+    year: 2024
+    venue: "USENIX ATC"
+    venue_rank: "CCF-A"
+    doi: "10.5555/3691992.3692005"
+    arxiv_id: null
+    url: "https://www.usenix.org/conference/atc24/presentation/lee"
+    relevance: "core"
+    query_ids: ["Q1"]
+    local_pdf: "papers/inbox/2024_PeRF_Preemption_RDMA.pdf"
+    download_source: "usenix_oa"
+    oa_status: "open_pdf"
+
+  - id: "P004"
+    title: "Palos: Fair and Flexible Flow Scheduling on RNIC"
+    authors: ["Zhenlong Ma", "Fan Yang", "Ning Kang", "Jing Xu", "Guojun Yuan", "Zhan Wang", "Ninghui Sun"]
+    year: 2024
+    venue: "IEEE HPCC"
+    venue_rank: "未收录"
+    doi: "10.1109/hpcc64274.2024.00127"
+    arxiv_id: null
+    url: "https://ieeexplore.ieee.org/document/11083207"
+    relevance: "core"
+    query_ids: ["Q1"]
+    local_pdf: null
+    download_source: null
+    oa_status: "needs_institution"
+
+  - id: "P005"
+    title: "Palladium: A DPU-enabled Multi-Tenant Serverless Cloud over Zero-copy Multi-node RDMA Fabrics"
+    authors: ["Shixiong Qi", "Songyu Zhang", "K. K. Ramakrishnan", "Diman Z. Tootaghaj", "Hardik Soni", "Puneet Sharma"]
+    year: 2025
+    venue: "SIGCOMM"
+    venue_rank: "CCF-A"
+    doi: "10.1145/3718958.3750494"
+    arxiv_id: "2505.11339"
+    url: "https://arxiv.org/abs/2505.11339"
+    relevance: "core"
+    query_ids: ["Q1", "Q4", "Q5"]
+    local_pdf: "papers/inbox/2505.11339.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P006"
+    title: "OSMOSIS: Enabling Multi-Tenancy in Datacenter SmartNICs"
+    authors: ["ETH Zurich"]
+    year: 2023
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: null
+    arxiv_id: "2309.03628"
+    url: "https://arxiv.org/abs/2309.03628"
+    relevance: "core"
+    query_ids: ["Q1"]
+    local_pdf: "papers/inbox/2023_OSMOSIS_SmartNIC_MultiTenant.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P007"
+    title: "Closing the HPC-Cloud Convergence Gap: Multi-Tenant Slingshot RDMA for Kubernetes"
+    authors: ["Philipp A. Friese", "Ahmed Eleliemy", "Utz-Uwe Haus", "Martin Schulz"]
+    year: 2025
+    venue: "IEEE Cluster"
+    venue_rank: "未收录"
+    doi: "10.1109/CLUSTER59342.2025.11186471"
+    arxiv_id: "2508.09663"
+    url: "https://arxiv.org/abs/2508.09663"
+    relevance: "core"
+    query_ids: ["Q1", "Q4", "Q5"]
+    local_pdf: "papers/inbox/2508.09663.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P008"
+    title: "Optimize the TX Architecture of RDMA NIC for Performance Isolation in the Cloud Environment"
+    authors: ["Yunkun Liao", "Jingya Wu", "Wenyan Lu", "Xiaowei Li", "Guihai Yan"]
+    year: 2023
+    venue: "GLSVLSI"
+    venue_rank: "未收录"
+    doi: "10.1145/3583781.3590276"
+    arxiv_id: null
+    url: "https://dl.acm.org/doi/10.1145/3583781.3590276"
+    relevance: "core"
+    query_ids: ["Q1"]
+    local_pdf: null
+    download_source: null
+    oa_status: "needs_institution"
+
+  # === C2 核心：分布式训练通信调度 ===
+  - id: "P009"
+    title: "TicTac: Accelerating Distributed Deep Learning with Communication Scheduling"
+    authors: ["Sayed Hadi Hashemi", "Sangeetha Abdu Jyothi", "Roy H. Campbell"]
+    year: 2018
+    venue: "MLSys"
+    venue_rank: "CCF-B"
+    doi: null
+    arxiv_id: "1803.03288"
+    url: "https://arxiv.org/abs/1803.03288"
+    relevance: "core"
+    query_ids: ["Q2"]
+    local_pdf: "papers/inbox/2018_TicTac_Accelerating_Distributed_Deep_Learning_with_Communication_Scheduling_1b759e2b78e6.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P010"
+    title: "P3: Priority-based Parameter Propagation for Distributed DNN Training"
+    authors: ["Anand Jayarajan", "Jinliang Wei", "Garth Gibson", "Alexandra Fedorova", "Gennady Pekhimenko"]
+    year: 2019
+    venue: "SysML"
+    venue_rank: "CCF-B"
+    doi: null
+    arxiv_id: "1905.03960"
+    url: "https://arxiv.org/abs/1905.03960"
+    relevance: "core"
+    query_ids: ["Q2"]
+    local_pdf: "papers/inbox/2019_Priority-based_Parameter_Propagation_for_Distributed_DNN_Training_cba7a84c34a0.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P011"
+    title: "DLCP: Domain-specific Communication Optimization for Distributed DNN Training"
+    authors: ["Hao Wang", "Jingrong Chen", "Xinchen Wan", "Han Tian", "Jiacheng Xia", "Gaoxiong Zeng", "Weiyan Wang", "Kai Chen", "Wei Bai", "Junchen Jiang"]
+    year: 2020
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: null
+    arxiv_id: "2008.08445"
+    url: "https://arxiv.org/abs/2008.08445"
+    relevance: "core"
+    query_ids: ["Q2"]
+    local_pdf: "papers/inbox/2020_Domain-specific_Communication_Optimization_for_Distributed_DNN_Training_d6a21b768315.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P012"
+    title: "MergeComp: A Compression Scheduler for Scalable Communication-Efficient Distributed Training"
+    authors: ["Zhuang Wang", "Xinyu Wu", "T. S. Eugene Ng"]
+    year: 2021
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: null
+    arxiv_id: "2103.15195"
+    url: "https://arxiv.org/abs/2103.15195"
+    relevance: "core"
+    query_ids: ["Q2"]
+    local_pdf: "papers/inbox/2021_MergeComp_A_Compression_Scheduler_for_Scalable_Communication-Efficient_Distribut_52e8177931fb.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P013"
+    title: "DynaComm: Accelerating Distributed CNN Training between Edges and Clouds through Dynamic Communication Scheduling"
+    authors: ["Shangming Cai", "Dongsheng Wang", "Haixia Wang", "Yongqiang Lyu", "Guangquan Xu", "Xi Zheng", "Athanasios V. Vasilakos"]
+    year: 2021
+    venue: "IEEE JSAC"
+    venue_rank: "CCF-A"
+    doi: "10.1109/JSAC.2021.3118419"
+    arxiv_id: "2101.07968"
+    url: "https://arxiv.org/abs/2101.07968"
+    relevance: "core"
+    query_ids: ["Q2"]
+    local_pdf: "papers/inbox/2021_DynaComm_Accelerating_Distributed_CNN_Training_between_Edges_and_Clouds_through__ef0a266b4997.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P014"
+    title: "DHelix: Hiding Communication Cost in Distributed LLM Training via Micro-batch Co-execution"
+    authors: ["Haiquan Wang", "Chaoyi Ruan", "Jia He", "Jiaqi Ruan", "Chengjie Tang", "Xiaosong Ma", "Cheng Li"]
+    year: 2024
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: null
+    arxiv_id: "2411.15871"
+    url: "https://arxiv.org/abs/2411.15871"
+    relevance: "core"
+    query_ids: ["Q2"]
+    local_pdf: "papers/inbox/2024_DHelix_Hiding_Communication_Cost_in_Distributed_LLM_Training_via_Micro-batch_Co-_a27be85edb8b.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P015"
+    title: "CrossPipe: Towards Optimal Pipeline Schedules for Cross-Datacenter Training"
+    authors: ["Tiancheng Chen", "Ales Kubicek", "Langwen Huang", "Torsten Hoefler"]
+    year: 2025
+    venue: "USENIX ATC"
+    venue_rank: "CCF-A"
+    doi: null
+    arxiv_id: "2507.00217"
+    url: "https://arxiv.org/abs/2507.00217"
+    relevance: "core"
+    query_ids: ["Q2"]
+    local_pdf: "papers/inbox/2025_CrossPipe_Towards_Optimal_Pipeline_Schedules_for_Cross-Datacenter_Training_6f22ba8447dc.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  # === C1×C2 交叉：多租户训练网络争用 ===
+  - id: "P016"
+    title: "Arnold: Efficient Pre-Training of LLMs via Topology-Aware Communication Alignment on More Than 9600 GPUs"
+    authors: ["Guoliang He", "Youhe Jiang", "Wencong Xiao", "Kaihua Jiang", "Shuguang Wang", "Jun Wang", "Zixian Du", "Zhuo Jiang", "Xinlei Zhang", "Binhang Yuan", "Eiko Yoneki"]
+    year: 2025
+    venue: "NeurIPS"
+    venue_rank: "CCF-A"
+    doi: null
+    arxiv_id: "2509.15940"
+    url: "https://arxiv.org/abs/2509.15940"
+    relevance: "core"
+    query_ids: ["Q2", "Q3", "Q5"]
+    local_pdf: "papers/inbox/2509.15940.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P017"
+    title: "vClos: Isolated Scheduling for Distributed Training Tasks in GPU Clusters"
+    authors: ["Xinchi Han", "Weihao Jiang", "Peirui Cao", "Qinwei Yang", "Yunzhuo Liu", "Shuyao Qi", "Shengkai Lin", "Shizhen Zhao"]
+    year: 2023
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: null
+    arxiv_id: "2308.05692"
+    url: "https://arxiv.org/abs/2308.05692"
+    relevance: "core"
+    query_ids: ["Q3", "Q5"]
+    local_pdf: "papers/inbox/2308.05692.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P018"
+    title: "BandPilot: Towards Performance- and Contention-Aware GPU Dispatching in AI Clusters"
+    authors: ["Kunming Zhang", "Hanlong Liao", "Junyu Xue", "Deke Guo", "Guoming Tang"]
+    year: 2025
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: null
+    arxiv_id: "2506.15595"
+    url: "https://arxiv.org/abs/2506.15595"
+    relevance: "core"
+    query_ids: ["Q3"]
+    local_pdf: "papers/inbox/2025_BandPilot_2506.15595.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P019"
+    title: "When Scaling Fails: Network and Fabric Effects on Distributed GPU Training Performance"
+    authors: ["Dinesh Gopalan", "Ratul Ali"]
+    year: 2026
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: null
+    arxiv_id: "2603.04424"
+    url: "https://arxiv.org/abs/2603.04424"
+    relevance: "core"
+    query_ids: ["Q3", "Q5"]
+    local_pdf: "papers/inbox/2603.04424.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P020"
+    title: "Network Contention-Aware Cluster Scheduling with Reinforcement Learning"
+    authors: ["Junyeol Ryu", "Jeongyoon Eo"]
+    year: 2023
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: null
+    arxiv_id: "2310.20209"
+    url: "https://arxiv.org/abs/2310.20209"
+    relevance: "core"
+    query_ids: ["Q5"]
+    local_pdf: "papers/inbox/2310.20209.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  # === ML-感知 RDMA 传输 ===
+  - id: "P021"
+    title: "OptiNIC: A Resilient and Tail-Optimal RDMA NIC for Distributed ML Workloads"
+    authors: ["Ertza Warraich", "Ali Imran", "Annus Zulfiqar", "Shay Vargaftik", "Sonia Fahmy", "Muhammad Shahbaz"]
+    year: 2025
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: null
+    arxiv_id: "2512.22743"
+    url: "https://arxiv.org/abs/2512.22743"
+    relevance: "core"
+    query_ids: ["Q1", "Q4", "Q5"]
+    local_pdf: "papers/inbox/2025_OptiNIC_RDMA_ML.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P022"
+    title: "Reimagining RDMA Through the Lens of ML (Celeris)"
+    authors: ["Ertza Warraich", "Ali Imran", "Annus Zulfiqar", "Shay Vargaftik", "Sonia Fahmy", "Muhammad Shahbaz"]
+    year: 2025
+    venue: "IEEE Computer Architecture Letters"
+    venue_rank: "未收录"
+    doi: "10.1109/LCA.2025.3624158"
+    arxiv_id: "2510.16606"
+    url: "https://arxiv.org/abs/2510.16606"
+    relevance: "core"
+    query_ids: ["Q4"]
+    local_pdf: "papers/inbox/2510.16606.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P023"
+    title: "An Extensible Software Transport Layer for GPU Networking"
+    authors: ["Yang Zhou", "Zhongjie Chen", "Ziming Mao", "ChonLam Lao", "Shuo Yang", "Pravein Govindan Kannan", "Jiaqi Gao", "Yilong Zhao", "Yongji Wu", "Kaichao You", "Fengyuan Ren", "Zhiying Xu", "Costin Raiciu", "Ion Stoica"]
+    year: 2025
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: "10.48550/arXiv.2504.17307"
+    arxiv_id: "2504.17307"
+    url: "https://arxiv.org/abs/2504.17307"
+    relevance: "core"
+    query_ids: ["Q4"]
+    local_pdf: "papers/inbox/2504.17307.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  # === 干扰定量分析 ===
+  - id: "P024"
+    title: "Characterizing Compute-Communication Overlap in GPU-Accelerated Distributed Deep Learning"
+    authors: ["Seonho Lee", "Jihwan Oh", "Junkyum Kim", "Seokjin Go", "Jongse Park", "Divya Mahajan"]
+    year: 2025
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: null
+    arxiv_id: "2507.03114"
+    url: "https://arxiv.org/abs/2507.03114"
+    relevance: "core"
+    query_ids: ["Q3"]
+    local_pdf: "papers/inbox/2025_ComputeCommOverlap_2507.03114.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P025"
+    title: "Impact of RoCE Congestion Control Policies on Distributed Training of DNNs"
+    authors: ["Tarannum Khan", "Saeed Rashidi", "Srinivas Sridharan", "Pallavi Shurpali", "Aditya Akella", "Tushar Krishna"]
+    year: 2022
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: null
+    arxiv_id: "2207.10898"
+    url: "https://arxiv.org/abs/2207.10898"
+    relevance: "core"
+    query_ids: ["Q5"]
+    local_pdf: "papers/inbox/2207.10898.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P026"
+    title: "Ethereal: Divide and Conquer Network Load Balancing in Large-Scale Distributed Training"
+    authors: ["Vamsi Addanki", "Prateesh Goyal", "Ilias Marinos", "Stefan Schmid"]
+    year: 2024
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: null
+    arxiv_id: "2407.00550"
+    url: "https://arxiv.org/abs/2407.00550"
+    relevance: "core"
+    query_ids: ["Q5"]
+    local_pdf: "papers/inbox/2407.00550.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  # VCCL（通信库替代方案）
+  - id: "P027"
+    title: "VCCL: An Efficient, Reliable and Observable Collective Communication Library in Large-scale GPU Training Clusters"
+    authors: ["Mingjun Zhang", "Xiaohe Hu", "Menghao Zhang", "Ziteng Chen", "Mingwei Xu", "Chunming Hu"]
+    year: 2025
+    venue: "arXiv"
+    venue_rank: "预印本"
+    doi: null
+    arxiv_id: "2510.00991"
+    url: "https://arxiv.org/abs/2510.00991"
+    relevance: "core"
+    query_ids: ["Q3"]
+    local_pdf: "papers/inbox/2025_VCCL_2510.00991.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  # === General 论文（22篇）===
+  - id: "P028"
+    title: "CSA-UD: Communication-Semantic-Aware RDMA Loss Recovery for QP-scalable Hyperscale AI Training"
+    authors: ["Xiaoxiang Hua", "Tong Zhang", "Zhenjiang Dong", "Kun Zhu", "Jiakun Bao", "Fengyuan Ren"]
+    year: 2026
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q1"]
+    local_pdf: "papers/inbox/2026_CSAUD_RDMA_Loss_Recovery.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P029"
+    title: "NCCL EP: Towards a Unified Expert Parallel Communication API for NCCL"
+    authors: ["Amos Goldman", "Nimrod Boker", "Maayan Sheraizin", "et al. (NVIDIA)"]
+    year: 2026
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q1", "Q4"]
+    local_pdf: "papers/inbox/2026_NCCL_EP_Expert_Parallel.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P030"
+    title: "UCCL-EP: Portable Expert-Parallel Communication"
+    authors: ["Ziming Mao", "Yihan Zhang", "Chihan Cui", "et al."]
+    year: 2025
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q1", "Q4"]
+    local_pdf: null
+    download_source: null
+    oa_status: "not_downloaded_general"
+
+  - id: "P031"
+    title: "HetCCL: Accelerating LLM Training with Heterogeneous GPUs"
+    authors: ["Heehoon Kim", "Jaehwan Lee", "Taejeoung Kim", "et al."]
+    year: 2026
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q1", "Q4"]
+    local_pdf: null
+    download_source: null
+    oa_status: "not_downloaded_general"
+
+  - id: "P032"
+    title: "ForestColl: Throughput-Optimal Collective Communications on Heterogeneous Network Fabrics"
+    authors: []
+    year: 2024
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q1"]
+    local_pdf: null
+    download_source: null
+    oa_status: "not_downloaded_general"
+
+  - id: "P033"
+    title: "MonkeyTree: Near-Minimal Congestion for Multi-tenant Training via Migration"
+    authors: ["MIT"]
+    year: 2026
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q1"]
+    local_pdf: null
+    download_source: null
+    oa_status: "not_downloaded_general"
+
+  - id: "P034"
+    title: "Demystifying NCCL: An In-depth Analysis of GPU Communication Protocols and Algorithms"
+    authors: []
+    year: 2025
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q2"]
+    local_pdf: "papers/inbox/2025_Demystifying_NCCL_An_In-depth_Analysis_of_GPU_Communication_Protocols_and_Algori_8883d315926b.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P035"
+    title: "EmbRace: Accelerating Sparse Communication for Distributed Training of NLP Models"
+    authors: []
+    year: 2023
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q2"]
+    local_pdf: "papers/inbox/2023_EmbRace_Accelerating_Sparse_Communication_for_Distributed_Training_of_Embedding__e27474a38d37.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P036"
+    title: "TACCL: Guiding Collective Algorithm Synthesis using Communication Sketches"
+    authors: ["Aashaka Shah", "Vijay Chidambaram", "Meghan Cowan", "et al."]
+    year: 2023
+    venue: "NSDI"
+    venue_rank: "CCF-A"
+    relevance: "general"
+    query_ids: ["Q3"]
+    local_pdf: null
+    download_source: null
+    oa_status: "not_downloaded_general"
+
+  - id: "P037"
+    title: "TE-CCL: Rethinking ML Collective Communication as a Multi-Commodity Flow Problem"
+    authors: ["Behnaz Arzani", "Siva Kesava Reddy Kakarla", "Miguel Castro", "Srikanth Kandula", "Saeed Maleki", "Luke Marshall"]
+    year: 2024
+    venue: "SIGCOMM"
+    venue_rank: "CCF-A"
+    relevance: "general"
+    query_ids: ["Q3"]
+    local_pdf: null
+    download_source: null
+    oa_status: "not_downloaded_general"
+
+  - id: "P038"
+    title: "MSCCL++: Rethinking GPU Communication Abstractions for Cutting-edge AI Applications"
+    authors: ["Aashaka Shah", "Abhinav Jangda", "Binyang Li", "Saeed Maleki", "et al."]
+    year: 2025
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q3"]
+    local_pdf: null
+    download_source: null
+    oa_status: "not_downloaded_general"
+
+  - id: "P039"
+    title: "MultiWorld: Enabling Elastic Model Serving"
+    authors: ["Myungjin Lee", "Akshay Jajoo", "Ramana Rao Kompella"]
+    year: 2024
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q3"]
+    local_pdf: "papers/inbox/2024_MultiWorld_2407.08980.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P040"
+    title: "Flex-MIG: Enabling Distributed Execution on MIG"
+    authors: ["Myeongsu Kim", "Ikjun Yeom", "Younghoon Kim"]
+    year: 2025
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q3"]
+    local_pdf: "papers/inbox/2025_FlexMIG_2511.09143.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P041"
+    title: "FiCCO: Design Space Exploration of DMA based Finer-Grain Compute Communication Overlap"
+    authors: ["Shagnik Pal", "Shaizeen Aga", "Suchita Pati", "Mahzabeen Islam", "Lizy K. John"]
+    year: 2025
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q3"]
+    local_pdf: null
+    download_source: null
+    oa_status: "not_downloaded_general"
+
+  - id: "P042"
+    title: "ScaleAcross Explorer: Exploring Communication Optimization for Scale-Across AI Model Training"
+    authors: ["Minghao Li", "Alicia Golden", "Samuel Hsia", "Carole-Jean Wu", "Minlan Yu", "et al."]
+    year: 2026
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q3", "Q5"]
+    local_pdf: "papers/inbox/2026_ScaleAcross_Explorer_Exploring_Communication_Optimization_for_Scale-Across_AI_Mo_f1cb208adf47.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P043"
+    title: "MFS: Multi-stage Flow Scheduling for LLM Serving"
+    authors: ["Yijun Sun", "Xudong Liao", "Songrun Xie", "Hao Chen", "Han Tian", "Wenxue Li", "Yiming Zhang", "Kai Chen"]
+    year: 2026
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q3"]
+    local_pdf: null
+    download_source: null
+    oa_status: "not_downloaded_general"
+
+  - id: "P044"
+    title: "PCCL: Photonic circuit-switched collective communication for distributed ML"
+    authors: ["Abhishek Vijaya Kumar", "Arjun Devraj", "Rachee Singh"]
+    year: 2025
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q3"]
+    local_pdf: null
+    download_source: null
+    oa_status: "not_downloaded_general"
+
+  - id: "P045"
+    title: "Hopper: Congestion-Aware Path Selection for Load Balancing in AI Clusters"
+    authors: ["Erfan Nosrati", "Majid Ghaderi"]
+    year: 2025
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q4", "Q5"]
+    local_pdf: "papers/inbox/2506.08132.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P046"
+    title: "Adaptra: Straggler-Resilient Hybrid-Parallel Training with Pipeline Adaptation"
+    authors: ["Tianyuan Wu", "Lunxi Cao", "Hanfeng Lu", "et al."]
+    year: 2025
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q4", "Q5"]
+    local_pdf: "papers/inbox/2504.19232.pdf"
+    download_source: "arxiv"
+    oa_status: "open_pdf"
+
+  - id: "P047"
+    title: "Resilient AI Supercomputer Networking using MRC and SRv6"
+    authors: ["Joao Araujo", "et al."]
+    year: 2026
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q5"]
+    local_pdf: null
+    download_source: null
+    oa_status: "not_downloaded_general"
+
+  - id: "P048"
+    title: "Wormhole: Supercharging Packet-level Network Simulation of Large Model Training"
+    authors: ["Fei Long", "Kaihui Gao", "Li Chen", "Dan Li", "et al."]
+    year: 2026
+    venue: "arXiv"
+    venue_rank: "预印本"
+    relevance: "general"
+    query_ids: ["Q5"]
+    local_pdf: null
+    download_source: null
+    oa_status: "not_downloaded_general"

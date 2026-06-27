@@ -1,0 +1,81 @@
+batch_id: "Q3"
+generated_at: "2026-06-27T00:00:00Z"
+
+batch_stats:
+  total_papers: 5
+  core: 5
+  general: 0
+  digested: 5
+  unreadable: 0
+
+papers:
+  - filename: "2509.15940.pdf"
+    title: "Arnold: Efficient Pre-Training of LLMs via Topology-Aware Communication Alignment on More Than 9600 GPUs"
+    relevance: "core"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q3/papers/2509.15940.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "supporting"
+      - hypothesis_id: "H2"
+        verdict: "supporting"
+
+  - filename: "2308.05692.pdf"
+    title: "Isolated Scheduling for Distributed Training Tasks in GPU Clusters (vClos)"
+    relevance: "core"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q3/papers/2308.05692.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "supporting"
+      - hypothesis_id: "H2"
+        verdict: "strongly_supporting"
+
+  - filename: "2025_BandPilot_2506.15595.pdf"
+    title: "BandPilot: Towards Performance- and Contention-Aware GPU Dispatching in AI Clusters"
+    relevance: "core"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q3/papers/2025_BandPilot_2506.15595.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "supporting"
+      - hypothesis_id: "H2"
+        verdict: "strongly_supporting"
+
+  - filename: "2603.04424.pdf"
+    title: "When Scaling Fails: Network and Fabric Effects on Distributed GPU Training Performance"
+    relevance: "core"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q3/papers/2603.04424.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "neutral"
+      - hypothesis_id: "H2"
+        verdict: "supporting"
+
+  - filename: "2025_VCCL_2510.00991.pdf"
+    title: "VCCL: An Efficient, Reliable and Observable Collective Communication Library in Large-scale GPU Training Clusters"
+    relevance: "core"
+    digest_status: "digested"
+    report_path: "workflow/04_paper_digest/round_01/reports/Q3/papers/2025_VCCL_2510.00991.md"
+    hypothesis_verification:
+      - hypothesis_id: "H1"
+        verdict: "strongly_supporting"
+      - hypothesis_id: "H2"
+        verdict: "neutral"
+
+cross_paper_findings:
+  common_themes:
+    - "通信-计算重叠是共识瓶颈：所有5篇论文直接或间接围绕如何让通信不拖累计算"
+    - "物理拓扑感知从单任务延伸到多任务：Arnold(对齐)、BandPilot(预测)、vClos(隔离)代表三种层次"
+    - "Kernel/微架构级视角出现：GPU SM层面的通信-计算争用被Arnold和VCCL独立识别"
+    - "数据驱动+预表征方法论的跨论文一致性：Arnold(α/β权重)、BandPilot(Transformer模型)、VCCL(NCCL-tests)"
+  contradictions:
+    - "紧凑度是好代理吗？BandPilot明确否定紧凑度(4+4优于6+2)，vClos隐含支持紧凑度(Stage 0/1优先同服务器/同Leaf)，Arnold部分支持(简单拓扑下紧凑度有效)"
+    - "空间隔离(vClos独占子拓扑) vs 智能共享(BandPilot学习模型规避争用)：两路线代价不同"
+    - "NCCL是否可替代：VCCL主张替代(已24K GPU部署)，其他四篇以NCCL为不可修改底层"
+  coverage_gaps:
+    - "多任务间的动态仲裁机制缺失：所有论文要么隔离、要么静态预测、要么单任务优化，无运行时检测+实时调整方案"
+    - "MoE模型的AlltoAll争用是最大盲区：vClos指出其极度敏感(60%吞吐下降)，但VCCL将其留待未来"
+    - "公平性和QoS保证的量化缺失：vClos提及问题但未量化"
+    - "大规模RDMA拥塞控制(DCQCN/PFC)与通信调度的交互：仅VCCL附录K简要提及"

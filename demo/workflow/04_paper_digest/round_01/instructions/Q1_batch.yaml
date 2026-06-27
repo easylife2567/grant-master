@@ -1,0 +1,90 @@
+batch_id: "Q1"
+round_dir: "workflow/04_paper_digest/round_01"
+
+round_goal_excerpt:
+  goal: "系统调研 RDMA 多租户性能隔离和分布式训练通信调度的现有方法，回答已有方案覆盖了什么、在哪里还有不足"
+  core_question: "已有 RDMA 多租户性能隔离方案主要有哪些技术路线？各自在隔离粒度、性能开销、实现复杂度上如何对比？这些方案是否考虑了分布式训练场景的通信模式特征？"
+  what_not_to_find: "RDMA 基础协议细节、纯训练算法优化不涉及网络调度、通用数据中心网络调度非RDMA场景"
+
+hypothesis_to_verify:
+  - "多租户RDMA网络共享场景下，不同训练任务的通信性能确实存在不可忽视的相互干扰"
+  - "现有的RDMA性能隔离方案（如PeRF、Harmonic）未充分考虑训练场景的通信模式特征"
+  - "感知训练任务通信特征的调度策略相比纯网络层调度可取得更好的隔离效果"
+
+papers:
+  - pdf_path: "papers/inbox/2024_Harmonic_RDMA_Isolation.pdf"
+    metadata:
+      title: "Harmonic: Hardware-assisted RDMA Performance Isolation for Public Clouds"
+      authors: ["Jiaqi Lou", "Xinhao Kong", "Jinghan Huang", "Wei Bai", "Nam Sung Kim", "Danyang Zhuo"]
+      year: 2024
+      venue: "NSDI (CCF-A)"
+      citation_count: 20
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "首个微架构资源感知的RDMA性能隔离方案。基于FPGA可编程智能PCIe交换机+RDMA友好速率限制器。唯一通过Husky测试套件的方案，正集成到下一代商用RNIC。"
+      query_id: "Q1"
+
+  - pdf_path: "papers/inbox/2023_Husky_RDMA_Microarchitecture.pdf"
+    metadata:
+      title: "Understanding RDMA Microarchitecture Resources for Performance Isolation"
+      authors: ["Xinhao Kong", "Jingrong Chen", "Wei Bai", "Yechen Xu", "Mahmoud Elhaddad", "Shachar Raindel", "Jitendra Padhye", "Alvin R. Lebeck", "Danyang Zhuo"]
+      year: 2023
+      venue: "NSDI (CCF-A)"
+      citation_count: 66
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "首篇揭示RNIC微架构资源（缓存、处理单元、PCIe带宽）是RDMA多租户隔离关键瓶颈的工作。提出Husky测试套件证明当时所有方案均无法通过。结果被NVIDIA确认复现。"
+      query_id: "Q1"
+
+  - pdf_path: "papers/inbox/2024_PeRF_Preemption_RDMA.pdf"
+    metadata:
+      title: "PeRF: Preemption-enabled RDMA Framework"
+      authors: ["Sugi Lee", "Mingyu Choi", "Ikjun Yeom", "Younghoon Kim"]
+      year: 2024
+      venue: "USENIX ATC (CCF-A)"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "纯软件RDMA性能隔离框架。利用IB_WR_WAIT/IB_WR_ENABLE动词实现RNIC抢占机制，工作保持、无需专用硬件。相比此前软件方案吞吐提升约2.04x。"
+      query_id: "Q1"
+
+  - pdf_path: "papers/inbox/2505.11339.pdf"
+    metadata:
+      title: "Palladium: A DPU-enabled Multi-Tenant Serverless Cloud over Zero-copy Multi-node RDMA Fabrics"
+      authors: ["Shixiong Qi", "Songyu Zhang", "K. K. Ramakrishnan", "Diman Z. Tootaghaj", "Hardik Soni", "Puneet Sharma"]
+      year: 2025
+      venue: "SIGCOMM (CCF-A)"
+      citation_count: 2
+      relevance: "core"
+      digest_priority: "high"
+      abstract_summary: "DPU为中心的多租户serverless数据平面。DNE作为反向代理隔离RDMA QP与不可信租户，实施公平带宽分配。跨处理器共享内存零拷贝。吞吐量提升20.9x。"
+      query_id: "Q1"
+
+  - pdf_path: "papers/inbox/2023_OSMOSIS_SmartNIC_MultiTenant.pdf"
+    metadata:
+      title: "OSMOSIS: Enabling Multi-Tenancy in Datacenter SmartNICs"
+      authors: ["ETH Zurich"]
+      year: 2023
+      venue: "arXiv"
+      citation_count: 0
+      relevance: "core"
+      digest_priority: "medium"
+      abstract_summary: "400Gbit/s SmartNIC多租户公平资源复用。WLBVT硬件调度器公平分配处理单元，传输分片和加权轮询解决DMA/出口HoL阻塞。RISC-V PsPIN实现。"
+      query_id: "Q1"
+
+  - pdf_path: "papers/inbox/2508.09663.pdf"
+    metadata:
+      title: "Closing the HPC-Cloud Convergence Gap: Multi-Tenant Slingshot RDMA for Kubernetes"
+      authors: ["Philipp A. Friese", "Ahmed Eleliemy", "Utz-Uwe Haus", "Martin Schulz"]
+      year: 2025
+      venue: "IEEE Cluster 2025"
+      citation_count: 1
+      relevance: "core"
+      digest_priority: "medium"
+      abstract_summary: "将HPE Slingshot 200Gbps RDMA扩展到K8s多租户。网络命名空间认证、VNI管理服务实现RDMA通信域隔离。开销极小。"
+      query_id: "Q1"
+
+output:
+  batch_report: "workflow/04_paper_digest/round_01/reports/Q1/Q1_batch_report.md"
+  batch_manifest: "workflow/04_paper_digest/round_01/reports/Q1/Q1_batch_manifest.yaml"
+  paper_reports_dir: "workflow/04_paper_digest/round_01/reports/Q1/papers/"

@@ -1,0 +1,229 @@
+stage: "HELM"
+version: "v1"
+
+basis:
+  - "topic.md"
+  - "workflow/05_synthesis/current_view.md"
+
+project_positioning:
+  one_sentence_mainline: "面向智算中心多租户共享RDMA网络的分布式训练场景，提出训练通信语义驱动的网络资源智能调度方法，通过在线感知训练通信模式并转化为RDMA差异化调度策略，实现多任务训练的网络性能隔离与资源高效利用。"
+  what_to_emphasize:
+    - "训练通信语义感知\"是核心创新——区分于现有RDMA隔离方案的信息不可知范式"
+    - "纯软件实现\"是技术约束——不改NIC硬件，可增量部署于现有RDMA集群"
+    - "多租户场景的量化证据链\"是立项依据的核心——13篇独立论文支撑问题严重性和方案必要性"
+  what_not_to_emphasize:
+    - "RDMA硬件协议重新设计"（不在课题范围）
+    - "大规模集群(>100节点)调度"（青年项目规模）
+    - "通用AI for Network"方法论（智能是手段，调度是目的）
+  target_contribution_style: "系统论文——提出新调度方法 + 原型系统实现 + 实验验证"
+
+selected_problem:
+  core_problem: "现有RDMA多租户性能隔离方案不感知也不利用分布式训练的通信模式特征，导致多任务并发时性能隔离效率低、网络资源利用率差"
+  supporting_problems:
+    - "分布式训练的通信调度方法聚焦单作业优化，不考虑多任务共享网络时的公平性和隔离性"
+    - "现有RDMA拥塞控制和负载均衡机制未针对训练通信的确定性模式进行优化"
+  why_this_problem: "这是整个文献调研中发现的最具创新空间和最强证据支撑的交叉空白——13篇独立论文从RDMA隔离和训练调度两个社区各自验证了这一空白的存在"
+  rejected_problem_directions:
+    - name: "RDMA硬件协议重新设计"
+      reason: "不在课题范围（topic明确为调度方法非协议设计），且需要NIC硬件团队配合，超出青年项目能力"
+      treatment: "dropped"
+    - name: "大规模并发(>100任务)调度"
+      reason: "缺乏真实trace数据和实证研究支撑（Gap 4 证据不足），且超出青年项目实验规模"
+      treatment: "future_work"
+    - name: "推理场景网络优化"
+      reason: "topic限定为分布式训练，推理的通信模式（延迟敏感小包burst）与训练显著不同"
+      treatment: "dropped"
+
+selected_route:
+  main_route: "纯软件训练通信语义感知的RDMA动态调度"
+  route_summary: "三层架构：感知层（NCCL Trace拦截+RDMA计数器）提取训练通信模式→决策层（通信模式分类+差异化资源分配算法）生成调度策略→执行层（PeRF抢占原语+QP速率控制+确定性路径分配）执行调度。全部在软件层面实现，不需RDMA NIC硬件修改。"
+  why_this_route: "（1）可行性最高——PeRF已证明纯软件RDMA抢占可行，BandPilot已证明学习通信带宽模型可行；（2）创新性最清晰——将训练通信模式作为调度决策的核心变量，与所有现有RDMA隔离方案形成明确对比；（3）风险可控——不改硬件，失败时回退到静态均分带宽；（4）适合青年项目体量——3个研究内容、8-64节点实验验证。"
+  rejected_routes:
+    - name: "拓扑感知协同放置+网络调度（路线B）"
+      reason: "需深度集成K8s/Slurm调度器、MIP求解实时性不足、整体复杂度超过青年项目3年周期可完成的范围"
+      treatment: "background_only"
+    - name: "ML-容忍度驱动的差异化QoS（路线C）"
+      reason: "需修改NCCL暴露通信优先级接口，当前NCCL版本不支持；依赖NVIDIA 的NCCL演进方向，外部不可控"
+      treatment: "future_work"
+
+system_scheme:
+  architecture_summary: "三层架构：感知层→决策层→执行层。感知层通过LD_PRELOAD拦截NCCL调用和读取RDMA计数器获取通信模式。决策层基于通信模式运行分类和分配算法产出调度策略。执行层通过PeRF抢占原语、QP令牌桶速率控制和源路由路径分配将策略施加到RDMA网络。"
+  modules:
+    - id: "M1"
+      name: "NCCL Trace拦截器"
+      role: "在不侵入训练代码的前提下捕获训练任务的通信操作序列"
+      solves_problem: "如何获取训练通信模式信息"
+      method: "LD_PRELOAD劫持NCCL集体通信API（ncclAllReduce/ncclAllGather等），记录操作类型、消息大小、QP绑定和时间戳"
+      input: "NCCL通信API调用"
+      output: "通信事件流（timestamp, op_type, msg_size, qp_id, src/dst rank）"
+      depends_on: []
+      validation: "在PyTorch+NCCL环境下，对比拦截采集的通信trace与NCCL内部日志的ground truth，验证精度>95%"
+
+    - id: "M2"
+      name: "RDMA计数器采集器"
+      role: "周期性采集RDMA QP计数器，提供网络状态视图"
+      solves_problem: "如何获取RDMA网络的实时拥塞和资源使用状态"
+      method: "通过sysfs或perfquery读取RDMA设备计数器（发送/接收字节、包数、重传次数、ECN标记数、QP状态）"
+      input: "/sys/class/infiniband/*/ports/*/counters/"
+      output: "网络状态快照（per-QP吞吐、拥塞信号、错误计数）"
+      depends_on: []
+      validation: "采集频率100Hz，验证CPU开销<1%每核"
+
+    - id: "M3"
+      name: "通信模式分类器"
+      role: "从通信事件流中识别每个训练任务当前的通信阶段和模式"
+      solves_problem: "如何区分不同的训练通信模式（burst/空闲、all-reduce/all-gather/数据加载、高/低通信强度）"
+      method: "滑动窗口统计（窗口大小=1个training iteration） + 启发式规则（消息大小>10MB且>100ms间隔→all-reduce burst；持续<1KB小消息→参数同步）或轻量在线分类器"
+      input: "通信事件流 + 网络状态快照"
+      output: "任务通信模式标签（task_id, phase: burst|idle|mixed, op_type: allreduce|allgather|alltoall, intensity: high|medium|low, period_estimate）"
+      depends_on: ["M1", "M2"]
+      validation: "在3种训练负载上验证分类准确率>90%"
+
+    - id: "M4"
+      name: "资源分配器"
+      role: "根据各任务的通信模式和优先级计算差异化RDMA资源分配方案"
+      solves_problem: "如何将通信模式转化为具体的RDMA资源分配决策"
+      method: "两级优先级分配——（1）任务级：根据用户指定的优先级或系统默认优先级分配权重；（2）通信阶段级：同一任务内在gradient sync阶段分配高带宽、data loading阶段分配低带宽。权重→QP令牌桶速率+路径分配"
+      input: "任务通信模式标签 + 任务优先级"
+      output: "每个QP的（bandwidth_limit, priority_class, path_set）"
+      depends_on: ["M3"]
+      validation: "单QP带宽限制精度误差<5%"
+
+    - id: "M5"
+      name: "QP抢占与速率执行器"
+      role: "将调度策略施加到RDMA网络"
+      solves_problem: "如何在不改NIC硬件的条件下执行差异化QP调度"
+      method: "封装PeRF的IB_WR_WAIT/ENABLE原语实现QP级抢占；令牌桶算法实现QP速率限制；ibv_modify_qp()修改QP状态"
+      input: "每个QP的（bandwidth_limit, priority_class）"
+      output: "实际QP行为变更"
+      depends_on: ["M4"]
+      validation: "抢占延迟<100μs；速率限制精度误差<5%"
+
+    - id: "M6"
+      name: "路径管理器"
+      role: "为不同任务的通信分配非冲突网络路径"
+      solves_problem: "如何避免ECMP哈希冲突导致的多任务网络拥塞"
+      method: "基于Ethereal的确定性路径分配——获知CLOS拓扑的上行链路集合，为不同任务的流分配不同的上行端口。仅需少量QP（<32），不需要packet spraying的全对全QP。"
+      input: "路径分配指令 + 网络拓扑信息"
+      output: "QP-to-path映射（通过源路由或等价多路径权重配置）"
+      depends_on: ["M4"]
+      validation: "多任务并发时路径冲突概率<5%"
+
+  data_flow:
+    - "NCCL API调用 → M1拦截 → 通信事件流 → M3分类 → 通信模式标签"
+    - "RDMA计数器 → M2采集 → 网络状态快照 → M3分类（辅助）+ M4分配（约束）"
+    - "通信模式标签 + 任务优先级 → M4分配 → (bandwidth, priority, path)三元组"
+    - "bandwidth + priority → M5执行 → QP速率变化"
+    - "path分配 → M6执行 → QP-to-path映射"
+  control_flow:
+    - "稳态周期（100ms）：M1+M2采集→M3分类→M4分配→M5+M6执行"
+    - "紧急事件（<1ms）：M2检测到突发拥塞（ECN标记>阈值）→M4快速重分配→M5紧急抢占"
+    - "任务加入/退出：触发M4全量重分配"
+  fallback:
+    - "M3/M4/M5任一模块故障时，回退到静态均分带宽（fair-share）模式"
+    - "M6故障时，回退到ECMP（默认负载均衡）"
+    - "调度器守护进程崩溃时，所有QP恢复默认无限制状态（系统退化为无隔离）"
+  security_boundary:
+    - "调度器以特权守护进程运行，训练任务无权访问调度器进程间通信"
+    - "QP速率限制由调度器周期性强执行，训练任务无法自行修改QP配置"
+    - "RDMA保护域（PD）隔离：不同任务的QP属于不同PD"
+
+research_contents:
+  - id: "R1"
+    title: "多租户训练通信模式在线感知与表征方法"
+    problem: "在多个训练任务并发的RDMA网络环境中，如何在不侵入训练代码的前提下，高效准确地在线感知各任务的通信模式（迭代周期、burst/空闲交替、通信操作类型和强度）？"
+    method: "LD_PRELOAD劫持NCCL API + sysfs计数器采集 + 滑动窗口通信模式分类器。设计低开销（<3% CPU）的轻量级感知框架，支持≥3种训练任务类型。"
+    expected_result: "（1）通信模式感知精度>90%；（2）感知开销<3% CPU和<1%训练吞吐下降；（3）支持≥3种训练任务类型（大模型预训练、LoRA微调、CV训练）的通用表征"
+    validation: "在8-16节点上用已知ground truth的合成通信负载验证感知精度；在真实PyTorch训练任务上测量性能开销"
+
+  - id: "R2"
+    title: "通信语义驱动的RDMA网络资源动态调度方法"
+    problem: "如何将感知到的训练通信模式转化为有效的RDMA网络资源调度决策，在差异化带宽分配、抢占式QP调度和冲突避免的路径分配三个维度实现性能隔离与资源高效利用？"
+    method: "（1）通信模式→优先级映射算法：区分gradient sync（高优先级）、data loading（低优先级）、all-to-all（中优先级）；（2）两级权重分配：任务级权重+通信阶段级权重→QP令牌桶速率；（3）基于PeRF抢占原语（WAIT/ENABLE）的QP调度执行；（4）基于Ethereal确定性路径分配的ECMP冲突避免"
+    expected_result: "（1）高优先级任务带宽退化<10%；（2）最差任务JCT相比无隔离降低>30%；（3）集群网络利用率相比静态均分提升>15%"
+    validation: "在16-32节点RoCEv2集群上，使用2-4个训练任务并发场景验证各指标"
+
+  - id: "R3"
+    title: "原型系统构建与实验验证"
+    problem: "所提出的调度方法在真实分布式训练环境中的可行性和有效性如何？与现有基线方案相比的综合优势有多大？"
+    method: "构建端到端原型系统（整合R1+R2成果），在8-64节点RoCEv2集群上部署验证。测试3种多任务并发场景（大模型预训练+LoRA微调并发、同等规模任务公平性测试、多优先级QoS差异化测试），与3个基线方案（无隔离/静态均分/PeRF原方案）全方位对比。"
+    expected_result: "（1）开源原型系统代码和部署文档；（2）≥3种场景×3种规模的完整实验数据；（3）形成可复现的benchmark套件（包含NCCL trace数据集和RDMA性能数据集）"
+    validation: "端到端实验+消融实验（逐个模块disable验证各组件贡献）"
+
+validation_plan:
+  baselines:
+    - "无隔离（原生RDMA共享）：所有任务平等竞争网络资源"
+    - "静态均分带宽（Equal Share）：每个任务均分总带宽，不感知通信模式"
+    - "PeRF原始方案：使用PeRF的消息大小分类器（不感知训练通信语义）进行抢占式隔离"
+  metrics:
+    - "任务级：JCT（作业完成时间）、训练吞吐（samples/sec）、MFU（Model FLOPS Utilization）"
+    - "网络级：带宽退化率（%）、带宽公平性（Jain's Fairness Index）、P99流完成时间"
+    - "系统级：调度器CPU开销（%）、感知精度（%）、抢占响应延迟（μs）"
+  experiment_scenarios:
+    - "场景A（典型云智算）：1个GPT-2级别预训练 + 3个LoRA微调 并发"
+    - "场景B（公平性压力）：2个同规模ResNet-50训练 并发"
+    - "场景C（QoS差异化）：1个高优先级Gradient Sync + 5个低优先级Data Loading"
+  module_validation:
+    - "M1+M2+M3：通信模式感知精度（合成负载ground truth）"
+    - "M4+M5：单QP抢占延迟和带宽稳定性"
+    - "M6：多任务路径冲突概率"
+  end_to_end_validation:
+    - "16节点：场景A/B/C全量测试"
+    - "32节点：场景A/B重点测试"
+    - "64节点（如有条件）：场景A可扩展性测试"
+  user_confirm_needed:
+    - "实验平台：需确认可用的RoCEv2 RDMA集群规格（GPU型号/NIC型号/节点数/OFED版本）"
+    - "训练任务类型：需确认目标训练任务的具体模型和框架版本（PyTorch版本/NCCL版本）"
+    - "NCCL API兼容性：需在实际NCCL版本上验证LD_PRELOAD劫持方案的可行性"
+
+outline_guidance:
+  background_focus:
+    - "智算中心从独占到共享的演进——提出多租户网络隔离的必要性"
+    - "RDMA在多租户场景下的性能挑战——引用Husky(18.9%减速)、vClos(60%吞吐下降)、RL调度(49.1%吞吐下降)的定量数据"
+    - "RDMA微架构资源争用的微观机理（Husky的52种攻击测试）"
+  related_work_focus:
+    - "按三个方向组织：（1）RDMA多租户性能隔离（Husky→Harmonic→PeRF→Palladium的5路线演进）；（2）分布式训练通信调度（TicTac→P3→DLCP→DHelix的4维度演进）；（3）拓扑感知与智能调度（vClos→Arnold→BandPilot的3范式演进）"
+    - "每个方向末尾明确写出'与本文的关系和未覆盖的空白'"
+  gap_expression:
+    - "忌：'目前还没有研究解决此问题'"
+    - "宜：'RDMA隔离社区和训练调度社区各自取得了显著进展，但两者的研究范式存在天然壁垒——隔离方案假设稳态流量，调度方案假设网络无争用。在智算中心多租户训练这个交汇场景中，现有方案因不感知对方维度的约束而失效'"
+    - "用表格展示最近邻工作在'是否感知训练通信模式'和'是否支持多租户隔离'两个维度的覆盖情况（全否）"
+  objective_expression:
+    - "总目标：设计训练通信语义驱动的RDMA网络资源智能调度方法"
+    - "子目标1：实现多租户训练通信模式的在线精准感知（对应R1）"
+    - "子目标2：设计训练感知的RDMA差异化调度算法（对应R2）"
+    - "子目标3：构建原型系统并完成多场景实验验证（对应R3）"
+  research_content_structure:
+    - "R1→R2→R3按'感知→决策→验证'逻辑递进，每项研究内容独立成章但有明确的前后依赖和接口关系"
+    - "R1为R2提供通信模式输入，R2为R3提供调度策略实现"
+    - "每项研究内容包含：问题描述→技术方案→关键技术难点→预期成果"
+  technical_route_expression:
+    - "以三层架构图（感知层→决策层→执行层）为核心视觉元素"
+    - "每层标注技术来源（如执行层标注'借鉴PeRF的抢占原语'）"
+    - "给出端到端的控制流时序（从NCCL调用到QP速率变化的完整路径）"
+  innovation_expression:
+    - "创新点1：首次提出训练通信语义驱动的RDMA多租户调度范式——将训练任务的通信模式特征（迭代周期、操作类型、ML容忍度）作为RDMA网络资源调度的核心决策变量，突破了现有方案的信息不可知局限"
+    - "创新点2：设计了通信语义感知的差异化RDMA资源分配算法——在QP粒度上实现burst感知的抢占式调度和优先级驱动的公平带宽分配"
+    - "创新点3：纯软件实现，不改NIC硬件——基于PeRF抢占原语和Ethereal路径分配，可在现有RoCEv2集群上增量部署"
+  validation_expression:
+    - "双层验证：模块级（M1-M6逐个验证）+端到端（3场景×3规模）"
+    - "场景覆盖有明确动机：场景A=典型使用、场景B=压力测试、场景C=差异化QoS验证"
+    - "基线选择有依据：无隔离=下界、静态均分=朴素公平基准、PeRF原方案=最接近的SOTA对比"
+  avoid_writing:
+    - "不要把RL/DL方法写成中心——'智能'体现在利用训练语义做调度，方法是手段"
+    - "不要写成10+个方向的工作比较——聚焦3个方向，每个3-4篇代表论文"
+    - "不要声称解决'所有多租户网络问题'——范围限定为RDMA+分布式训练"
+    - "不要把实验规模写得过大——64节点是青年项目合理的上限"
+
+quality:
+  focus_score: 0.85
+  completeness_score: 0.85
+  innovation_score: 0.80
+  feasibility_score: 0.85
+  validation_score: 0.80
+
+notes:
+  - "主线选择：纯软件训练感知调度（路线A），6个模块→3个研究内容"
+  - "路线B/C分别作为背景提及和未来扩展"
+  - "所有模块均可映射到明确的论文来源（PeRF/Ethereal/BandPilot/DLCP），避免空想式方案设计"
+  - "项目体量控制在青年项目范围：3年、3项研究内容、8-64节点实验"

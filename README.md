@@ -57,6 +57,14 @@ Codex 中安装时，把仓库作为 Codex plugin 导入即可。安装后在任
 /grant-master:auto 状态
 ```
 
+Codex 自动编排依赖本仓库的项目级 multi-agent 配置：
+
+```bash
+bash scripts/codex/check-agents.sh
+```
+
+该检查会确认 `.codex/config.toml` 已注册 `grant_searcher`、`grant_digester`、`grant_writer` 三个 worker role。若你把 Grant-Master 复制到其他项目或只安装了 skill 文件，需同时保留 `.codex/` 目录；否则 03/04/08 阶段会阻塞，而不会回退到通用 agent。
+
 Claude Code 本地安装可以克隆后复制到本地 skill/plugin 目录：
 
 ```bash

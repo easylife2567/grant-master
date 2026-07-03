@@ -57,6 +57,14 @@ For Codex, import this repository as a Codex plugin. After installation, test it
 /grant-master:auto 状态
 ```
 
+Codex auto orchestration depends on this repository's project-local multi-agent configuration:
+
+```bash
+bash scripts/codex/check-agents.sh
+```
+
+The check confirms that `.codex/config.toml` registers the `grant_searcher`, `grant_digester`, and `grant_writer` worker roles. If you copy Grant-Master into another project or install only the skill files, keep the `.codex/` directory as well; otherwise stages 03/04/08 will block instead of falling back to a generic agent.
+
 For local Claude Code usage:
 
 ```bash

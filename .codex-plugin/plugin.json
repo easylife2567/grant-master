@@ -1,6 +1,6 @@
 {
   "name": "grant-master",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "中文项目申请书全流程自动撰写插件，覆盖课题理解、文献调研、方案收敛、大纲规划、正文写作、组装审阅与 docx 输出。",
   "author": {
     "name": "lin",

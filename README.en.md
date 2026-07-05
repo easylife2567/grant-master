@@ -82,13 +82,13 @@ Download or clone the project:
 git clone <repo-url> grant-master
 ```
 
-Create an empty plugin at `~/.claude/skills/grant-master`:
+Make sure the project path is `~/.claude/skills/grant-master` or `C:/Users/<user>/.claude/skills/grant-master`.
+
+Then run:
 
 ```bash
 claude plugin init grant-master
 ```
-
-Then move all files from this project into the newly created plugin.
 
 #### Dependencies
 

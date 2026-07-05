@@ -82,13 +82,13 @@ powershell -ExecutionPolicy Bypass -File scripts/install-codex.ps1
 git clone <repo-url> grant-master
 ```
 
-使用以下指令创建一个空的 plugin，路径在 ~/.claude/skills/grant-master：
+确保项目路径为 ~/.claude/skills/grant-master 或 C:/Users/<用户>/.claude/skills/grant-master。
+
+然后：
 
 ```bash
 claude plugin init grant-master
 ```
-
-之后，把我们项目中的所有文件迁移到新创建的 plugin 中即可。
 
 #### 依赖
 
